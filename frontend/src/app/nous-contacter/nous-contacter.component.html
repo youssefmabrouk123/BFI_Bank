@@ -1,0 +1,86 @@
+
+<section id="Contactez-nous" class="Contactez-nous">
+    <div class="container">
+      <br>
+      <br>
+      <div class="section-title">
+        <h2 style="color: whitesmoke; font-size: 35px;"><br><br>Contactez votre conseiller BFI Bank</h2>
+        <br>
+        <h3 style="color: white; font-size: 26px;">Contactez-nous par téléphone</h3>
+        
+        <div class="col-lg-6 pt-4 pt-lg-0">
+            <h1 style="font-size: 32px;"><a href="#" class="btn-number">(+216) 71 962 030</a></h1>
+          </div>
+        <br>
+        <h3 style="color: white; font-size: 20px;"><b> Nos conseillers BFI Bank sont à votre disposition de 8h00 à 18h du lundi au Samedi</b></h3> 
+        <h3 style="color: white; font-size: 20px;">Vous pouvez nous contacter via le numéro de téléphone ou à travers le formulaire ci-après</h3>
+        <br>
+        <h4 style="color: wheat; font-size: 20px;">N'oubliez pas de nous suivre aussi sur :</h4>
+        <br>
+        <div class="social-links">
+            <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+            <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+            <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+            <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+            <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+          </div>
+
+      </div>
+    </div>
+</section>    
+<section>
+    <h1 style="color: rgb(182, 130, 61); text-align: center; font-size: 40px;">Contactez-nous en remplissant le formulaire</h1>
+    <br>
+    <form action="forms/nous-contacter.php" method="post" role="form" class="php-email-form">
+        <div class="row">
+            <div class="col-md-6 form-group">
+              <label for="email"><p style="font-size: 17px; color: rgb(230, 168, 89);"><strong>Quel est votre Nom & Prénon ?</strong></p> </label>
+              <input type="text" name="name" class="form-control" id="name" placeholder="Nom" required>
+            </div>
+            <div class="col-md-6 form-group">
+                <label><p style="font-size: 17px; color: white;">Quel est votre Prénon ?</p> </label>
+                <input type="text" name="name" class="form-control" id="name" placeholder="Prénon" required>
+              </div>
+        </div>    
+        <div class="row">
+            <div class="form-group mt-3">
+              <label for="numéro"><p style="color: rgb(230, 168, 89);"><strong>Télèphone</strong></p></label>
+              <input type="number" class="form-control" name="Télèphone" id="Télèphone" placeholder="Télèphone" required>
+            </div>
+          </div>
+
+        <div class="row">
+          <div class="form-group mt-3">
+            <label for="email"><p style="color: rgb(230, 168, 89);"><strong>Email</strong></p></label>
+            <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
+          </div>
+        </div>
+      
+        <div class="form-group mt-3">
+            <label for="email"><p style="color: rgb(230, 168, 89);"><strong>sujet</strong></p></label>
+            <input type="text" class="form-control" name="sujet" id="sujet" placeholder="sujet" required>
+          </div>
+          <div class="form-group mt-3">
+            <label for="email"><p style="color: rgb(230, 168, 89);"><strong>Message</strong></p></label>
+            <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+          </div>
+        
+        <br>
+        <div>
+        <!-- <div [hidden]="captcha"> -->
+          <re-captcha (resolved)="resolved($event)" siteKey="6LfWBAkqAAAAADzHi0CiIkFMstnqiEvLCwnjtjR3"></re-captcha>
+        </div>
+        <!-- <div [hidden]="!captcha">
+          <p>{{ email }}</p>
+        </div> -->
+        <div class="my-3">
+        </div>
+        <br>
+        <div class="text-center mt-4">
+          <button type="submit" class="btn btn-primary">ENVOYER</button>
+      </div>
+        
+      </form>
+
+</section>
+<!-- ======= Contact Section ======= -->

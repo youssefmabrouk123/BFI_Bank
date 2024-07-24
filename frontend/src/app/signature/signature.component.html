@@ -1,0 +1,73 @@
+ <br>
+ <br>
+ <br>
+<h2 style="color: rgb(49, 48, 48); text-align: center; font-size: 40px;"><br><br><b style="font-size: 44px;">Plus simple </b> , avec la signature électronique !</h2>
+<section id="signature" class="signature">
+    <mat-stepper>
+        <mat-step label="Vérification par mail" state="chat">
+            <form [formGroup]="codeForm">
+                <mat-form-field appearance="outline" class="full-width">
+                  <mat-label>Enter le code reçu par mail</mat-label>
+                  <input matInput formControlName="code" placeholder="123456" maxlength="6" required>
+                  
+                </mat-form-field>
+                <p style="color: gray; font-size: 15px;">Un dernier coup d'oeil sur vos informations !</p>
+                <p style="color: gray; font-size: 15px;">Pour bénéficier de la signature électronique . Veuillez saisir le code de confirmation qui vient d'être envoyé à votre adresse mail.</p>
+                <div class="button-group">
+                  <button mat-button (click)="resendCode()" style="color: #009961">Renvoyer le code</button>
+                </div>
+              </form>
+              <br>
+          <div>
+            <button mat-button matStepperNext class="continue-button" style="color: white;">Valider</button>
+          </div>
+        </mat-step>
+        <mat-step label="Vérification par téléphone" state="phone" >
+            <form [formGroup]="codeForm">
+                <mat-form-field appearance="outline" class="full-width">
+                  <mat-label>Enter le code reçu par téléphone</mat-label>
+                  <input matInput formControlName="code" placeholder="123456" maxlength="6" required>
+                  
+                </mat-form-field>
+                <p style="color: gray; font-size: 15px;">Un dernier coup d'oeil sur vos informations !</p>
+                <p style="color: gray; font-size: 15px;">Pour bénéficier de la signature électronique . Veuillez saisir le code de confirmation qui vient d'être envoyé à votre numéro téléphonique .</p>
+              
+                <div class="button-group">
+                  <button mat-button (click)="resendCode()" style="color: #009961">Renvoyer le code</button>
+                </div>
+              </form>
+              <br>
+          <div>
+            <button mat-button matStepperNext class="continue-button" style="color: white;">Valider</button>
+          </div>
+          </mat-step>
+          <mat-step label="Meeting en ligne">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div style="flex: 1;">
+                    <br>
+                    <br>
+                    <p style="color: gray; font-size: 40px; text-align: center;">Merci d'avoir contribué à franchir</p>
+                    <br>
+                    <p style="color: gray; font-size: 40px; text-align: center;"> cette étape importante !</p>
+                    <br>
+                    <br>
+                    <p style="color: rgb(66, 63, 63); font-size: 18px; text-align: center;"> Plus besoin de vous déplacer en agence pour vous connaître de plus près. Vous serez invité à un entretien vidéo avec un conseiller en fonction de votre disponibilité.</p>
+                    <br>
+                    <br>
+                    <p  style="color: gray; font-size: 15px; text-align: center;"> Veuillez recevoir un lien de meeting en ligne qui vient d'être envoyé à votre adresse mail.</p>
+                </div>
+               
+            </div>
+            <br>
+            <div style="text-align: center;">
+                <button mat-button matStepperNext class="confirmer-button" style="color: white;">Confirmer</button>
+            </div>
+           
+        </mat-step>
+        
+      
+       
+      </mat-stepper>
+</section>
+
+

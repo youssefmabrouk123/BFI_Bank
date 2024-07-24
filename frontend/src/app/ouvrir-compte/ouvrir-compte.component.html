@@ -1,0 +1,359 @@
+
+<section id="ouvrir-compte" class="ouvrir-compte">
+  <div class="container">
+    <div class="section-title">
+      <h2 style="color: rgb(49, 48, 48);font-size: 42px;"><br><br><b >Devenez Bfi</b> , vivez une nouvelle expérience !</h2>
+      
+    </div>
+  </div>
+    <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
+      <mat-step [stepControl]="firstFormGroup">
+        <form [formGroup]="firstFormGroup">
+          <ng-template   matStepLabel><b style="font-size: 25px; color:  #004d40;">Identification</b></ng-template>
+         
+  <div class="row">
+    
+    <div class="col-md-6">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label style="color: black; font-size: 18px;">Nom</mat-label>
+        <input matInput placeholder="Nom" formControlName="name" required>
+      </mat-form-field>
+    </div>
+    <div class="col-md-6">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label style="color: black; font-size: 18px;">Prénom</mat-label>
+        <input matInput placeholder="Prénom" formControlName="firstName" required>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+   
+    <div class="col-md-6">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label style="color: black; font-size: 18px;">Numéro de téléphone</mat-label>
+        <input matInput type="tel" placeholder="Numéro de téléphone" formControlName="phoneNumber" required>
+      </mat-form-field>
+    </div>
+    <div class="col-md-6">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label style="color: black; font-size: 18px;">Confirmer votre téléphone</mat-label>
+        <input matInput type="tel" placeholder="Confirmer le numéro de téléphone" formControlName="confirmPhoneNumber" required>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+   
+    <div class="col-md-6">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label style="color: black; font-size: 18px;">E-mail</mat-label>
+        <input matInput type="email" placeholder="Email" formControlName="email" required>
+      </mat-form-field>
+    </div>
+    <div class="col-md-6">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label style="color: black; font-size: 18px;">Confirmer votre E-mail</mat-label>
+        <input matInput type="email" placeholder="Confirmer l'email" formControlName="confirmEmail" required>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+    
+    <div class="col-md-6">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label style="color: black; font-size: 20px;">Date de naissance</mat-label>
+        <input matInput [matDatepicker]="picker">
+          <mat-datepicker-toggle matIconSuffix [for]="picker">
+             <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+         </mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </div>
+          <div>
+            <button mat-button matStepperPrevious style="color: white;">Retourner</button>
+            <button mat-button matStepperNext style="color: white;">Continuer</button>
+          </div>
+        </form>
+      </mat-step>
+
+      <mat-step [stepControl]="secondFormGroup">
+        <form [formGroup]="secondFormGroup">
+          <ng-template matStepLabel><b style="font-size: 25px; color:  #004d40;">Mieux vous connaître</b></ng-template>
+          <div class="form-row">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label style="color: black; font-size: 18px;">Adresse</mat-label>
+              <input matInput formControlName="address" placeholder="Adresse" required>
+            </mat-form-field>
+          </div>
+          <div class="form-row">
+            <mat-form-field appearance="outline" class="third-width">
+              <mat-label style="color: black; font-size: 18px;">Pays</mat-label>
+              <mat-select formControlName="country" placeholder="Sélectionner un pays" required>
+                <mat-option value="Tunisie" >Tunisie</mat-option>
+                
+              </mat-select>
+            </mat-form-field>
+            
+      
+            <mat-form-field appearance="outline" class="third-width">
+              <mat-label style="color: black; font-size: 18px;">Gouvernorat</mat-label>
+              <mat-select formControlName="state" placeholder="Sélectionner un Gouvernorat" required>
+                <mat-option value="Tunis">Tunis</mat-option>
+                <mat-option value="Ariana">Ariana</mat-option>
+                <mat-option value="Nabeul">Nabeul</mat-option>
+                <mat-option value="Béja">Béja</mat-option>
+                <mat-option value="Ben Arous">Ben Arous</mat-option>
+                <mat-option value="Bizerte">Bizerte</mat-option>
+                <mat-option value="Gabès">Gabès</mat-option>
+                <mat-option value="Gafsa">Gafsa</mat-option>
+                <mat-option value="Jendouba">Jendouba</mat-option>
+                <mat-option value="Kairouan">Kairouan</mat-option>
+                <mat-option value="Kasserine">Kasserine</mat-option>
+                <mat-option value="Kébili">Kébili</mat-option>
+                <mat-option value="Le Kef">Le Kef</mat-option>
+                <mat-option value="Mahdia">Mahdia</mat-option>
+                <mat-option value="La Manouba">La Manouba</mat-option>
+                <mat-option value="Médenine">Médenine</mat-option>
+                <mat-option value="Monastir">Monastir</mat-option>
+                <mat-option value="Sfax">Sfax</mat-option>
+                <mat-option value="Sidi Bouzid">Sidi Bouzid</mat-option>
+                <mat-option value="Siliana">Siliana</mat-option>
+                <mat-option value="Sousse">Sousse</mat-option>
+                <mat-option value="Tataouine">Tataouine</mat-option>
+                <mat-option value="Tozeur">Tozeur</mat-option>
+                <mat-option value="Zaghouan">Zaghouan</mat-option>
+                
+              </mat-select>
+            </mat-form-field>
+      
+              <mat-form-field appearance="outline" class="third-width">
+                <mat-label style="color: black; font-size: 18px;">Code Postal</mat-label>
+                <mat-select formControlName="postalCode" placeholder="Sélectionner un code postal" required>
+                  <mat-option value="2035 - ARIANA (Tunis Carthage )">2035 - ARIANA (Tunis Carthage )</mat-option>
+                  <mat-option value="9070 - BEJA(Mjaz Elbab )">9070 - BEJA(Mjaz Elbab )</mat-option>
+                  <mat-option value="2000 - Le Kef">2000 - Le Kef</mat-option>
+                  <mat-option value="3000 - Sfax">3000 - Sfax</mat-option>
+                  <mat-option value="2098 - BEN AROUS (Rades Medina )">2098 - BEN AROUS (Rades Medina )</mat-option>
+                  <mat-option value="7050 - BIZERTE (Menzel Bourguiba )">7050 - BIZERTE (Menzel Bourguiba )</mat-option>
+                  <mat-option value="6000 - GABES (Gabes B-Bhar )">6000 - GABES (Gabes B-Bhar )</mat-option>
+                  <mat-option value="8110 - JENDOUBA (Tabarka )">8110 - JENDOUBA (Tabarka )</mat-option>
+                  <mat-option value="3140 - KAIROUAN (Kaiouran Okba)">3140 - KAIROUAN (Kaiouran Okba)</mat-option>
+                  <mat-option value="1210 - KASSERINE (Tela )">1210 - KASSERINE (Tela )</mat-option>
+                  <mat-option value="4260 - KEBILI (Douz)">4260 - KEBILI (Douz)</mat-option>
+                  <mat-option value="5150 - MAHDIA (Mahdia Republique )">5150 - MAHDIA (Mahdia Republique )</mat-option>
+                  <mat-option value="1110 - MANNOUBA (Mornaguia )">1110 - MANNOUBA (Mornaguia )</mat-option>
+                  <mat-option value="4180 - MEDENINE (Jerba  )">4180 - MEDENINE (Jerba  )</mat-option>
+                  <mat-option value="1152 - ZAGHOUAN (hammam zriba )">1152 - ZAGHOUAN (hammam zriba )</mat-option>
+                  <mat-option value="1053 - TUNIS (Berge du Lac)">1053 - TUNIS (Berge du Lac)</mat-option>
+                  <mat-option value="8058 - NABEUL (Mrezga )">8058 - NABEUL (Mrezga )</mat-option>
+                  <mat-option value="5060 - MONASTIR (Monastir République )">5060 - MONASTIR (Monastir République )</mat-option>
+                  <mat-option value="3021- SFAX (Sakiet Ezzit)">3021- SFAX (Sakiet Ezzit)</mat-option>
+                  <mat-option value="9110 - SIDI BOUZID (Jilma )">9110 - SIDI BOUZID (Jilma )</mat-option>
+                  <mat-option value="6180 - SILIAN (Bouarada )">6180 - SILIAN (Bouarada )</mat-option>
+                  <mat-option value="4059 - SOUSSE (Sousse Corniche )">4059 - SOUSSE (Sousse Corniche )</mat-option>
+                  <mat-option value="3220 - TATAOUINE (Ghomrassen )">3220 - TATAOUINE (Ghomrassen )</mat-option>
+                  <mat-option value="2240 - TOZEUR (Nefta )">2240 - TOZEUR (Nefta )</mat-option>
+                </mat-select>
+              </mat-form-field>
+            
+            
+          </div>
+      
+          <div>
+            <button mat-button matStepperPrevious style="color: white;">Retourner</button>
+            <button mat-button matStepperNext style="color: white;">Continuer</button>
+          </div>
+        </form>
+      </mat-step>
+
+      <mat-step [stepControl]="thirdFormGroup">
+        <form [formGroup]="thirdFormGroup">
+          <ng-template matStepLabel><b style="font-size: 25px; color: #004d40;">Informations Personnelles</b></ng-template>
+          <div class="form-row">
+            <mat-form-field appearance="outline" class="half-width">
+              <mat-label style="color: black; font-size: 18px;">Nationalité</mat-label>
+              <mat-select formControlName="nationality" placeholder="Nationalité" required>
+                <mat-option value="Tunisienne" >Tunisienne</mat-option>
+                
+              </mat-select>
+            </mat-form-field>
+          </div>
+      
+          <!-- Champ Statut civil -->
+          <div class="form-row">
+            <mat-form-field appearance="outline" class="half-width">
+              <mat-label style="color: black; font-size: 18px;">Statut civil</mat-label>
+              <mat-select formControlName="civilStatus" placeholder="Statut civil" required>
+                <mat-option value="Célébataire" >Célébataire</mat-option>
+                <mat-option value="Marié(e)" >Marié(e)</mat-option>
+                <mat-option value="Divorcé(e)" >Divorcé(e)</mat-option>
+                <mat-option value="Veuf(ve)" >Veuf(ve)</mat-option>
+                
+              </mat-select>
+            </mat-form-field>
+          </div>
+      
+          <!-- Champ Nombre d'enfant -->
+          <div class="form-row">
+            <mat-form-field appearance="outline" class="half-width">
+              <mat-label style="color: black; font-size: 18px;">Nombre d'enfant</mat-label>
+              <input matInput formControlName="childrenCount" placeholder="Nombre d'enfant" type="number" required>
+            </mat-form-field>
+          </div>
+
+          <div>
+            <button mat-button matStepperPrevious style="color: white;">Retourner</button>
+            <button mat-button matStepperNext style="color: white;">Continuer</button>
+          </div>
+        </form>
+      </mat-step>
+
+      <mat-step [stepControl]="fourthFormGroup">
+        <form [formGroup]="fourthFormGroup">
+          <ng-template matStepLabel><b style="font-size: 25px; color: #004d40;">Informations financières</b></ng-template>
+      
+          <div class="form-row">
+            <mat-form-field appearance="outline" class="half-width">
+              <mat-label style="color: black; font-size: 18px;">Catégorie socio-professionnelle</mat-label>
+              <mat-select formControlName="socioProfessionalCategory" placeholder="Catégorie socio-professionnelle" required>
+                <mat-option value="Etudiant" >Etudiant</mat-option>
+                <mat-option value="Salarié" >Salarié</mat-option>
+                <mat-option value="Retarité" >Retarité</mat-option>
+                <mat-option value="Autre" >Autre</mat-option>
+                
+              </mat-select>
+            </mat-form-field>
+            
+            <mat-form-field appearance="outline" class="half-width">
+              <mat-label style="color: black; font-size: 18px;">Revenu net mensuel</mat-label>
+              <mat-select formControlName="monthlyNetIncome" placeholder="Revenu net mensuel" required>
+                <mat-option value="0 - 700 Dt" >0 - 700 Dt</mat-option>
+                <mat-option value="700 - 1600 Dt" >700 - 1600 Dt</mat-option>
+                <mat-option value="1600 - 3500 Dt" >1600 - 3500 Dt</mat-option>
+                <mat-option value="+ 3500 Dt" >+ 3500 Dt</mat-option>
+                
+               
+                
+              </mat-select>
+            </mat-form-field>
+          </div>
+          
+          <div class="form-row">
+            <mat-form-field appearance="outline" class="half-width">
+              <mat-label style="color: black; font-size: 18px;">Nature de l'activité</mat-label>
+              <mat-select formControlName="activityNature" placeholder="Nature de l'activité" required>
+                <mat-option value="Public" >Public</mat-option>
+                <mat-option value="Privé" >Privé</mat-option>
+                
+              </mat-select>
+            </mat-form-field>
+            
+            <mat-form-field appearance="outline" class="half-width">
+              <mat-label style="color: black; font-size: 18px;">Secteur d'activité</mat-label>
+              <mat-select formControlName="activitySector" placeholder="Secteur d'activité" required>
+                <mat-option value="Commerce" >Commerce</mat-option>
+                <mat-option value="Hôtels et restaurants" >Hôtels et restaurants</mat-option>
+                <mat-option value="Transport" >Transport</mat-option>
+                <mat-option value="Administration publique" >Administration publique</mat-option>
+                <mat-option value="Education" >Education</mat-option>
+                <mat-option value="Santé" >Santé</mat-option>
+                <mat-option value="Construction" >Construction</mat-option>
+                <mat-option value="Industrie" >Industrie</mat-option>
+                <mat-option value="Agriculture" >Agriculture</mat-option>
+                <mat-option value="Service" >Service</mat-option>
+                <mat-option value="Industrie-Agro-alimentaire" >Industrie-Agro-alimentaire</mat-option>
+                <mat-option value="Industrie mécanique et électrique" >Industrie mécanique et électrique</mat-option>
+                
+              </mat-select>
+            </mat-form-field>
+          </div>
+      
+          <div>
+            <button mat-button matStepperPrevious style="color: white;">Retourner</button>
+            <button mat-button matStepperNext style="color: white;">Continuer</button>
+          </div>
+        </form>
+      </mat-step>
+
+      <mat-step [stepControl]="fifthFormGroup">
+        <form [formGroup]="fifthFormGroup">
+          <ng-template matStepLabel><b style="font-size: 25px; color: #004d40;">Mes documents</b>
+          </ng-template>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="cinNumber"><h2 style=" color: #004d40;">Numéro CIN</h2></label>
+              <input id="cinNumber" type="text" formControlName="cinNumber" class="form-control" placeholder="xxxxxxxx">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="cinDate"><h2 style=" color: #004d40;">Date de délivrance</h2></label>
+              <input id="cinDate" type="text" formControlName="cinDate" class="form-control" placeholder="--/--/----">
+            </div>
+          </div>
+          <br>
+          <br>
+          <h2 style="text-align: center; color: #004d40;">Photographier ou Scannez votre CIN !</h2>
+        
+          <div class="row">
+            <!-- Sélection de la photo recto de la carte CIN -->
+            <div class="col-md-6">
+             
+              <div *ngIf="cinFrontPreview">
+                <img [src]="cinFrontPreview" alt="Aperçu de la carte CIN recto" class="cin-preview">
+              </div>
+              <input type="file" (change)="onFileSelected($event, 'cinFront')" accept="image/*">
+              <br>
+              <h3 style="text-align: center; color: black;">CIN RECTO</h3>
+            </div>
+            
+            <div class="col-md-6">
+              <div *ngIf="cinBackPreview">
+                <img [src]="cinBackPreview" alt="Aperçu de la carte CIN verso" class="cin-preview">
+              </div>
+              <input type="file" (change)="onFileSelected($event, 'cinBack')" accept="image/*">
+              <br>
+              <h3 style="text-align: center; color: black;">CIN  VERSO</h3>
+            </div>
+          </div>
+          
+          <div>
+            <button mat-button matStepperPrevious style="color: white;">Retourner</button>
+            <button mat-button matStepperNext style="color: white;">Continuer</button>
+          </div>
+        </form>
+      </mat-step>
+
+      <mat-step [stepControl]="sixthFormGroup">
+        <form [formGroup]="sixthFormGroup">
+          <ng-template matStepLabel><b style="font-size: 25px; color: #004d40;">Je crée mon mot de passe</b></ng-template>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Créer mot de passe</mat-label>
+            <input matInput type="password" formControlName="password" placeholder="Créer mot de passe" required>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Confirmer mot de passe</mat-label>
+            <input matInput type="password" formControlName="confirmPassword" placeholder="Confirmer mot de passe" required>
+          </mat-form-field>
+         
+          <div>
+            <button mat-button matStepperPrevious style="color: white;">Retourner</button>
+            <button mat-button matStepperNext style="color: white;">Continuer</button>
+          </div>
+        </form>
+      </mat-step>
+
+      <mat-step>
+        <ng-template matStepLabel><b style="font-size: 25px; color: #004d40;">Signature</b></ng-template>
+        <div>
+          <br>
+          <button mat-button matStepperNext style="color: white;">Continuer</button>
+        </div>
+      </mat-step>
+
+    </mat-stepper>
+  
+</section>

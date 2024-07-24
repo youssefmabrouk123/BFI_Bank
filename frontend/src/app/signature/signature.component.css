@@ -1,0 +1,154 @@
+.mat-stepper-horizontal {
+    margin-top: 8px;
+  }
+  
+  .mat-mdc-form-field {
+    margin-top: 16px;
+  }
+
+  /* Container styling for the stepper */
+.custom-stepper {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Full width input field */
+  .full-width {
+    width: 25%;
+  }
+  
+  /* Button group styling */
+  .button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  /* Stepper background color */
+  mat-stepper {
+    background-color: #ecf1ed;
+  }
+  
+  /* Step label color */
+  mat-step .mat-step-label {
+    color: #009961;
+  }
+  
+  /* Step icon styling */
+  mat-step .mat-step-icon {
+    background-color: #009961;
+    color: #ffffff;
+  }
+  
+  /* Customizing the appearance of mat-form-field */
+  .mat-form-field.appearance-outline .mat-form-field-outline {
+    color: #009961;
+  }
+  
+  /* Adjusting the mat-label styling */
+  .mat-form-field .mat-label {
+    color: #009961;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  /* Styling the input placeholder */
+  .mat-input-element::placeholder {
+    color: #757575;
+    opacity: 1; /* Ensures the placeholder color is not faded */
+  }
+  
+  /* Button styling */
+  mat-button {
+    color: #ffffff;
+    background-color: #009961;
+    margin-top: 10px;
+  }
+  
+  mat-button:hover {
+    background-color: #007b46;
+  }
+  
+  /* Adjusting the stepper buttons specifically */
+  .mat-stepper-button {
+    margin-top: 10px;
+  }
+  
+  mat-step mat-button {
+    margin-right: 10px;
+  }
+  
+  /* Ensuring the form field error message is red */
+  .mat-error {
+    color: #ff0000;
+  }
+  
+  .continue-button {
+    background-color: #009961;
+    border-color: #009961;
+    padding: 13px 40px;
+    font-size: 16px;
+    color: #ffffff;
+    border-radius: 35px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    cursor: pointer;
+    margin-right: 13px;
+  }
+  
+  .continue-button:hover {
+    background-color: #033819;
+  border-color: #033819;
+  }
+  
+
+::ng-deep .mat-step-header .mat-step-label {
+    font-size: 20px; /* Change the font size */
+    font-weight: bold; /* Make the font bold */
+    color: #009961; /* Change the text color */
+  }
+  
+  ::ng-deep .mat-step-header .mat-step-icon {
+    width: 48px; /* Adjust width */
+    height: 48px; /* Adjust height */
+    font-size: 24px; /* Adjust font size */
+    background-color: #009961; /* Change the background color of the icon */
+    color: white; /* Change the icon color */
+  }
+  
+  ::ng-deep .mat-step-header .mat-step-label.mat-step-label-active {
+    color: #004d40; 
+    font-size: 23px;/* Change the active label color */
+  }
+  
+  ::ng-deep .mat-step-header .mat-step-icon.mat-step-icon-selected {
+    background-color: #004d40; /* Change the active icon background color */
+  }
+  
+
+  ::ng-deep .mat-step-header {
+    min-height: 100px; /* Adjust the height as needed */
+    align-items: center; /* Center the content vertically */
+  }
+
+ 
+  .confirmer-button {
+    background-color: #009961;
+    border-color: #009961;
+    padding: 13px 40px;
+    font-size: 16px;
+    color: #ffffff;
+    border-radius: 35px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    cursor: pointer;
+    margin-right: 13px;
+  }
+  
+  .confirmer-button:hover {
+    background-color: #033819;
+  border-color: #033819;
+  }
+  

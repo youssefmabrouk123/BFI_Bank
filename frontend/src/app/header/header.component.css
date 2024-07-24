@@ -1,0 +1,59 @@
+
+/* Default header styles (transparent) */
+#header.fixed-top {
+    background: rgba(0, 0, 0, 1); /* Transparent background */
+    transition: background 0.3s;
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Scrolled header styles (solid color) */
+  #header.fixed-top.header-scrolled {
+    background: rgba(0, 0, 0, 1); /* Solid color background when scrolled */
+  }
+/* Styles par défaut pour le logo */
+.logo {
+    max-width: 9%; /* Pour s'assurer que le logo ne dépasse pas la largeur de son conteneur */
+    height: auto; /* Pour maintenir les proportions */
+    transition: max-width 0.3s, height 0.3s; /* Animation fluide lors du redimensionnement */
+    margin-right: 300px;
+    padding-right: 300px;
+  }
+  
+  /* Ajustement du logo pour les petits écrans */
+  @media (max-width: 992px) {
+    .logo {
+      max-width: 20%; /* Ajustez ce pourcentage en fonction de vos besoins */
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .logo {
+      max-width: 20%; /* Ajustez ce pourcentage en fonction de vos besoins */
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .logo {
+      max-width: 20%; /* Ajustez ce pourcentage en fonction de vos besoins */
+    }
+  }
+ 
+  /* CSS pour le conteneur du logo de droite */
+.logoo-right-container {
+  display: flex;
+  align-items: center;
+  margin-left: 80px; /* Pousse le logo complètement à droite */
+}
+
+/* CSS pour le logo de droite */
+.logoo-right {
+  width: 200px; /* Ajustez la taille selon vos besoins */
+  height: auto;
+  margin-left: 100px; /* Ajoute de l'espace entre les boutons et le logo */
+}
+
+/* Si vous avez besoin d'un ajustement supplémentaire pour la classe existante logo */
+.logoo {
+  height: 80px; /* Ajustez la hauteur selon vos besoins */
+}

@@ -1,0 +1,209 @@
+form {
+  max-width: 800px;
+  margin: 0 auto;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Style pour les champs du formulaire */
+.mat-form-field {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.mat-form-field.mat-focused .mat-form-field-label {
+  color: #007bff;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  color: #007bff;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline-thick {
+  border-width: 10px;
+}
+
+/* Style pour les boutons */
+button {
+  background-color: #009961;
+  border-color: #009961;
+  padding: 13px 40px;
+  font-size: 16px;
+  color: #ffffff;
+  border-radius: 35px;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  cursor: pointer;
+  margin-right: 13px;
+}
+
+button:hover {
+  background-color: #033819;
+  border-color: #033819;
+}
+
+/* Style pour l'espacement entre les lignes */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.col-md-6 {
+  flex: 0 0 50%;
+  max-width: 50%;
+  padding: 0 10px;
+}
+
+
+@media (max-width: 768px) {
+  .col-md-6 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  form {
+    padding: 20px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+}
+
+
+.full-width {
+  width: 100%;
+}
+
+
+.form-actions {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.mat-vertical-stepper-header-container {
+  background-color: #dde0df;
+}
+
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.form-field {
+  flex: 1;
+  min-width: calc(33% - 10px);
+  margin-right: 10px;
+}
+
+.form-field:last-child {
+  margin-right: 0;
+}
+
+
+.third-width {
+  flex: 1 1 32%; 
+  margin-right: 10px;
+}
+
+.third-width:last-child {
+  margin-right: 0; 
+}
+
+
+.label-large .mat-form-field-label {
+  color: black;
+  font-size: 50px; /* Taille personnalisée pour le label de Code Postal */
+}
+
+/* Form actions spacing */
+.form-actions {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.button-spacing {
+  margin-right: 10px;
+}
+
+
+
+.mat-form-field.third-width {
+  flex: 1;
+  margin-right: 16px; /* Adjust spacing as needed */
+}
+
+.mat-form-field.third-width:last-child {
+  margin-right: 0;
+}
+
+::ng-deep .mat-step-header .mat-step-label {
+  font-size: 20px;
+  font-weight: bold;
+  color: #009961;
+}
+
+::ng-deep .mat-step-header .mat-step-icon {
+  width: 48px; /* Adjust width */
+    height: 48px; /* Adjust height */
+    font-size: 24px; /* Adjust font size */
+    background-color: #009961; /* Change the background color of the icon */
+    color: white; /* Change the icon color */
+}
+
+::ng-deep .mat-step-header .mat-step-label.mat-step-label-active {
+  color: #004d40;
+  font-size: 23px;
+}
+
+::ng-deep .mat-step-header .mat-step-icon.mat-step-icon-selected {
+  background-color: #004d40;
+}
+
+::ng-deep .mat-step-header {
+  min-height: 100px;
+  align-items: center;
+}
+
+/* Form field styles */
+mat-form-field {
+  width: 100%;
+  margin: 10px 0;
+}
+
+mat-form-field .mat-label {
+  color: black;
+  font-size: 18px;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-start,
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-end,
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-gap {
+  stroke: #009961;
+}
+
+
+.cin-preview {
+  border: 5px solid #000000;
+  padding: 5px;
+  max-width: 200px; /* Taille moyenne du cadre */
+  margin-top: 10px;
+}
+
+.cin-preview img {
+  max-width: 100%;
+  height: auto;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+.col-md-6 {
+  flex: 0 0 48%;
+}

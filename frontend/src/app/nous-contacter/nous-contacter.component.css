@@ -1,0 +1,115 @@
+.btn-number {
+    color: #009961; /* Couleur initiale */
+    text-decoration: none;
+}
+
+.btn-number:hover {
+    color: rgb(138, 138, 50); /* Couleur lorsque le curseur est sur le lien */
+}
+.social-links a {
+    font-size: 2rem; /* Ajustez la taille selon vos préférences */
+    margin: 0 10px; /* Optionnel: pour ajouter un peu d'espacement entre les icônes */
+    color: #009961; /* Optionnel: pour définir la couleur des icônes */
+    transition: color 0.3s; /* Optionnel: pour une transition de couleur plus fluide */
+}
+
+.social-links a:hover {
+    color: #007bff; /* Optionnel: pour changer la couleur des icônes au survol */
+}
+
+/* Formulaire global */
+form.php-email-form {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* En-tête */
+  form.php-email-form h1 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  /* Champs de formulaire */
+  form.php-email-form .form-group {
+    margin-bottom: 20px;
+  }
+  
+  form.php-email-form input,
+  form.php-email-form textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s ease;
+  }
+  
+  form.php-email-form input:focus,
+  form.php-email-form textarea:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  form.php-email-form label p {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  
+  /* Boutons */
+  form.php-email-form .btn-primary {
+    background-color: #009961;
+    border-color: #009961;
+    padding: 13px 40px;
+    font-size: 16px;
+   
+    border-radius: 30px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+  
+  form.php-email-form .btn-primary:hover {
+    background-color: #033819;
+    border-color: #033819;
+  }
+  
+  /* Message d'erreur et de succès */
+  form.php-email-form .my-3 {
+    display: none;
+  }
+  
+  form.php-email-form .loading {
+    display: none;
+  }
+  
+  form.php-email-form .error-message {
+    display: none;
+    color: #dc3545;
+    text-align: center;
+  }
+  
+  form.php-email-form .sent-message {
+    display: none;
+    color: #28a745;
+    text-align: center;
+  }
+  
+  /* Adaptation mobile */
+  @media (max-width: 768px) {
+    form.php-email-form {
+      padding: 20px;
+    }
+  
+    form.php-email-form h1 {
+      font-size: 20px;
+    }
+  
+    form.php-email-form .btn-primary {
+      font-size: 14px;
+      padding: 8px 18px;
+    }
+  }
+  
