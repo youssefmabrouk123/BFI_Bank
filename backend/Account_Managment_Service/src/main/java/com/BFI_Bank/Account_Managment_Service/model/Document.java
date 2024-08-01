@@ -3,6 +3,8 @@ package com.BFI_Bank.Account_Managment_Service.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
 @Entity
 public class Document {
@@ -11,8 +13,11 @@ public class Document {
     private Long id;
     private String nom;
     @Lob
-    private byte[] image;
-
+    private byte[] cinFront;
+    @Lob
+    private byte[] cinBack;
+    private Integer numeroCin;
+    private Date dateDelivrance;
     @ManyToOne
     @JoinColumn(name = "demande_id")
     private Demande demande;

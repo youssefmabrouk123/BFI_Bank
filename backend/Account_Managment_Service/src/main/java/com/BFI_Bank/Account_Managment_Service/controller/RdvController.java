@@ -12,7 +12,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/rendezvous")
+@RequestMapping("/api/v1/Account/rendezvous")
+
 public class RdvController {
 
     @Autowired

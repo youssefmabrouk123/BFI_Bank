@@ -7,7 +7,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/public/email")
+@RequestMapping("/api/v1/users/public/email")
+
+
 public class EmailVerificationController {
 
     @Autowired

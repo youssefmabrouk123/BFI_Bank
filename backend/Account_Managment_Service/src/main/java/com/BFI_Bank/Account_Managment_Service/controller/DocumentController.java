@@ -12,7 +12,8 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 
 @RestController
-@RequestMapping("/api/documents")
+@RequestMapping("/api/v1/Account/documents")
+
 public class DocumentController {
 
     @Autowired
@@ -32,7 +33,7 @@ public class DocumentController {
 
             Document document = new Document();
             document.setNom(nom);
-            document.setImage(image.getBytes());
+            document.setCinFront(image.getBytes());
             document.setDemande(demande);
 
             documentRepository.save(document);

@@ -42,7 +42,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/admin")
+@RequestMapping("/api/v1/users/admin")
+
 public class AdminController {
 
     @Autowired

@@ -1,4 +1,4 @@
-package com.BFI_Bank.gateway;
+package com.alibou.gateway;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

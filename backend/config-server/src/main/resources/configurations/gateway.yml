@@ -1,0 +1,26 @@
+server:
+  port: 8222
+
+eureka:
+  client:
+    register-with-eureka: false
+
+spring:
+  application:
+    name: "gateway"
+  main:
+    web-application-type: reactive
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: Account_Managment_Service
+          uri: http://localhost:8999
+          predicates:
+            - Path=/api/v1/Account/**
+        - id: Users_Service
+          uri: http://localhost:8081
+          predicates:
+            - Path=/api/v1/users/**

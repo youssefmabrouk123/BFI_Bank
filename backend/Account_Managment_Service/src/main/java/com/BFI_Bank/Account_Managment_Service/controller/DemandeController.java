@@ -8,7 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/demandes")
+@RequestMapping("/api/v1/Account/demandes")
+
 public class DemandeController {
 
     @Autowired

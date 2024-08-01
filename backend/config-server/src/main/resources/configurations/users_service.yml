@@ -1,0 +1,47 @@
+spring:
+  application:
+    name: Users_Service
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/User
+    username: postgres
+    password: admin
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: mabroukyoussef10@gmail.com
+    password: xowf cxna xzze lfxe
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+          connectiontimeout: 5000
+          timeout: 5000
+          writetimeout: 5000
+
+server:
+  port: 8081
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+twilio:
+  account:
+    sid: AC672431d5ac8ca56e437996b4bc17d5fe
+  auth:
+    token: fbc6be97e3217db55b8329fab9b71441
+  phone:
+    number: +17074703694

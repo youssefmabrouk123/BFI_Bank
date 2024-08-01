@@ -8,7 +8,8 @@ import java.util.Map;
 import java.util.logging.Logger;
 
 @RestController
-@RequestMapping("/public/api/users")
+@RequestMapping("/api/v1/users/public/api/users")
+
 public class OurUserController {
 
     private static final Logger LOGGER = Logger.getLogger(OurUserController.class.getName());

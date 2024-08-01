@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/comptes")
+@RequestMapping("/api/v1/Account/comptes")
 public class CompteBancaireController {
 
     @Autowired

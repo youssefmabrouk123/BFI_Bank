@@ -14,6 +14,9 @@ import {MatIconModule} from '@angular/material/icon';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormDataService } from '../form-data.service';
+//import { FormDataService } from '../form-data.service';
+
 
 
 
@@ -30,9 +33,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,StepperModule, ButtonModule , CommonModule, MatSelectModule,
-    MatFormFieldModule, MatDatepickerModule, MatIconModule
+    MatFormFieldModule, MatDatepickerModule, MatIconModule,
+
   ],
-  providers: [provideNativeDateAdapter()],
+  providers: [provideNativeDateAdapter(), FormDataService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class  OuvrirCompteComponent {
@@ -46,47 +50,48 @@ export class  OuvrirCompteComponent {
   
   
   isLinear = false;
-  constructor(private _formBuilder: FormBuilder) {
+  constructor(private _formBuilder: FormBuilder,    private formDataService: FormDataService
+  ) {
     
    
 
     this.firstFormGroup = this._formBuilder.group({
-      name: ['', Validators.required],
+      nom: ['', Validators.required],
+      prenom: ['', Validators.required],
       phoneNumber: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       confirmPhoneNumber: ['', Validators.required],
       confirmEmail: ['', [Validators.required, Validators.email]],
-      birthdate: ['', Validators.required]
+      dateNaissance: ['', Validators.required]
     });
 
     this.secondFormGroup = this._formBuilder.group({
-      street: ['', Validators.required],
-    address: ['', Validators.required],
-    country: ['', Validators.required],
-    state: ['', Validators.required],
-    postalCode: ['', Validators.required],
+    adresse: ['', Validators.required],
+    pay: ['', Validators.required],
+    gouvernorat: ['', Validators.required],
+    codePostal: ['', Validators.required],
     });
 
     this.thirdFormGroup = this._formBuilder.group({
 
-      nationality: ['', Validators.required],
-      civilStatus: ['', Validators.required],
-      childrenCount: ['', Validators.required]
+      nationalité: ['', Validators.required],
+      statutCivil: ['', Validators.required],
+      nombreEnfants: ['', Validators.required]
 
     });
 
     this.fourthFormGroup = this._formBuilder.group({
-      socioProfessionalCategory: ['', Validators.required],
-      monthlyNetIncome: ['', Validators.required],
-      activityNature: ['', Validators.required],
-      activitySector: ['', Validators.required]
+      categorieSocioPro: ['', Validators.required],
+      revenuNetMensuel: ['', Validators.required],
+      natureActivite: ['', Validators.required],
+      secteurActivite: ['', Validators.required]
     });
 
     
     this.fifthFormGroup = this._formBuilder.group({
       cinFront: ['', Validators.required],
       cinBack: ['', Validators.required],
-      cinNumber: ['', Validators.required],
+      numeroCin: ['', Validators.required],
       cinDate: ['', Validators.required],
     });
     
@@ -131,6 +136,58 @@ export class  OuvrirCompteComponent {
     }
   }
 
- 
 
+ logFormValues(): void {
+    console.log('First Form Group:', this.firstFormGroup.value);
+    console.log('Second Form Group:', this.secondFormGroup.value);
+    console.log('Third Form Group:', this.thirdFormGroup.value);
+    console.log('Fourth Form Group:', this.fourthFormGroup.value);
+    console.log('Fifth Form Group:', this.fifthFormGroup.value);
+    console.log('Sixth Form Group:', this.sixthFormGroup.value);
+  }
+  logForm(): void {
+    
+    const formValues = {
+      email: this.firstFormGroup.get('email')?.value,
+      motDePasse: this.sixthFormGroup.get('password')?.value,
+      nom: this.firstFormGroup.get('nom')?.value,
+      prenom: this.firstFormGroup.get('prenom')?.value,
+      phoneNumber: this.firstFormGroup.get('phoneNumber')?.value,
+      adresse: this.secondFormGroup.get('adresse')?.value,
+      pay: this.secondFormGroup.get('pay')?.value,
+      gouvernorat: this.secondFormGroup.get('gouvernorat')?.value,
+      codePostal: this.secondFormGroup.get('codePostal')?.value,
+      offre: this.thirdFormGroup.get('offre')?.value,
+      categorieSocioPro: this.fourthFormGroup.get('categorieSocioPro')?.value,
+      revenuNetMensuel: this.fourthFormGroup.get('revenuNetMensuel')?.value,
+      natureActivite: this.fourthFormGroup.get('natureActivite')?.value,
+      secteurActivite: this.fourthFormGroup.get('secteurActivite')?.value,
+      numeroCIN: this.fifthFormGroup.get('numeroCin')?.value,
+      dateDelivranceCIN: this.fifthFormGroup.get('cinDate')?.value,
+      // photoCINAvant: this.cinFrontPreview ? (this.cinFrontPreview as string).split(',')[1] : '', // Base64 encoded string
+      // photoCINArriere: this.cinBackPreview ? (this.cinBackPreview as string).split(',')[1] : '', // Base64 encoded string
+      statut: this.thirdFormGroup.get('statut')?.value,
+      documents: [
+        {
+          nom: 'Document1', // You can customize or dynamically generate this if needed
+          cinFront: this.cinFrontPreview ? (this.cinFrontPreview as string).split(',')[1] : '', // Base64 encoded string
+          cinBack: this.cinBackPreview ? (this.cinBackPreview as string).split(',')[1] : '', // Base64 encoded string
+          numeroCin: this.fifthFormGroup.get('numeroCin')?.value,
+          dateDelivrance: this.fifthFormGroup.get('cinDate')?.value
+        }
+      ]
+    };
+    console.log(formValues);
+
+    //Envoi des données au backend
+    this.formDataService.sendFormData(formValues).subscribe({
+      next: (response) => {
+        console.log('Données envoyées avec succès', response);
+      },
+      error: (error) => {
+        console.error('Erreur lors de l\'envoi des données', error);
+      }
+    });
+  }
+  
 }

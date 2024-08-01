@@ -6,13 +6,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-@FeignClient(name = "users-service", url = "http://localhost:8081")
+@FeignClient(name = "users-service", url = "http://localhost:8222")
 public interface UsersServiceFeignClient {
-    @PostMapping("/auth/signup")
+    @PostMapping("/api/v1/users/auth/signup")
     OurUsers createUser(@RequestBody OurUsers user);
 
 
-    @PostMapping("/auth/id")
+    @PostMapping("/api/v1/users/auth/id")
     Integer getUserId(@RequestBody OurUsers user);
 
 }
