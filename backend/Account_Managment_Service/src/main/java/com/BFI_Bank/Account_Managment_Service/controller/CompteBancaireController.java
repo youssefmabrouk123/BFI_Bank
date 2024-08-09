@@ -15,9 +15,9 @@ public class CompteBancaireController {
 
     @PostMapping("/professionnel")
     public ResponseEntity<CompteBancaire> createCompteBancaireProfessionnel(
-            @RequestParam String type,
-            @RequestParam Long clientId,
-            @RequestParam String statut) {
+            @RequestParam CompteBancaire.TypeCompte type,
+            @RequestParam Integer clientId,
+            @RequestParam CompteBancaire.StatutCompte statut) {
         CompteBancaire compteBancaire = compteBancaireService.createCompteBancaireProfessionnel(type, clientId, statut);
         return ResponseEntity.ok(compteBancaire);
     }

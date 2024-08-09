@@ -9,7 +9,8 @@ import org.springframework.stereotype.Repository;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Repository
 public interface RdvRepository extends JpaRepository<Rdv, Long> {
-    List<Rdv> findByDateBetween(LocalDateTime start, LocalDateTime end);
+    //List<Rdv> findByDateBetween(LocalDateTime start, LocalDateTime end);
     boolean existsByDate(LocalDateTime date);
 }

@@ -20,8 +20,11 @@
     "@angular/platform-browser": "^17.0.0",
     "@angular/platform-browser-dynamic": "^17.0.0",
     "@angular/router": "^17.0.0",
+    "chart.js": "^4.4.3",
     "ng-recaptcha": "^13.2.1",
-    "primeng": "^17.18.3",
+    "ngx-toastr": "^19.0.0",
+    "primeicons": "^7.0.0",
+    "primeng": "^17.18.7",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.2"

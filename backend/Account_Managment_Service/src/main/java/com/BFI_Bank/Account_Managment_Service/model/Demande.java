@@ -2,6 +2,8 @@ package com.BFI_Bank.Account_Managment_Service.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Generated;
+import org.hibernate.annotations.GenerationTime;
 
 import java.util.Date;
 import java.util.List;
@@ -15,7 +17,9 @@ public class Demande {
     private String nom;
     private String prenom;
     private Date dateNaissance;
+    @Column(name = "email", unique = true, nullable = false)
     private String email;
+    @Column(name = "phoneNumber", unique = true, nullable = false)
     private String phoneNumber;
     private String adresse;
     private String pay;
@@ -24,14 +28,31 @@ public class Demande {
     private Integer nombreEnfants;
     private String statutCivil;
     private String nationalite;
-    private String offre;
+    //  private String offre;
     private String categorieSocioPro;
     private String revenuNetMensuel;
     private String natureActivite;
     private String secteurActivite;
-    private String statut;
-    private Integer userId;
+    private String statut; // e.g., "PENDING", "APPROVED", "REJECTED"
+    @Column(name = "numeroCin", unique = true)
+    private Integer numeroCin;
+    private String motDePasse ;
+    private Date dateDelivrance;
+    @Lob
+    private byte[] cinFront;
+    @Lob
+    private byte[] cinBack;
 
-    @OneToMany(mappedBy = "demande", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Document> documents;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "date_creation", updatable = false)
+    private Date dateCreation;
+
+    @PrePersist
+    protected void onCreate() {
+        dateCreation = new Date();
+    }
+
+    //private Integer userId;
+
 }

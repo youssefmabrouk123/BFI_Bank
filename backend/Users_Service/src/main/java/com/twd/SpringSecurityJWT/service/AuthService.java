@@ -30,8 +30,23 @@ public class AuthService {
             ourUsers.setEmail(registrationRequest.getEmail());
             ourUsers.setPassword(passwordEncoder.encode(registrationRequest.getPassword()));
             ourUsers.setRole(registrationRequest.getRole());
+            ourUsers.setPhoneNumber(registrationRequest.getPhoneNumber());
+            ourUsers.setAdresse(registrationRequest.getAdresse());
+            ourUsers.setPay(registrationRequest.getPay());
+            ourUsers.setGouvernorat(registrationRequest.getGouvernorat());
+            ourUsers.setCodePostal(registrationRequest.getCodePostal());
+            ourUsers.setNombreEnfants(registrationRequest.getNombreEnfants());
+            ourUsers.setStatutCivil(registrationRequest.getStatutCivil());
+            ourUsers.setNationalite(registrationRequest.getNationalite());
+            ourUsers.setOffre(registrationRequest.getOffre());
+            ourUsers.setCategorieSocioPro(registrationRequest.getCategorieSocioPro());
+            ourUsers.setRevenuNetMensuel(registrationRequest.getRevenuNetMensuel());
+            ourUsers.setNatureActivite(registrationRequest.getNatureActivite());
+            ourUsers.setSecteurActivite(registrationRequest.getSecteurActivite());
+            ourUsers.setNom(registrationRequest.getNom());
+            ourUsers.setPrenom(registrationRequest.getPrenom());
             ourUsers.setBlocked(true);
-            ourUsers.setPhoneNumber(registrationRequest.getPhoneNumber());// Bloque le compte par défaut
+
             OurUsers ourUserResult = ourUserRepo.save(ourUsers);
             if (ourUserResult != null && ourUserResult.getId() > 0) {
                 resp.setOurUsers(ourUserResult);

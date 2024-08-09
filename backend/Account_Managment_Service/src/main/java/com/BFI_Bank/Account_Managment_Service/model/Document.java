@@ -12,13 +12,12 @@ public class Document {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nom;
-    @Lob
-    private byte[] cinFront;
-    @Lob
-    private byte[] cinBack;
+//    @Lob
+//    private byte[] cinFront;
+//    @Lob
+//    private byte[] cinBack;
     private Integer numeroCin;
     private Date dateDelivrance;
-    @ManyToOne
-    @JoinColumn(name = "demande_id")
-    private Demande demande;
+    private Integer clientId;
+
 }

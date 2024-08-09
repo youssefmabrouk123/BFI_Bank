@@ -7,6 +7,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -18,13 +19,31 @@ public class OurUsers implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    private String nom;
+    private String prenom;
+    private Date dateNaissance;
+    private String adresse;
+    private String pay;
+    private String gouvernorat;
+    private String codePostal;
+    private Integer nombreEnfants;
+    private String statutCivil;
+    private String nationalite;
+    private String offre;
+    private String categorieSocioPro;
+    private String revenuNetMensuel;
+    private String natureActivite;
+    private String secteurActivite;
+    private String phoneNumber;
+    @Column(unique = true, nullable = false)
     private String email;
     private String password;
     private String role;
+
     private boolean isBlocked;
     private boolean isEmailVerified;
     private UUID verificationToken;
-    private String phoneNumber;
+
     private boolean isPhoneNumberVerified;
 
 

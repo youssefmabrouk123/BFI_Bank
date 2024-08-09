@@ -1,0 +1,40 @@
+<!-- login.component.html -->
+<section id="mon-compte" class="mon-compte">
+  <div class="container">
+    <div class="section-title">
+      <h2 style="color: rgb(49, 48, 48); font-size: 42px;"><br><br>Mon Compte</h2>
+    </div>
+  </div>
+  <div class="container d-flex flex-column justify-content-center align-items-center min-vh-100">
+    <h1 style="color: rgb(56, 35, 35); font-size: 38px;"><strong>We Initiate</strong></h1>
+    <br>
+    <div class="col-lg-8 mt-5 mt-lg-0">
+      <div>
+        <form (ngSubmit)="onSubmit()" [formGroup]="loginForm" role="form" class="php-email-form">
+          <div class="row">
+            <div class="form-group mt-3">
+              <label for="email"><p style="color: black; font-size: 17px;"><strong>Email</strong></p></label>
+              <input type="email" class="form-control" formControlName="email" id="email" placeholder="" required>
+              <label for="email"><p style="font-size: 13px;">Veuillez fournir une adresse électronique valide</p></label>
+            </div>
+          </div>
+          <br>
+          <div class="form-group mt-3">
+            <label for="password"><p style="color: black;"><strong style="font-size: 17px;">Mot de passe</strong></p></label>
+            <input type="password" class="form-control" formControlName="password" id="password" placeholder="" required>
+            <label for="password"><p style="font-size: 13px;">Ce champ est obligatoire</p></label>
+          </div>
+          <br>
+          <div class="text-center mt-4">
+            <button type="submit" class="btn btn-primary">CONNEXION</button>
+          </div>
+        </form>
+        <div class="text-center mt-3">
+          <p style="font-size: 15px;">Vous n’avez pas de compte ? <a routerLink="/inscription">Inscrivez-vous maintenant</a></p>
+          <p style="font-size: 15px;"><a routerLink="/mot-de-passe-oublie">Mot de passe oublié ?</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<p-toast></p-toast>

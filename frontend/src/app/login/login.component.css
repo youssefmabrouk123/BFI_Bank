@@ -1,0 +1,116 @@
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+}
+.form-control {
+    height: 50px; 
+}
+
+.text-center {
+    text-align: center;
+}
+.mt-4 {
+    margin-top: 1.5rem;
+}
+.btn-primary {
+    padding: 10px 150px; 
+    font-size: 1.2rem; 
+    border-radius: 30px; 
+}    
+
+.btn-primary {
+    background-color: #009961;
+    border-color: #009961;
+    transform: scale(1.05); 
+}
+
+.btn-primary:hover{
+    background-color: #033819;
+    border-color: #033819;
+}
+
+.btn-primary-text {
+    font-size: 5px; 
+   
+}
+
+
+
+.contact-btn {
+    display: inline-block;
+    padding: 10px 40px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background-color:#009961;
+    border: none; 
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-decoration: none;
+}
+
+.contact-btn:hover {
+    background-color: #033819;
+}
+
+
+.text-center {
+    margin-top: 20px; 
+}
+
+
+.php-email-form {
+    background: white;
+    padding: 100px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .php-email-form .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .php-email-form .form-group label {
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #333;
+  }
+  
+  .php-email-form .form-group input {
+    width: 100%;
+    padding: 20px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+  }
+  
+  .php-email-form .form-group input:focus {
+    border-color: #0056b3;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 86, 179, 0.2);
+  }
+  
+  .php-email-form .form-group p {
+    font-size: 13px;
+    color: #666;
+    margin-top: 5px;
+  }
+  
+  .php-email-form .text-center {
+    text-align: center;
+  }
+  
+  .php-email-form .text-center a {
+    color: #0056b3;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .php-email-form .text-center a:hover {
+    color: #004494;
+  }
+  

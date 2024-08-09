@@ -1,46 +1,34 @@
 package com.BFI_Bank.Account_Managment_Service.controller;
 
-import com.BFI_Bank.Account_Managment_Service.model.Demande;
+
 import com.BFI_Bank.Account_Managment_Service.model.Document;
-import com.BFI_Bank.Account_Managment_Service.repository.DemandeRepository;
-import com.BFI_Bank.Account_Managment_Service.repository.DocumentRepository;
+import com.BFI_Bank.Account_Managment_Service.service.DocumentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
 
 @RestController
 @RequestMapping("/api/v1/Account/documents")
-
 public class DocumentController {
 
-    @Autowired
-    private DemandeRepository demandeRepository;
+    private final DocumentService documentService;
 
     @Autowired
-    private DocumentRepository documentRepository;
+    public DocumentController(DocumentService documentService) {
+        this.documentService = documentService;
+    }
 
-    @PostMapping("/upload")
-    public ResponseEntity<String> uploadDocument(
-            @RequestParam("demandeId") Long demandeId,
-            @RequestParam("nom") String nom,
-            @RequestParam("image") MultipartFile image) {
+    // Endpoint to save a new document
+    @PostMapping
+    public ResponseEntity<Document> createDocument(@RequestBody Document document) {
         try {
-            Demande demande = demandeRepository.findById(demandeId)
-                    .orElseThrow(() -> new RuntimeException("Demande not found with id: " + demandeId));
-
-            Document document = new Document();
-            document.setNom(nom);
-            document.setCinFront(image.getBytes());
-            document.setDemande(demande);
-
-            documentRepository.save(document);
-
-            return ResponseEntity.ok("Document uploaded successfully");
-        } catch (IOException e) {
-            return ResponseEntity.status(500).body("Error uploading document");
+            Document savedDocument = documentService.createDocument(document);
+            return new ResponseEntity<>(savedDocument, HttpStatus.CREATED);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.BFI_Bank.Account_Managment_Service.dto;
 
 
+import jakarta.persistence.Lob;
 import lombok.Data;
 
 import java.util.Collections;
@@ -26,17 +27,12 @@ public class DemandeUserDto {
     private String revenuNetMensuel;
     private String natureActivite;
     private String secteurActivite;
-    private String statut;
-    private String motDePasse;
-    private List<DocumentDto> documents;
+    private Integer numeroCin;
+    private String motDePasse ;
 
-    // Other getters and setters...
-
-    public List<DocumentDto> getDocuments() {
-        return documents != null ? documents : Collections.emptyList();
-    }
-
-    public void setDocuments(List<DocumentDto> documents) {
-        this.documents = documents;
-    }
+    private Date dateDelivrance;
+    @Lob
+    private byte[] cinFront;
+    @Lob
+    private byte[] cinBack;
 }

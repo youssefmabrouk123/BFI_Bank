@@ -92,7 +92,7 @@ export class  OuvrirCompteComponent {
       cinFront: ['', Validators.required],
       cinBack: ['', Validators.required],
       numeroCin: ['', Validators.required],
-      cinDate: ['', Validators.required],
+      dateDelivrance: ['', Validators.required],
     });
     
     this.sixthFormGroup = this._formBuilder.group({
@@ -148,34 +148,39 @@ export class  OuvrirCompteComponent {
   logForm(): void {
     
     const formValues = {
-      email: this.firstFormGroup.get('email')?.value,
-      motDePasse: this.sixthFormGroup.get('password')?.value,
-      nom: this.firstFormGroup.get('nom')?.value,
-      prenom: this.firstFormGroup.get('prenom')?.value,
-      phoneNumber: this.firstFormGroup.get('phoneNumber')?.value,
-      adresse: this.secondFormGroup.get('adresse')?.value,
-      pay: this.secondFormGroup.get('pay')?.value,
-      gouvernorat: this.secondFormGroup.get('gouvernorat')?.value,
-      codePostal: this.secondFormGroup.get('codePostal')?.value,
-      offre: this.thirdFormGroup.get('offre')?.value,
-      categorieSocioPro: this.fourthFormGroup.get('categorieSocioPro')?.value,
-      revenuNetMensuel: this.fourthFormGroup.get('revenuNetMensuel')?.value,
-      natureActivite: this.fourthFormGroup.get('natureActivite')?.value,
-      secteurActivite: this.fourthFormGroup.get('secteurActivite')?.value,
-      numeroCIN: this.fifthFormGroup.get('numeroCin')?.value,
-      dateDelivranceCIN: this.fifthFormGroup.get('cinDate')?.value,
-      // photoCINAvant: this.cinFrontPreview ? (this.cinFrontPreview as string).split(',')[1] : '', // Base64 encoded string
-      // photoCINArriere: this.cinBackPreview ? (this.cinBackPreview as string).split(',')[1] : '', // Base64 encoded string
-      statut: this.thirdFormGroup.get('statut')?.value,
-      documents: [
-        {
-          nom: 'Document1', // You can customize or dynamically generate this if needed
-          cinFront: this.cinFrontPreview ? (this.cinFrontPreview as string).split(',')[1] : '', // Base64 encoded string
-          cinBack: this.cinBackPreview ? (this.cinBackPreview as string).split(',')[1] : '', // Base64 encoded string
-          numeroCin: this.fifthFormGroup.get('numeroCin')?.value,
-          dateDelivrance: this.fifthFormGroup.get('cinDate')?.value
-        }
-      ]
+       email: this.firstFormGroup.get('email')?.value,
+       nationalite: this.thirdFormGroup.get('nationalité')?.value,
+       statutCivil: this.thirdFormGroup.get('statutCivil')?.value,
+       nombreEnfants: this.thirdFormGroup.get('nombreEnfants')?.value,
+       motDePasse: this.sixthFormGroup.get('password')?.value,
+       nom: this.firstFormGroup.get('nom')?.value,
+       prenom: this.firstFormGroup.get('prenom')?.value,
+       phoneNumber: this.firstFormGroup.get('phoneNumber')?.value,
+       adresse: this.secondFormGroup.get('adresse')?.value,
+       pay: this.secondFormGroup.get('pay')?.value,
+       gouvernorat: this.secondFormGroup.get('gouvernorat')?.value,
+       codePostal: this.secondFormGroup.get('codePostal')?.value,
+       //offre: this.thirdFormGroup.get('offre')?.value,
+       categorieSocioPro: this.fourthFormGroup.get('categorieSocioPro')?.value,
+       revenuNetMensuel: this.fourthFormGroup.get('revenuNetMensuel')?.value,
+       natureActivite: this.fourthFormGroup.get('natureActivite')?.value,
+       secteurActivite: this.fourthFormGroup.get('secteurActivite')?.value,
+       numeroCin: this.fifthFormGroup.get('numeroCin')?.value,
+       dateDelivrance: this.fifthFormGroup.get('dateDelivrance')?.value,
+       dateNaissance: this.firstFormGroup.get('dateNaissance')?.value,
+
+       cinFront: this.cinFrontPreview ? (this.cinFrontPreview as string).split(',')[1] : '', // Base64 encoded string
+       cinBack: this.cinBackPreview ? (this.cinBackPreview as string).split(',')[1] : '', // Base64 encoded string
+      //statut: this.thirdFormGroup.get('statut')?.value,
+      // documents: [
+      //   {
+      //     nom: 'Document1', // You can customize or dynamically generate this if needed
+      //     cinFront: this.cinFrontPreview ? (this.cinFrontPreview as string).split(',')[1] : '', // Base64 encoded string
+      //     cinBack: this.cinBackPreview ? (this.cinBackPreview as string).split(',')[1] : '', // Base64 encoded string
+      //     numeroCin: this.fifthFormGroup.get('numeroCin')?.value,
+      //     dateDelivrance: this.fifthFormGroup.get('cinDate')?.value
+      //   }
+      // ]
     };
     console.log(formValues);
 

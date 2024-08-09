@@ -1,24 +1,61 @@
 package com.BFI_Bank.Account_Managment_Service.model;
 
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.Set;
 
 @Data
 @Entity
+@Table(name = "comptes_bancaires")
 public class CompteBancaire {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String numero;
-    private String type;
+
+    @Column(unique = true, nullable = false)
+    private String numero; // Peut être généré automatiquement
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private TypeCompte type;
+
+    @Column(nullable = false)
     private double solde;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "date_ouverture", updatable = false)
     private Date dateOuverture;
-    private Long clientId;  // IdUser from OurUsers in Users Service
-    private String statut;
+
+    @Column(name = "client_id")
+    private Integer clientId;  // IdUser from OurUsers in Users Service
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private StatutCompte statut;
+
+    @OneToOne(mappedBy = "compteBancaire", cascade = CascadeType.ALL)
+    private CarteProfessionnelle carte;
+
+    @PrePersist
+    protected void onCreate() {
+        if (dateOuverture == null) {
+            dateOuverture = new Date();
+        }
+    }
+
+    // Enumération pour les types de compte
+    public enum TypeCompte {
+        COURANT,
+        EPARGNE,
+        ENTREPRISE
+    }
+
+    // Enumération pour les statuts de compte
+    public enum StatutCompte {
+        ACTIF,
+        INACTIF
+    }
 }
