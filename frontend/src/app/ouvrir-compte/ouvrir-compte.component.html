@@ -1,3 +1,4 @@
+
 <section id="ouvrir-compte" class="ouvrir-compte">
   <div class="container">
     <div class="section-title">
@@ -16,6 +17,7 @@
       <mat-form-field appearance="outline" class="full-width">
         <mat-label style="color: black; font-size: 18px;">Nom</mat-label>
         <input matInput placeholder="Nom" formControlName="nom" required>
+
 
       </mat-form-field>
     </div>
@@ -274,7 +276,7 @@
       
           <div>
             <button mat-button matStepperPrevious style="color: white;">Retourner</button>
-            <button mat-button matStepperNext style="color: white;" (click)="logFormValues()">Continuer</button>
+            <button mat-button matStepperNext  style="color: white;" (click)="logFormValues()">Continuer</button>
           </div>
         </form>
       </mat-step>
@@ -342,7 +344,7 @@
          
           <div>
             <button mat-button matStepperPrevious style="color: white;">Retourner</button>
-            <button mat-button matStepperNext style="color: white;" (click)="logFormValues()">Continuer</button>
+            <button mat-button matStepperNext  style="color: white;" (click)="logFormValues()">Continuer</button>
           </div>
         </form>
       </mat-step>
@@ -351,8 +353,10 @@
         <ng-template matStepLabel><b style="font-size: 25px; color: #004d40;">Signature</b></ng-template>
         <div>
           <br>
-          <button mat-button matStepperNext style="color: white;" (click)="logForm()">Continuer</button>
-
+          <!-- <button mat-button matStepperNext style="color: white;" (click)="logFormValues()">Continuer</button> -->
+          <!-- <button mat-button matStepperNext (click)="submitForm()" style="color: white;">Continuer</button> -->
+          <a mat-button matStepperNext (click)="submitForm()" href="signature" style="color: white;">Continuer</a>
+          
 
         </div>
       </mat-step>

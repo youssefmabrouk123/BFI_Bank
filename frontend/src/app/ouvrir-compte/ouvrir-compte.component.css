@@ -43,6 +43,28 @@ button:hover {
   border-color: #033819;
 }
 
+a {
+  background-color: #009961;
+  border: 2px solid #009961; /* Ajoute une bordure solide */
+  padding: 20px 45px;
+  font-size: 16px;
+  color: #ffffff;
+  border-radius: 40px;
+  text-align: center;
+  text-decoration: none; /* Enlève le soulignement */
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  cursor: pointer;
+  display: inline-block; /* Assure que la balise se comporte comme un bouton */
+  margin-right: 13px;
+}
+
+a:hover {
+  background-color: #033819;
+  border-color: #033819;
+}
+
+
+
 /* Style pour l'espacement entre les lignes */
 .row {
   display: flex;
@@ -207,3 +229,5 @@ mat-form-field .mat-label {
 .col-md-6 {
   flex: 0 0 48%;
 }
+
+

@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component,OnInit} from '@angular/core';
 import {FormBuilder, Validators, FormsModule, ReactiveFormsModule, FormGroup } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -12,8 +12,6 @@ import {provideNativeDateAdapter} from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatIconModule} from '@angular/material/icon';
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormDataService } from '../form-data.service';
 //import { FormDataService } from '../form-data.service';
 
@@ -39,22 +37,25 @@ import { FormDataService } from '../form-data.service';
   providers: [provideNativeDateAdapter(), FormDataService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class  OuvrirCompteComponent {
+export class OuvrirCompteComponent implements OnInit {
+  isLinear = true;
+  firstFormGroup: FormGroup = this._formBuilder.group({});
+  secondFormGroup: FormGroup = this._formBuilder.group({});
+  thirdFormGroup: FormGroup = this._formBuilder.group({});
+  fourthFormGroup: FormGroup = this._formBuilder.group({});
+  fifthFormGroup: FormGroup = this._formBuilder.group({});
+  sixthFormGroup: FormGroup = this._formBuilder.group({});
 
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
-  thirdFormGroup: FormGroup;
-  fourthFormGroup: FormGroup;
-  fifthFormGroup: FormGroup;
-  sixthFormGroup: FormGroup;
-  
-  
-  isLinear = false;
-  constructor(private _formBuilder: FormBuilder,    private formDataService: FormDataService
-  ) {
-    
-   
+  cinFrontPreview: string | ArrayBuffer | null = null;
+  cinBackPreview: string | ArrayBuffer | null = null;
 
+  constructor(private _formBuilder: FormBuilder, private formDataService: FormDataService) {}
+
+  ngOnInit(): void {
+    this.initializeFormGroups();
+  }
+
+  initializeFormGroups(): void {
     this.firstFormGroup = this._formBuilder.group({
       nom: ['', Validators.required],
       prenom: ['', Validators.required],
@@ -66,14 +67,13 @@ export class  OuvrirCompteComponent {
     });
 
     this.secondFormGroup = this._formBuilder.group({
-    adresse: ['', Validators.required],
-    pay: ['', Validators.required],
-    gouvernorat: ['', Validators.required],
-    codePostal: ['', Validators.required],
+      adresse: ['', Validators.required],
+      pay: ['', Validators.required],
+      gouvernorat: ['', Validators.required],
+      codePostal: ['', Validators.required]
     });
 
     this.thirdFormGroup = this._formBuilder.group({
-
       nationalité: ['', Validators.required],
       statutCivil: ['', Validators.required],
       nombreEnfants: ['', Validators.required]
@@ -87,57 +87,86 @@ export class  OuvrirCompteComponent {
       secteurActivite: ['', Validators.required]
     });
 
-    
     this.fifthFormGroup = this._formBuilder.group({
-      cinFront: ['', Validators.required],
-      cinBack: ['', Validators.required],
       numeroCin: ['', Validators.required],
-      dateDelivrance: ['', Validators.required],
-    });
-    
-    this.sixthFormGroup = this._formBuilder.group({
-      password: ['', [Validators.required, Validators.minLength(8)]],
-      confirmPassword: ['', Validators.required],
+      dateDelivrance: ['', Validators.required], 
+      cinFront: [null],  
+      cinBack: [null]    
     });
 
+    this.sixthFormGroup = this._formBuilder.group({
+      password: ['', Validators.required],
+      confirmPassword: ['', Validators.required]
+    });
   }
 
-  cinFrontPreview: string | ArrayBuffer | null = null;
-  cinBackPreview: string | ArrayBuffer | null = null;
-
-  onFileSelected(event: Event, field: string): void {
-    const fileInput = event.target as HTMLInputElement;
-    if (fileInput.files && fileInput.files.length > 0) {
-      const file = fileInput.files[0];
-
-      // Valider le type de fichier (image)
-      const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
-      if (!allowedTypes.includes(file.type)) {
-        alert('Seuls les fichiers JPEG, PNG et GIF sont autorisés');
-        return;
-      }
-
-      // Valider la taille du fichier (par exemple, max 5MB)
-      const maxSizeInBytes = 5 * 1024 * 1024;
-      if (file.size > maxSizeInBytes) {
-        alert('La taille du fichier doit être inférieure à 5MB');
-        return;
-      }
-
+  onFileSelected(event: any, type: string): void {
+    const file = event.target.files[0];
+    if (file) {
       const reader = new FileReader();
-      reader.onload = () => {
-        if (field === 'cinFront') {
-          this.cinFrontPreview = reader.result;
-        } else if (field === 'cinBack') {
-          this.cinBackPreview = reader.result;
+      reader.onload = (e: any) => {
+        if (type === 'cinFront') {
+          this.cinFrontPreview = e.target.result; // Stocke la donnée URL
+        } else if (type === 'cinBack') {
+          this.cinBackPreview = e.target.result; // Stocke la donnée URL
         }
+        // Affiche la photo dans la console
+        console.log(`${type} file:`, e.target.result);
       };
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(file); // Lire le fichier comme une URL de données
+    }
+  }
+  submitForm(): void {
+    this.logFormValues();
+  
+    if (this.firstFormGroup.valid && this.secondFormGroup.valid && this.thirdFormGroup.valid && this.fourthFormGroup.valid && this.fifthFormGroup.valid && this.sixthFormGroup.valid) {
+      const formData = {
+        email: this.firstFormGroup.get('email')?.value,
+        motDePasse: this.sixthFormGroup.get('password')?.value,
+        nom: this.firstFormGroup.get('nom')?.value,
+        prenom: this.firstFormGroup.get('prenom')?.value,
+        phoneNumber: this.firstFormGroup.get('phoneNumber')?.value,
+        adresse: this.secondFormGroup.get('adresse')?.value,
+        pay: this.secondFormGroup.get('pay')?.value,
+        gouvernorat: this.secondFormGroup.get('gouvernorat')?.value,
+        codePostal: this.secondFormGroup.get('codePostal')?.value,
+        offre: this.thirdFormGroup.get('offre')?.value,
+        categorieSocioPro: this.fourthFormGroup.get('categorieSocioPro')?.value,
+        revenuNetMensuel: this.fourthFormGroup.get('revenuNetMensuel')?.value,
+        natureActivite: this.fourthFormGroup.get('natureActivite')?.value,
+        secteurActivite: this.fourthFormGroup.get('secteurActivite')?.value,
+        numeroCIN: this.fifthFormGroup.get('numeroCin')?.value,
+        dateDelivranceCIN: this.fifthFormGroup.get('cinDate')?.value,
+        // photoCINAvant: this.cinFrontPreview ? (this.cinFrontPreview as string).split(',')[1] : '', // Base64 encoded string
+        // photoCINArriere: this.cinBackPreview ? (this.cinBackPreview as string).split(',')[1] : '', // Base64 encoded string
+        statut: this.thirdFormGroup.get('statut')?.value,
+        documents: [
+          {
+            nom: 'Document1', // You can customize or dynamically generate this if needed
+            cinFront: this.cinFrontPreview ? (this.cinFrontPreview as string).split(',')[1] : '', // Base64 encoded string
+            cinBack: this.cinBackPreview ? (this.cinBackPreview as string).split(',')[1] : '', // Base64 encoded string
+            numeroCin: this.fifthFormGroup.get('numeroCin')?.value,
+            dateDelivrance: this.fifthFormGroup.get('cinDate')?.value
+          }
+        ]
+      };
+  
+      console.log('FormData:', formData); // Log des données envoyées pour vérification
+  
+      this.formDataService.submitFormData(formData).subscribe(
+        (response: any) => {
+          console.log('Données envoyées avec succès', response);
+        },
+        (error: any) => {
+          console.error('Erreur lors de l\'envoi des données', error);
+        }
+      );
+    } else {
+      console.error('Le formulaire est invalide');
     }
   }
 
-
- logFormValues(): void {
+  logFormValues(): void {
     console.log('First Form Group:', this.firstFormGroup.value);
     console.log('Second Form Group:', this.secondFormGroup.value);
     console.log('Third Form Group:', this.thirdFormGroup.value);
@@ -145,54 +174,4 @@ export class  OuvrirCompteComponent {
     console.log('Fifth Form Group:', this.fifthFormGroup.value);
     console.log('Sixth Form Group:', this.sixthFormGroup.value);
   }
-  logForm(): void {
-    
-    const formValues = {
-       email: this.firstFormGroup.get('email')?.value,
-       nationalite: this.thirdFormGroup.get('nationalité')?.value,
-       statutCivil: this.thirdFormGroup.get('statutCivil')?.value,
-       nombreEnfants: this.thirdFormGroup.get('nombreEnfants')?.value,
-       motDePasse: this.sixthFormGroup.get('password')?.value,
-       nom: this.firstFormGroup.get('nom')?.value,
-       prenom: this.firstFormGroup.get('prenom')?.value,
-       phoneNumber: this.firstFormGroup.get('phoneNumber')?.value,
-       adresse: this.secondFormGroup.get('adresse')?.value,
-       pay: this.secondFormGroup.get('pay')?.value,
-       gouvernorat: this.secondFormGroup.get('gouvernorat')?.value,
-       codePostal: this.secondFormGroup.get('codePostal')?.value,
-       //offre: this.thirdFormGroup.get('offre')?.value,
-       categorieSocioPro: this.fourthFormGroup.get('categorieSocioPro')?.value,
-       revenuNetMensuel: this.fourthFormGroup.get('revenuNetMensuel')?.value,
-       natureActivite: this.fourthFormGroup.get('natureActivite')?.value,
-       secteurActivite: this.fourthFormGroup.get('secteurActivite')?.value,
-       numeroCin: this.fifthFormGroup.get('numeroCin')?.value,
-       dateDelivrance: this.fifthFormGroup.get('dateDelivrance')?.value,
-       dateNaissance: this.firstFormGroup.get('dateNaissance')?.value,
-
-       cinFront: this.cinFrontPreview ? (this.cinFrontPreview as string).split(',')[1] : '', // Base64 encoded string
-       cinBack: this.cinBackPreview ? (this.cinBackPreview as string).split(',')[1] : '', // Base64 encoded string
-      //statut: this.thirdFormGroup.get('statut')?.value,
-      // documents: [
-      //   {
-      //     nom: 'Document1', // You can customize or dynamically generate this if needed
-      //     cinFront: this.cinFrontPreview ? (this.cinFrontPreview as string).split(',')[1] : '', // Base64 encoded string
-      //     cinBack: this.cinBackPreview ? (this.cinBackPreview as string).split(',')[1] : '', // Base64 encoded string
-      //     numeroCin: this.fifthFormGroup.get('numeroCin')?.value,
-      //     dateDelivrance: this.fifthFormGroup.get('cinDate')?.value
-      //   }
-      // ]
-    };
-    console.log(formValues);
-
-    //Envoi des données au backend
-    this.formDataService.sendFormData(formValues).subscribe({
-      next: (response) => {
-        console.log('Données envoyées avec succès', response);
-      },
-      error: (error) => {
-        console.error('Erreur lors de l\'envoi des données', error);
-      }
-    });
-  }
-  
 }

@@ -7,6 +7,8 @@ import { TestComponent } from './test/test.component';
 import { SignatureComponent } from './signature/signature.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './auth.guard'; // Import your AuthGuard
+import { DetailsClientComponent } from './details-client/details-client.component';
+
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -15,5 +17,6 @@ export const routes: Routes = [
     { path: 'nous-contacter', component: NousContacterComponent },
     { path: 'ouvrir-compte', component: OuvrirCompteComponent },
     { path: 'test', component: TestComponent },
-    { path: 'signature', component: SignatureComponent }
+    { path: 'signature', component: SignatureComponent },
+    { path: 'details-client', component: DetailsClientComponent }
 ];
