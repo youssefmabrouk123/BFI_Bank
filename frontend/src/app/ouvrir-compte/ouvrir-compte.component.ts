@@ -212,7 +212,7 @@ export class OuvrirCompteComponent {
     console.log(formValues);
 
     //Envoi des données au backend
-    this.formDataService.sendFormData(formValues).subscribe({
+    this.formDataService.submitFormData(formValues).subscribe({
       next: (response) => {
         console.log('Données envoyées avec succès', response);
       },

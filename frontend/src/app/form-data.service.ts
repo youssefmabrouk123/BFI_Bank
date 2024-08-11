@@ -1,3 +1,4 @@
+
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -10,7 +11,8 @@ export class FormDataService {
 
   constructor(private http: HttpClient) { }
 
-  sendFormData(data: any): Observable<any> {
-    return this.http.post<any>(this.apiUrl, data);
+  submitFormData(formData: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl, formData);
   }
 }
+
