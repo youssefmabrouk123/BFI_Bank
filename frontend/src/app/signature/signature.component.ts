@@ -17,7 +17,8 @@ import { MatStepperModule } from '@angular/material/stepper';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    
   ],
   templateUrl: './signature.component.html',
   styleUrls: ['./signature.component.css'] // Corrected from 'styleUrl' to 'styleUrls'

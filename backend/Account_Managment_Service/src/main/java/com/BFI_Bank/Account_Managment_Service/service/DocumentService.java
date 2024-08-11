@@ -22,25 +22,25 @@ public class DocumentService {
 
     // Créer un nouveau document
     public Document createDocument(Document document) {
-//        // Validation des champs obligatoires
-//        if (document.getNom() == null || document.getNom().isEmpty()) {
-//            throw new IllegalArgumentException("Le nom du document est obligatoire.");
-//        }
+        // Validation des champs obligatoires
+        if (document.getNom() == null || document.getNom().isEmpty()) {
+            throw new IllegalArgumentException("Le nom du document est obligatoire.");
+        }
 //        if (document.getCinFront() == null || document.getCinFront().length == 0) {
 //            throw new IllegalArgumentException("Le recto de la CIN est obligatoire.");
 //        }
 //        if (document.getCinBack() == null || document.getCinBack().length == 0) {
 //            throw new IllegalArgumentException("Le verso de la CIN est obligatoire.");
 //        }
-//        if (document.getNumeroCin() == null) {
-//            throw new IllegalArgumentException("Le numéro de CIN est obligatoire.");
-//        }
-//        if (document.getDateDelivrance() == null) {
-//            throw new IllegalArgumentException("La date de délivrance est obligatoire.");
-//        }
-//        if (document.getClientId() == null) {
-//            throw new IllegalArgumentException("L'ID du client est obligatoire.");
-//        }
+        if (document.getNumeroCin() == null) {
+            throw new IllegalArgumentException("Le numéro de CIN est obligatoire.");
+        }
+        if (document.getDateDelivrance() == null) {
+            throw new IllegalArgumentException("La date de délivrance est obligatoire.");
+        }
+        if (document.getClientId() == null) {
+            throw new IllegalArgumentException("L'ID du client est obligatoire.");
+        }
 //
 //        // Vérification de la validité du numéro de CIN
 //        if (!isValidCinNumber(document.getNumeroCin())) {

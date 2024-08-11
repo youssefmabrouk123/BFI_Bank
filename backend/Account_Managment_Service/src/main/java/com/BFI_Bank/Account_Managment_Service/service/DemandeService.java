@@ -12,10 +12,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
+
+
 
 @Service
 public class DemandeService {
@@ -42,9 +51,10 @@ public class DemandeService {
 
     @Autowired
     private  DocumentRepository documentRepo;
+    private static final String UPLOAD_DIR = "C:\\Users\\dell\\Desktop\\BFI_BANK\\backend\\Account_Managment_Service\\CinBack";
 
 
-    public Demande createDemande(Demande demandeDto) throws Exception {
+    public Demande createDemande(DemandeUserDto demandeDto, MultipartFile cinFront, MultipartFile cinBack) throws Exception {
         if (demandeRepository.existsByEmail(demandeDto.getEmail())) {
             throw new Exception("Email already in use.");
         }
@@ -76,11 +86,16 @@ public class DemandeService {
         demande.setStatut("PENDING");
         demande.setNumeroCin(demandeDto.getNumeroCin());
         demande.setDateDelivrance(demandeDto.getDateDelivrance());
-        demande.setCinFront(demandeDto.getCinFront());
-        demande.setCinBack(demandeDto.getCinBack());
+        if (cinFront != null) {
+            demande.setCinFront(saveFile(cinFront));
+        }
+        if (cinBack != null) {
+            demande.setCinBack(saveFile(cinBack));
+        }
         demande.setMotDePasse(demandeDto.getMotDePasse());
-
-        return demandeRepository.save(demande);
+        Demande demand=demandeRepository.save(demande);
+        accepteDemande(demand.getId());
+        return demand;
     }
     public String accepteDemande(Long idDemande) {
         try {
@@ -116,23 +131,25 @@ public class DemandeService {
                     CompteBancaire compte = compteBancaireService.createCompteBancaireProfessionnel(
                             CompteBancaire.TypeCompte.COURANT, idClient, CompteBancaire.StatutCompte.ACTIF);
 
+
+                    //createDocumentFromDemande(registrationRequest,idClient);
                     // Création du document associé
-                    Document document = new Document();
-//                    document.setCinBack(registrationRequest.getCinBack());
-//                    document.setCinFront(registrationRequest.getCinFront());
-                    document.setDateDelivrance(registrationRequest.getDateDelivrance());
-                    document.setClientId(idClient);
-                    document.setNumeroCin(registrationRequest.getNumeroCin());
-                    document.setNom("CIN");
-
-                    // Log the document before saving
-                    System.out.println("Document to be saved: " + document);
-
-                    // Attempt to save the document
-                    Document savedDocument = documentRepo.save(document);
+//                    Document document = new Document();
+////                    document.setCinBack(registrationRequest.getCinBack());
+////                    document.setCinFront(registrationRequest.getCinFront());
+//                    document.setDateDelivrance(registrationRequest.getDateDelivrance());
+//                    document.setClientId(idClient);
+//                    document.setNumeroCin(registrationRequest.getNumeroCin());
+//                    document.setNom("CIN");
+//
+//                    // Log the document before saving
+//                    System.out.println("Document to be saved: " + document);
+//
+//                    // Attempt to save the document
+//                   Document savedDocument = documentRepo.save(document);
 
                     // Log the saved document
-                    System.out.println("Saved Document: " + savedDocument);
+                    //System.out.println("Saved Document: " + savedDocument);
 
                     return "Demande Accepted";
                 } else {
@@ -149,8 +166,56 @@ public class DemandeService {
         }
     }
 
+    public String saveFile(MultipartFile file) throws IOException {
+        // Ensure the upload directory exists
+        Path uploadPath = Paths.get(UPLOAD_DIR);
+        if (!Files.exists(uploadPath)) {
+            Files.createDirectories(uploadPath);
+        }
+
+        // Ensure the filename is valid and append the correct extension
+        String originalFilename = Optional.ofNullable(file.getOriginalFilename())
+                .filter(f -> !f.isEmpty())
+                .orElseThrow(() -> new IllegalArgumentException("Invalid file name"));
+
+        // Extract file extension from content type
+        String extension = "";
+        String contentType = file.getContentType();
+        if (contentType != null) {
+            if (contentType.equals("image/jpeg")) {
+                extension = ".jpg";
+            } else if (contentType.equals("image/png")) {
+                extension = ".png";
+            } // Add more types if needed
+        }
+
+        String filename = originalFilename.contains(".")
+                ? originalFilename.substring(0, originalFilename.lastIndexOf(".")) + extension
+                : originalFilename + extension;
+
+        // Save the file to the upload directory
+        Path filePath = uploadPath.resolve(filename);
+
+        try (var inputStream = file.getInputStream()) {
+            Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+        }
+
+        // Debugging output
+        System.out.println("File saved to: " + filePath.toString());
+
+        return filePath.toString();
+    }
 
 
+    private Document createDocumentFromDemande(Demande registrationRequest, Integer idClient) {
+        Document document = new Document();
+        document.setNumeroCin(registrationRequest.getNumeroCin());
+        document.setDateDelivrance(registrationRequest.getDateDelivrance());
+        document.setClientId(idClient);
+        document.setNom("CIN");
+        documentService.createDocument(document);
+        return document;
+    }
     // Méthodes supplémentaires pour les fonctionnalités de lecture, mise à jour et suppression (CRUD)
     public Demande getDemandeById(Long id) {
         return demandeRepository.findById(id).orElse(null);

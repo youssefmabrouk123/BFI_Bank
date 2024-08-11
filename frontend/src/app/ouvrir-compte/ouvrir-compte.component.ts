@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component,OnInit} from '@angular/core';
 import {FormBuilder, Validators, FormsModule, ReactiveFormsModule, FormGroup } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -12,9 +12,9 @@ import {provideNativeDateAdapter} from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatIconModule} from '@angular/material/icon';
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormDataService } from '../form-data.service';
+import { HeaderComponent } from '../header/header.component';
+import { FooterComponent } from '../footer/footer.component';
 //import { FormDataService } from '../form-data.service';
 
 
@@ -33,36 +33,36 @@ import { FormDataService } from '../form-data.service';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,StepperModule, ButtonModule , CommonModule, MatSelectModule,
-    MatFormFieldModule, MatDatepickerModule, MatIconModule,
+    MatFormFieldModule, MatDatepickerModule, MatIconModule,HeaderComponent,FooterComponent
 
   ],
   providers: [provideNativeDateAdapter(), FormDataService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class  OuvrirCompteComponent {
+export class OuvrirCompteComponent {
+  firstFormGroup: FormGroup = this._formBuilder.group({});
+  secondFormGroup: FormGroup = this._formBuilder.group({});
+  thirdFormGroup: FormGroup = this._formBuilder.group({});
+  fourthFormGroup: FormGroup = this._formBuilder.group({});
+  fifthFormGroup: FormGroup = this._formBuilder.group({});
+  sixthFormGroup: FormGroup = this._formBuilder.group({});
 
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
-  thirdFormGroup: FormGroup;
-  fourthFormGroup: FormGroup;
-  fifthFormGroup: FormGroup;
-  sixthFormGroup: FormGroup;
-  
-  
+
   isLinear = false;
   constructor(private _formBuilder: FormBuilder,    private formDataService: FormDataService
   ) {
     
    
-
     this.firstFormGroup = this._formBuilder.group({
       nom: ['', Validators.required],
       prenom: ['', Validators.required],
-      phoneNumber: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      phoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]{8,15}$')]],
       confirmPhoneNumber: ['', Validators.required],
-      confirmEmail: ['', [Validators.required, Validators.email]],
-      dateNaissance: ['', Validators.required]
+      email: ['', [Validators.required, Validators.email]],
+      confirmEmail: ['', Validators.required],
+      dateNaissance: ['']
+    }, {
+      validators: [this.phoneEmailMatchValidator]
     });
 
     this.secondFormGroup = this._formBuilder.group({
@@ -145,6 +145,33 @@ export class  OuvrirCompteComponent {
     console.log('Fifth Form Group:', this.fifthFormGroup.value);
     console.log('Sixth Form Group:', this.sixthFormGroup.value);
   }
+
+  phoneEmailMatchValidator(group: FormGroup): { [key: string]: boolean } | null {
+    const phoneNumberControl = group.get('phoneNumber');
+    const confirmPhoneNumberControl = group.get('confirmPhoneNumber');
+    const emailControl = group.get('email');
+    const confirmEmailControl = group.get('confirmEmail');
+
+    if (phoneNumberControl && confirmPhoneNumberControl && emailControl && confirmEmailControl) {
+      const phoneNumber = phoneNumberControl.value;
+      const confirmPhoneNumber = confirmPhoneNumberControl.value;
+      const email = emailControl.value;
+      const confirmEmail = confirmEmailControl.value;
+
+      if (phoneNumber !== confirmPhoneNumber) {
+        return { phoneMismatch: true };
+      }
+      if (email !== confirmEmail) {
+        return { emailMismatch: true };
+      }
+    }
+
+    return null;
+  }
+
+
+
+
   logForm(): void {
     
     const formValues = {

@@ -9,6 +9,9 @@ import { AuthService } from './auth.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { ToastModule } from 'primeng/toast';
+import { CarteBancaireComponent } from "./carte-bancaire/carte-bancaire.component";
+import { authGuard } from './auth.guard';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -23,11 +26,14 @@ import { ToastModule } from 'primeng/toast';
     RecaptchaModule,
     HttpClientModule,
     //BrowserAnimationsModule,
-    ToastModule
-    ],
+    ToastModule,
+    CarteBancaireComponent,
+    ReactiveFormsModule
+    
+],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [AuthService]
+  providers: [AuthService ]
 })
 export class AppComponent {
   title = 'frontend';

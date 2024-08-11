@@ -38,10 +38,10 @@ public class Demande {
     private Integer numeroCin;
     private String motDePasse ;
     private Date dateDelivrance;
-    @Lob
-    private byte[] cinFront;
-    @Lob
-    private byte[] cinBack;
+
+    private String cinFront;
+
+    private String cinBack;
 
 
     @Temporal(TemporalType.TIMESTAMP)

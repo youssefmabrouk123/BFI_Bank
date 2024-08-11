@@ -1,6 +1,7 @@
 package com.BFI_Bank.Account_Managment_Service.controller;
 
 import com.BFI_Bank.Account_Managment_Service.dto.DemandeUserDto;
+import com.BFI_Bank.Account_Managment_Service.exception.CustomMultipartFile;
 import com.BFI_Bank.Account_Managment_Service.exception.ErrorResponse;
 import com.BFI_Bank.Account_Managment_Service.model.Demande;
 import com.BFI_Bank.Account_Managment_Service.service.DemandeService;
@@ -9,7 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.util.Base64;
 import java.util.List;
 
 @RestController
@@ -21,14 +25,20 @@ public class DemandeController {
     private DemandeService demandeService;
 
     @PostMapping("/create")
-    public ResponseEntity<?> createDemande(@RequestBody Demande demandeDto) {
+    public ResponseEntity<?> createDemande(@RequestBody DemandeUserDto demandeDto) {
         try {
-            Demande savedDemande = demandeService.createDemande(demandeDto);
+            // Convert base64 to MultipartFile if needed
+            MultipartFile cinFront = convertBase64ToMultipartFile(demandeDto.getCinFront(),"CinFront"+demandeDto.getNumeroCin().toString());
+            MultipartFile cinBack = convertBase64ToMultipartFile(demandeDto.getCinBack(),"CinBack"+demandeDto.getNumeroCin());
+
+            // Handle your request
+            Demande savedDemande = demandeService.createDemande(demandeDto, cinFront, cinBack);
             return ResponseEntity.status(HttpStatus.CREATED).body(savedDemande);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(new ErrorResponse(e.getMessage()));
         }
     }
+
 
     @PostMapping("/accept/{idDemande}")
     public ResponseEntity<String> accepteDemande(@PathVariable Long idDemande) {
@@ -57,6 +67,15 @@ public class DemandeController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
+    }
+
+    private MultipartFile convertBase64ToMultipartFile(String base64, String filename) throws IOException {
+        if (base64 == null || base64.isEmpty()) {
+            return null;
+        }
+        byte[] decodedBytes = Base64.getDecoder().decode(base64);
+        String contentType = "image/jpeg"; // You might want to set this based on the actual file type
+        return new CustomMultipartFile("file", filename, contentType, decodedBytes);
     }
 
     @DeleteMapping("/refuse/{id}")

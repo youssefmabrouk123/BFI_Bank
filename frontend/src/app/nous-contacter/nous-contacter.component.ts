@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { RecaptchaModule } from 'ng-recaptcha';
+import { FooterComponent } from '../footer/footer.component';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-nous-contacter',
   standalone: true,
-  imports: [RecaptchaModule],
+  imports: [RecaptchaModule,FooterComponent,HeaderComponent],
   templateUrl: './nous-contacter.component.html',
   styleUrl: './nous-contacter.component.css'
 })

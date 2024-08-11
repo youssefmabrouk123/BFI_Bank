@@ -1,12 +1,10 @@
 package com.BFI_Bank.Account_Managment_Service.dto;
 
 
-import jakarta.persistence.Lob;
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.Collections;
 import java.util.Date;
-import java.util.List;
 
 @Data
 public class DemandeUserDto {
@@ -28,11 +26,9 @@ public class DemandeUserDto {
     private String natureActivite;
     private String secteurActivite;
     private Integer numeroCin;
-    private String motDePasse ;
-
+    private String motDePasse;
     private Date dateDelivrance;
-    @Lob
-    private byte[] cinFront;
-    @Lob
-    private byte[] cinBack;
+
+    private String cinFront;
+    private String cinBack;
 }

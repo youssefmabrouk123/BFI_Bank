@@ -1,3 +1,4 @@
+<app-header></app-header>
 <section id="ouvrir-compte" class="ouvrir-compte">
   <div class="container">
     <div class="section-title">
@@ -16,6 +17,7 @@
       <mat-form-field appearance="outline" class="full-width">
         <mat-label style="color: black; font-size: 18px;">Nom</mat-label>
         <input matInput placeholder="Nom" formControlName="nom" required>
+
 
       </mat-form-field>
     </div>
@@ -74,7 +76,7 @@
   </div>
           <div>
             <button mat-button matStepperPrevious style="color: white;">Retourner</button>
-            <button mat-button matStepperNext  style="color: white;" (click)="logFormValues()">Continuer</button>
+            <button mat-button matStepperNext  style="color: white;" >Continuer</button>
 
           </div>
         </form>
@@ -165,7 +167,7 @@
       
           <div>
             <button mat-button matStepperPrevious style="color: white;">Retourner</button>
-            <button mat-button matStepperNext  style="color: white;" (click)="logFormValues()">Continuer</button>
+            <button mat-button matStepperNext  style="color: white;" >Continuer</button>
           </div>
         </form>
       </mat-step>
@@ -207,7 +209,7 @@
 
           <div>
             <button mat-button matStepperPrevious style="color: white;">Retourner</button>
-            <button mat-button matStepperNext  style="color: white;" (click)="logFormValues()">Continuer</button>
+            <button mat-button matStepperNext  style="color: white;" >Continuer</button>
           </div>
         </form>
       </mat-step>
@@ -274,7 +276,7 @@
       
           <div>
             <button mat-button matStepperPrevious style="color: white;">Retourner</button>
-            <button mat-button matStepperNext style="color: white;" (click)="logFormValues()">Continuer</button>
+            <button mat-button matStepperNext  style="color: white;" >Continuer</button>
           </div>
         </form>
       </mat-step>
@@ -302,18 +304,14 @@
             <!-- Sélection de la photo recto de la carte CIN -->
             <div class="col-md-6">
              
-              <div *ngIf="cinFrontPreview">
-                <img [src]="cinFrontPreview" alt="Aperçu de la carte CIN recto" class="cin-preview">
-              </div>
+              
               <input type="file" (change)="onFileSelected($event, 'cinFront')" accept="image/*">
               <br>
               <h3 style="text-align: center; color: black;">CIN RECTO</h3>
             </div>
             
             <div class="col-md-6">
-              <div *ngIf="cinBackPreview">
-                <img [src]="cinBackPreview" alt="Aperçu de la carte CIN verso" class="cin-preview">
-              </div>
+          
               <input type="file" (change)="onFileSelected($event, 'cinBack')" accept="image/*">
               <br>
               <h3 style="text-align: center; color: black;">CIN  VERSO</h3>
@@ -322,7 +320,7 @@
           
           <div>
             <button mat-button matStepperPrevious style="color: white;">Retourner</button>
-            <button mat-button matStepperNext  style="color: white;" (click)="logFormValues()">Continuer</button>
+            <button mat-button matStepperNext  style="color: white;" >Continuer</button>
           </div>
         </form>
       </mat-step>
@@ -342,7 +340,7 @@
          
           <div>
             <button mat-button matStepperPrevious style="color: white;">Retourner</button>
-            <button mat-button matStepperNext style="color: white;" (click)="logFormValues()">Continuer</button>
+            <button mat-button matStepperNext  style="color: white;" >Continuer</button>
           </div>
         </form>
       </mat-step>
@@ -351,8 +349,10 @@
         <ng-template matStepLabel><b style="font-size: 25px; color: #004d40;">Signature</b></ng-template>
         <div>
           <br>
-          <button mat-button matStepperNext style="color: white;" (click)="logForm()">Continuer</button>
-
+          <!-- <button mat-button matStepperNext style="color: white;" >Continuer</button> -->
+          <button mat-button matStepperNext (click)="logForm()" style="color: white;">Continuer</button>
+          <!-- <a mat-button matStepperNext (click)="logForm()" href="signature" style="color: white;">Continuer</a> -->
+          
 
         </div>
       </mat-step>
@@ -360,3 +360,4 @@
     </mat-stepper>
   
 </section>
+<app-footer></app-footer>
