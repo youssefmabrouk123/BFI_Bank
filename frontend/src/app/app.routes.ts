@@ -8,6 +8,9 @@ import { SignatureComponent } from './signature/signature.component';
 import { LoginComponent } from './login/login.component';
 import { authGuard } from './auth.guard';
 import { EditComponent } from './edit/edit.component';
+import { ListeDemandesComponent } from './liste-demandes/liste-demandes.component';
+import { CompteAdminComponent } from './compte-admin/compte-admin.component';
+import { SignatureEnLigneComponent } from './signature-en-ligne/signature-en-ligne.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -18,6 +21,8 @@ export const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'mon-compte', component: MonCompteComponent },
     { path: 'edit-profile', component: EditComponent },
-
+    { path: 'liste-demandes', component: ListeDemandesComponent },
+    { path: 'compte-admin', component: CompteAdminComponent },
+    { path: 'signature-en-ligne', component: SignatureEnLigneComponent },
     { path: '**', redirectTo: '/login' } // Wildcard route for a 404 page
 ];

@@ -27,8 +27,8 @@ form {
 
 /* Style pour les boutons */
 button {
-  background-color: #009961;
-  border-color: #009961;
+  background-color: #d3bf4f;
+  border-color: #d3bf4f;
   padding: 13px 40px;
   font-size: 16px;
   color: #ffffff;
@@ -39,13 +39,13 @@ button {
 }
 
 button:hover {
-  background-color: #033819;
-  border-color: #033819;
+  background-color: #bbaa49;
+  border-color: #bbaa49;
 }
 
 a {
-  background-color: #009961;
-  border: 2px solid #009961; /* Ajoute une bordure solide */
+  background-color: #d3bf4f;
+  border: 2px solid #d3bf4f; /* Ajoute une bordure solide */
   padding: 20px 45px;
   font-size: 16px;
   color: #ffffff;
@@ -59,8 +59,8 @@ a {
 }
 
 a:hover {
-  background-color: #033819;
-  border-color: #033819;
+  background-color: #bbaa49;
+  border-color: #bbaa49;
 }
 
 
@@ -167,24 +167,24 @@ a:hover {
 ::ng-deep .mat-step-header .mat-step-label {
   font-size: 20px;
   font-weight: bold;
-  color: #009961;
+  color: #d3bf4f;
 }
 
 ::ng-deep .mat-step-header .mat-step-icon {
   width: 48px; /* Adjust width */
     height: 48px; /* Adjust height */
     font-size: 24px; /* Adjust font size */
-    background-color: #009961; /* Change the background color of the icon */
+    background-color: #d3bf4f; /* Change the background color of the icon */
     color: white; /* Change the icon color */
 }
 
 ::ng-deep .mat-step-header .mat-step-label.mat-step-label-active {
-  color: #004d40;
+  color: #d3bf4f;
   font-size: 23px;
 }
 
 ::ng-deep .mat-step-header .mat-step-icon.mat-step-icon-selected {
-  background-color: #004d40;
+  background-color: #bbaa49;
 }
 
 ::ng-deep .mat-step-header {
@@ -206,7 +206,7 @@ mat-form-field .mat-label {
 ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-start,
 ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-end,
 ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-gap {
-  stroke: #009961;
+  stroke: #d3bf4f;
 }
 
 
@@ -231,3 +231,13 @@ mat-form-field .mat-label {
 }
 
 
+mat-error {
+  display: flex;
+  align-items: center;
+  color: #f44336; /* Couleur rouge pour l'erreur */
+  font-size: 14px;
+}
+
+mat-error img {
+  margin-right: 8px; /* Espacement entre l'icône et le texte */
+}

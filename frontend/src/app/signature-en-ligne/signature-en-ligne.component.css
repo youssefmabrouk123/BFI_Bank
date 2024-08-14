@@ -1,0 +1,295 @@
+
+  
+  @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+
+.essai {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  background: rgb(233, 233, 233);
+  font-family: "Poppins", sans-serif;
+  box-sizing: border-box;
+  outline: none;
+
+
+
+}
+
+.container {
+  display: flex;
+  height: auto; /* Full viewport height */
+  background: rgb(233, 233, 233);
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: none;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  overflow: auto;
+}
+
+.navv {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 100%; /* Full height */
+  background: #1a1a2e;
+  padding: 20px 10px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.navbarr {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+
+.logo img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.logo h1 {
+  margin-left: 1rem;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+}
+
+ul {
+  flex-grow: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+li {
+  margin-bottom: 1.5rem;
+}
+
+li a {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  color: #f1f1f1;
+  padding: 10px 15px;
+  border-radius: 8px;
+  transition: background 0.3s;
+}
+
+li a:hover {
+  background: #16213e;
+}
+
+li a i {
+  width: 30px;
+  font-size: 22px;
+  text-align: center;
+}
+
+.nav-itemm {
+  margin-left: 10px;
+  align-items: center;
+}
+
+/* Logout Button */
+.logout {
+  margin-top: auto;
+  width: 100%;
+  text-align: center;
+}
+
+.logout a {
+  background: #e94560;
+  color: #fff;
+  padding: 12px 25px;
+  text-align: center;
+  border-radius: 8px;
+  transition: background 0.3s;
+}
+
+.logout a:hover {
+  background: #c82333;
+}
+
+.mainn {
+  flex: 1; /* Take remaining space */
+  height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow: auto;
+}
+
+.main-topp {
+  width: 100%;
+  
+  background: #fff;
+  padding: 15px;
+  text-align: center;
+  font-size: 20px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgb(43, 43, 43);
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.main-bodyy {
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  min-height: 85%;
+}
+
+
+
+
+
+.container {
+  padding-top: 2rem;
+}
+/* zzzzzzzzzzzzzzzzzzzz */
+
+
+
+/* 
+.signature-container {
+ 
+  margin: 30px auto;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: rgb(240, 240, 226);
+  width: 900px; 
+} */
+
+#signature-pad {
+  border: 3px solid black; /* Blue border */
+  border-radius: 8px;
+  background-color: #fff;
+  width: 200px;
+  height: 150px; /* Adjust height as needed */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  cursor: crosshair;
+ 
+}
+
+button {
+  margin: 10px;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 15px;
+  background-color: black; /* Blue background */
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: black; /* Darker blue on hover */
+}
+
+button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px black; /* Focus outline */
+}
+
+.contract-sheet {
+  text-align: left;
+  margin: 30px auto;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff; /* Change background to white for better readability */
+  max-width: 800px; /* Ajustez la largeur si nécessaire */
+  border: 1px solid #e0e0e0; /* Add a subtle border */
+}
+
+h2 {
+  text-align: center;
+  color: black; /* Dark color for header */
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+h3 {
+  border-bottom: 2px solid black; /* Blue border */
+  padding-bottom: 8px;
+  margin-bottom: 15px;
+  color: #1a1a2e; /* Dark color for sub-headers */
+  font-size: 20px;
+  font-weight: 600;
+}
+
+p {
+  margin: 15px 0;
+  line-height: 1.6;
+  color: #333; /* Dark text color for readability */
+  font-size: 16px;
+}
+
+ul {
+  margin: 15px 0;
+  padding-left: 20px;
+}
+
+ul li {
+  margin: 8px 0;
+  font-size: 16px;
+  color: #333;
+}
+
+strong {
+  font-weight: 700;
+}
+
+.signature-section {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.signature-section p {
+  margin: 10px 0;
+}
+
+.signature-section p strong {
+  display: block;
+  margin-bottom: 5px;
+  color: #1a1a2e;
+}
+
+.signature-section p.signature-line {
+  border-top: 1px dashed #bbb;
+  margin: 20px 0;
+  padding: 5px 0;
+  text-align: center;
+  color: #999;
+}
+
+.signature-section p.signature-line:before {
+  content: "Signature";
+  font-weight: 600;
+  color: #666;
+}

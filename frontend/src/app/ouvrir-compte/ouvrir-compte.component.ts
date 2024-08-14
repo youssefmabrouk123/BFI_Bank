@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component,OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators, FormsModule, ReactiveFormsModule, FormGroup } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -33,37 +33,34 @@ import { FooterComponent } from '../footer/footer.component';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,StepperModule, ButtonModule , CommonModule, MatSelectModule,
-    MatFormFieldModule, MatDatepickerModule, MatIconModule,HeaderComponent,FooterComponent
+    MatFormFieldModule, MatDatepickerModule, MatIconModule,HeaderComponent,FooterComponent, 
 
   ],
   providers: [provideNativeDateAdapter(), FormDataService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class OuvrirCompteComponent {
+export class OuvrirCompteComponent implements OnInit{
   firstFormGroup: FormGroup = this._formBuilder.group({});
   secondFormGroup: FormGroup = this._formBuilder.group({});
   thirdFormGroup: FormGroup = this._formBuilder.group({});
   fourthFormGroup: FormGroup = this._formBuilder.group({});
   fifthFormGroup: FormGroup = this._formBuilder.group({});
   sixthFormGroup: FormGroup = this._formBuilder.group({});
+  isLinear = true;
 
-
-  isLinear = false;
-  constructor(private _formBuilder: FormBuilder,    private formDataService: FormDataService
-  ) {
+  constructor(private _formBuilder: FormBuilder,    private formDataService: FormDataService) {}
     
-   
+  ngOnInit(): void {
     this.firstFormGroup = this._formBuilder.group({
       nom: ['', Validators.required],
       prenom: ['', Validators.required],
-      phoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]{8,15}$')]],
+      phoneNumber: ['', Validators.required],
       confirmPhoneNumber: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      confirmEmail: ['', Validators.required],
-      dateNaissance: ['']
-    }, {
-      validators: [this.phoneEmailMatchValidator]
-    });
+      confirmEmail: ['', [Validators.required, Validators.email]],
+      dateNaissance: ['', Validators.required]
+    }, { validator: this.phoneEmailMatchValidator });
+
 
     this.secondFormGroup = this._formBuilder.group({
     adresse: ['', Validators.required],
@@ -96,11 +93,46 @@ export class OuvrirCompteComponent {
     });
     
     this.sixthFormGroup = this._formBuilder.group({
-      password: ['', [Validators.required, Validators.minLength(8)]],
-      confirmPassword: ['', Validators.required],
-    });
+      password: ['', [Validators.required]],
+      confirmPassword: ['', [Validators.required]]
+    }, { validator: this.passwordMatchValidator });
 
+
+
+    const passwordControl = this.sixthFormGroup.get('password');
+    const confirmPasswordControl = this.sixthFormGroup.get('confirmPassword');
+
+    if (passwordControl) {
+      passwordControl.valueChanges.subscribe(() => {
+        this.sixthFormGroup.updateValueAndValidity();
+      });
+    }
+
+    if (confirmPasswordControl) {
+      confirmPasswordControl.valueChanges.subscribe(() => {
+        this.sixthFormGroup.updateValueAndValidity();
+      });
+    }
   }
+  
+    passwordMatchValidator(group: FormGroup): { [key: string]: boolean } | null {
+    const password = group.get('password')?.value;
+    const confirmPassword = group.get('confirmPassword')?.value;
+
+    return password === confirmPassword ? null : { mismatch: true };
+  }
+
+  phoneEmailMatchValidator(group: FormGroup): { [key: string]: boolean } | null {
+    const phoneNumber = group.get('phoneNumber')?.value;
+    const confirmPhoneNumber = group.get('confirmPhoneNumber')?.value;
+    const email = group.get('email')?.value;
+    const confirmEmail = group.get('confirmEmail')?.value;
+
+    return phoneNumber === confirmPhoneNumber && email === confirmEmail
+      ? null
+      : { phoneEmailMismatch: true };
+  }
+
 
   cinFrontPreview: string | ArrayBuffer | null = null;
   cinBackPreview: string | ArrayBuffer | null = null;
@@ -136,7 +168,18 @@ export class OuvrirCompteComponent {
     }
   }
 
+  allFormsValid(): boolean {
+    return (
+      this.firstFormGroup.valid &&
+      this.secondFormGroup.valid &&
+      this.thirdFormGroup.valid &&
+      this.fourthFormGroup.valid &&
+      this.fifthFormGroup.valid &&
+      this.sixthFormGroup.valid
+    );
+  }
 
+  
  logFormValues(): void {
     console.log('First Form Group:', this.firstFormGroup.value);
     console.log('Second Form Group:', this.secondFormGroup.value);
@@ -146,32 +189,7 @@ export class OuvrirCompteComponent {
     console.log('Sixth Form Group:', this.sixthFormGroup.value);
   }
 
-  phoneEmailMatchValidator(group: FormGroup): { [key: string]: boolean } | null {
-    const phoneNumberControl = group.get('phoneNumber');
-    const confirmPhoneNumberControl = group.get('confirmPhoneNumber');
-    const emailControl = group.get('email');
-    const confirmEmailControl = group.get('confirmEmail');
-
-    if (phoneNumberControl && confirmPhoneNumberControl && emailControl && confirmEmailControl) {
-      const phoneNumber = phoneNumberControl.value;
-      const confirmPhoneNumber = confirmPhoneNumberControl.value;
-      const email = emailControl.value;
-      const confirmEmail = confirmEmailControl.value;
-
-      if (phoneNumber !== confirmPhoneNumber) {
-        return { phoneMismatch: true };
-      }
-      if (email !== confirmEmail) {
-        return { emailMismatch: true };
-      }
-    }
-
-    return null;
-  }
-
-
-
-
+ 
   logForm(): void {
     
     const formValues = {

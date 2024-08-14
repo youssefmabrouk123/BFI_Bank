@@ -1,20 +1,21 @@
 .btn-number {
-    color: #009961; /* Couleur initiale */
+    color: #d3bf4f; /* Couleur initiale */
     text-decoration: none;
 }
 
 .btn-number:hover {
-    color: rgb(138, 138, 50); /* Couleur lorsque le curseur est sur le lien */
+    color: #6d6015; /* Couleur lorsque le curseur est sur le lien */
 }
 .social-links a {
-    font-size: 2rem; /* Ajustez la taille selon vos préférences */
+    font-size: 3rem; /* Ajustez la taille selon vos préférences */
     margin: 0 10px; /* Optionnel: pour ajouter un peu d'espacement entre les icônes */
-    color: #009961; /* Optionnel: pour définir la couleur des icônes */
+    color: #d3bf4f; /* Optionnel: pour définir la couleur des icônes */
     transition: color 0.3s; /* Optionnel: pour une transition de couleur plus fluide */
+    
 }
 
 .social-links a:hover {
-    color: #007bff; /* Optionnel: pour changer la couleur des icônes au survol */
+    color: #6d6015; /* Optionnel: pour changer la couleur des icônes au survol */
 }
 
 /* Formulaire global */
@@ -62,8 +63,8 @@ form.php-email-form {
   
   /* Boutons */
   form.php-email-form .btn-primary {
-    background-color: #009961;
-    border-color: #009961;
+    background-color: #d3bf4f;
+    border-color: #d3bf4f;
     padding: 13px 40px;
     font-size: 16px;
    
@@ -72,8 +73,8 @@ form.php-email-form {
   }
   
   form.php-email-form .btn-primary:hover {
-    background-color: #033819;
-    border-color: #033819;
+    background-color: #bbaa49;
+    border-color: #bbaa49;
   }
   
   /* Message d'erreur et de succès */
@@ -93,7 +94,7 @@ form.php-email-form {
   
   form.php-email-form .sent-message {
     display: none;
-    color: #28a745;
+    color: #d3bf4f;
     text-align: center;
   }
   
