@@ -2,6 +2,7 @@ package com.BFI_Bank.Account_Managment_Service.controller;
 
 import com.BFI_Bank.Account_Managment_Service.model.Rdv;
 import com.BFI_Bank.Account_Managment_Service.dto.RdvRequest;
+import com.BFI_Bank.Account_Managment_Service.repository.DemandeRepository;
 import com.BFI_Bank.Account_Managment_Service.service.RdvService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
@@ -10,11 +11,16 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/Account/rendezvous")
 
 public class RdvController {
+
+
+    @Autowired
+    private DemandeRepository demandeRepository;
 
     @Autowired
     private RdvService rdvService;
@@ -29,11 +35,15 @@ public class RdvController {
 
     @PostMapping("/book")
     public Rdv bookRdv(@RequestBody RdvRequest rdvRequest) {
-        Rdv rdv = rdvService.createRdv(rdvRequest.getClientId(), rdvRequest.getSelectedDate());
+
+        Rdv rdv = rdvService.createRdv(getIdByEmail(rdvRequest.getEmail()), rdvRequest.getSelectedDate());
         sendEmailWithRdvDetails(rdvRequest.getEmail(), rdv);
         return rdv;
     }
-
+    public Long getIdByEmail(String email) {
+        Optional<Long> idOptional = demandeRepository.findIdByEmail(email);
+        return idOptional.orElseThrow(() -> new RuntimeException("No Demande found with email: " + email));
+    }
     private void sendEmailWithRdvDetails(String email, Rdv rdv) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(email);

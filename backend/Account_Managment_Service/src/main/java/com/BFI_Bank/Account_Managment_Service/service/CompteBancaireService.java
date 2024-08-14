@@ -15,6 +15,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.Optional;
 import java.util.Random;
 
 @Service
@@ -46,6 +47,10 @@ public class CompteBancaireService {
         return accountNumber;
     }
 
+    public Optional<CompteBancaire> getCompteBancaireByClientId(Integer clientId) {
+        return compteBancaireRepository.findByClientId(clientId);
+    }
+
     private String generateRandomAccountNumber() {
         Random random = new Random();
         StringBuilder accountNumber = new StringBuilder();
@@ -59,7 +64,7 @@ public class CompteBancaireService {
         return !compteBancaireRepository.findByNumero(accountNumber).isPresent();
     }
 
-    public CompteBancaire createCompteBancaireProfessionnel(CompteBancaire.TypeCompte type, Integer clientId, CompteBancaire.StatutCompte statut) {
+    public CompteBancaire createCompteBancaireProfessionnel(CompteBancaire.TypeCompte type, Integer clientId, CompteBancaire.StatutCompte statut ,String Nom ,String Prenom) {
         CompteBancaire compteBancaire = new CompteBancaire();
         compteBancaire.setNumero(generateUniqueAccountNumber());
         compteBancaire.setType(type);
@@ -71,18 +76,18 @@ public class CompteBancaireService {
         // Sauvegarder le CompteBancaire d'abord pour générer un ID
         compteBancaire = compteBancaireRepository.save(compteBancaire);
         // Créer et associer une CarteProfessionnelle
-        CarteProfessionnelle carteProfessionnelle = createCarteProfessionnelleForCompteBancaire(compteBancaire);
+        CarteProfessionnelle carteProfessionnelle = createCarteProfessionnelleForCompteBancaire(compteBancaire,Nom,Prenom);
         compteBancaire.setCarte(carteProfessionnelle);
 
         return compteBancaire;
     }
 
 
-    private CarteProfessionnelle createCarteProfessionnelleForCompteBancaire(CompteBancaire compteBancaire) {
+    private CarteProfessionnelle createCarteProfessionnelleForCompteBancaire(CompteBancaire compteBancaire ,String Nom ,String Prenom) {
         String number = cardNumberGeneratorService.generateUniqueCardNumber();
         CarteProfessionnelle carteProfessionnelle = new CarteProfessionnelle();
         carteProfessionnelle.setNumeroCarte(number);
-        carteProfessionnelle.setNomTitulaire("Nom Titulaire");
+        carteProfessionnelle.setNomTitulaire(Prenom+" "+ Nom);
         carteProfessionnelle.setDateExpiration(getDefaultExpirationDate());
         carteProfessionnelle.setCvv(generateCVV(number, convertDateToMMYY(getDefaultExpirationDate()), secretKey));
         System.out.println("7");

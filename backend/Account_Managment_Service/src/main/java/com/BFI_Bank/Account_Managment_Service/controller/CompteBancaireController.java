@@ -13,12 +13,19 @@ public class CompteBancaireController {
     @Autowired
     private CompteBancaireService compteBancaireService;
 
-    @PostMapping("/professionnel")
-    public ResponseEntity<CompteBancaire> createCompteBancaireProfessionnel(
-            @RequestParam CompteBancaire.TypeCompte type,
-            @RequestParam Integer clientId,
-            @RequestParam CompteBancaire.StatutCompte statut) {
-        CompteBancaire compteBancaire = compteBancaireService.createCompteBancaireProfessionnel(type, clientId, statut);
-        return ResponseEntity.ok(compteBancaire);
+//    @PostMapping("/professionnel")
+//    public ResponseEntity<CompteBancaire> createCompteBancaireProfessionnel(
+//            @RequestParam CompteBancaire.TypeCompte type,
+//            @RequestParam Integer clientId,
+//            @RequestParam CompteBancaire.StatutCompte statut) {
+//        CompteBancaire compteBancaire = compteBancaireService.createCompteBancaireProfessionnel(type, clientId, statut);
+//        return ResponseEntity.ok(compteBancaire);
+//    }
+
+    @GetMapping("/client/{clientId}")
+    public ResponseEntity<CompteBancaire> getCompteBancaireByClientId(@PathVariable Integer clientId) {
+        return compteBancaireService.getCompteBancaireByClientId(clientId)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 }

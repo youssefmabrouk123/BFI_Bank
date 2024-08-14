@@ -16,6 +16,6 @@ public class Rdv {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private LocalDateTime date;
-    private Integer idClient;  // IdUser from OurUsers in Users Service
+    private Long idClient;  // IdUser from OurUsers in Users Service
     private String lienMeet;
 }

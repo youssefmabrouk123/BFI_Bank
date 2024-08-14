@@ -104,10 +104,11 @@ public class DemandeService {
                 Demande registrationRequest = optionalDemande.get();
                 // Création d'un nouvel utilisateur OurUsers
                 OurUsers ourUsers = new OurUsers();
+                ourUsers.setDateNaissance(registrationRequest.getDateNaissance());
                 ourUsers.setEmail(registrationRequest.getEmail());
                 ourUsers.setPassword(registrationRequest.getMotDePasse());
                 ourUsers.setRole("USER");
-                ourUsers.setPhoneNumber(registrationRequest.getPhoneNumber());
+                ourUsers.setPhoneNumber("+216"+registrationRequest.getPhoneNumber());
                 ourUsers.setAdresse(registrationRequest.getAdresse());
                 ourUsers.setPay(registrationRequest.getPay());
                 ourUsers.setGouvernorat(registrationRequest.getGouvernorat());
@@ -129,7 +130,7 @@ public class DemandeService {
                 if (createdUser != null) {
                     Integer idClient = usersServiceFeignClient.getUserId(createdUser);
                     CompteBancaire compte = compteBancaireService.createCompteBancaireProfessionnel(
-                            CompteBancaire.TypeCompte.COURANT, idClient, CompteBancaire.StatutCompte.ACTIF);
+                            CompteBancaire.TypeCompte.COURANT, idClient, CompteBancaire.StatutCompte.ACTIF,createdUser.getNom(),createdUser.getPrenom());
 
 
                     //createDocumentFromDemande(registrationRequest,idClient);

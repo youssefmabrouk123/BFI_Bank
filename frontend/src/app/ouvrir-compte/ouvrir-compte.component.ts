@@ -16,6 +16,10 @@ import { FormDataService } from '../form-data.service';
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
 //import { FormDataService } from '../form-data.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router'; // Import Router
+
+
 
 
 
@@ -49,7 +53,9 @@ export class OuvrirCompteComponent {
 
 
   isLinear = false;
-  constructor(private _formBuilder: FormBuilder,    private formDataService: FormDataService
+  constructor(private _formBuilder: FormBuilder,    private formDataService: FormDataService,    private snackBar: MatSnackBar,    private router: Router, // Inject Router here
+
+
   ) {
     
    
@@ -211,15 +217,25 @@ export class OuvrirCompteComponent {
     };
     console.log(formValues);
 
-    //Envoi des données au backend
+    // Store the form data in the service
+    this.formDataService.storeFormData(formValues);
+
+    // Envoi des données au backend
     this.formDataService.submitFormData(formValues).subscribe({
       next: (response) => {
         console.log('Données envoyées avec succès', response);
+
+        // Display success message
+        this.snackBar.open('Formulaire soumis avec succès!', 'Fermer', {
+          duration: 3000, // Duration in milliseconds
+        });
+
+        // Redirect to /signature
+        this.router.navigate(['/signature']);
       },
       error: (error) => {
         console.error('Erreur lors de l\'envoi des données', error);
       }
     });
   }
-  
 }

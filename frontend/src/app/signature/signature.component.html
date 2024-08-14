@@ -5,24 +5,31 @@
 <h2 style="color: rgb(49, 48, 48); text-align: center; font-size: 40px;"><br><br><b style="font-size: 44px;">Plus simple </b> , avec la signature électronique !</h2>
 <section id="signature" class="signature">
     <mat-stepper>
-        <mat-step label="Vérification par mail" state="chat">
-            <form [formGroup]="codeForm">
-                <mat-form-field appearance="outline" class="full-width">
-                  <mat-label>Enter le code reçu par mail</mat-label>
-                  <input matInput formControlName="code" placeholder="123456" maxlength="6" required>
-                  
-                </mat-form-field>
-                <p style="color: gray; font-size: 15px;">Un dernier coup d'oeil sur vos informations !</p>
-                <p style="color: gray; font-size: 15px;">Pour bénéficier de la signature électronique . Veuillez saisir le code de confirmation qui vient d'être envoyé à votre adresse mail.</p>
-                <div class="button-group">
-                  <button mat-button (click)="resendCode()" style="color: #009961">Renvoyer le code</button>
-                </div>
-              </form>
-              <br>
-          <div>
-            <button mat-button matStepperNext class="continue-button" style="color: white;">Valider</button>
+      <mat-step label="Vérification par mail" state="chat">
+        <form [formGroup]="codeForm">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Enter le code reçu par mail</mat-label>
+            <input matInput formControlName="code" placeholder="Enter the code" required>
+            <!-- <input matInput placeholder="Enter the code" formControlName="token" required> -->
+
+          </mat-form-field>
+      
+          <p style="color: gray; font-size: 15px;">Un dernier coup d'œil sur vos informations !</p>
+          <p style="color: gray; font-size: 15px;">Pour bénéficier de la signature électronique, veuillez saisir le code de confirmation qui vient d'être envoyé à votre adresse mail.</p>
+      
+          <div class="button-group">
+            <button mat-button (click)="sendCode()" style="color: #009961">Renvoyer le code</button>
           </div>
-        </mat-step>
+      
+          <br>
+      
+          <div>
+            <button mat-button matStepperNext class="continue-button" style="color: white;" (click)="verifyToken()">Valider</button>
+          </div>
+        </form>
+      </mat-step>
+      
+      
         <mat-step label="Vérification par téléphone" state="phone" >
             <form [formGroup]="codeForm">
                 <mat-form-field appearance="outline" class="full-width">
@@ -34,15 +41,15 @@
                 <p style="color: gray; font-size: 15px;">Pour bénéficier de la signature électronique . Veuillez saisir le code de confirmation qui vient d'être envoyé à votre numéro téléphonique .</p>
               
                 <div class="button-group">
-                  <button mat-button (click)="resendCode()" style="color: #009961">Renvoyer le code</button>
+                  <button mat-button (click)="sendOtp()" style="color: #009961">Renvoyer le code</button>
                 </div>
               </form>
               <br>
           <div>
-            <button mat-button matStepperNext class="continue-button" style="color: white;">Valider</button>
+            <button mat-button matStepperNext class="continue-button" style="color: white;" (click)="verifyTokenOtp()">Valider</button>
           </div>
           </mat-step>
-          <mat-step label="Meeting en ligne">
+          <!-- <mat-step label="Meeting en ligne">
             <div style="display: flex; justify-content: space-between; align-items: center;">
                 <div style="flex: 1;">
                     <br>
@@ -65,10 +72,23 @@
             </div>
            
         </mat-step>
+         -->
+         <mat-step label="Meeting en ligne">
+          <div class="d-flex justify-content-center flex-wrap my-3">
+            <div *ngFor="let slot of slots" class="m-2">
+              <button mat-raised-button color="primary" (click)="selectSlot(slot)" class="btn btn-outline-primary">
+                {{ slot | date:'fullDate' }} - {{ slot | date:'shortTime' }}
+              </button>
+            </div>
+          </div>
+          <div class="text-center mt-4">
+            <button mat-raised-button color="accent" (click)="confirmSelection()" [disabled]="!selectedSlot" class="btn btn-success">
+              Confirmer
+            </button>
+          </div>
+        </mat-step>
         
       
        
       </mat-stepper>
 </section>
-
-

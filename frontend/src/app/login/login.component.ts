@@ -52,6 +52,7 @@ onSubmit(): void {
             this.authService.fetchUserDetails(response.token).subscribe(
               userDetails => {
                 console.log('User details:', userDetails);
+                localStorage.setItem('Id', userDetails.id);
                 this.router.navigate(['/mon-compte']); // Redirect to /mon-compte after fetching user details
               },
               error => {

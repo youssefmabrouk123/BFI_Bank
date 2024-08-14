@@ -90,12 +90,12 @@ public class RdvService {
 
     public List<LocalDateTime> getAvailableSlots() {
         List<LocalDateTime> slots = new ArrayList<>();
-        LocalDateTime start = LocalDateTime.now().plusDays(1); // Commence à partir du lendemain
-        LocalDateTime end = start.plusDays(7); // Les créneaux disponibles pour les 30 prochains jours
+        LocalDateTime startOfWeek = LocalDateTime.now().with(DayOfWeek.MONDAY).withHour(9).withMinute(0);
+        LocalDateTime endOfWeek = startOfWeek.plusDays(7).withHour(15).withMinute(0);
 
-        LocalDateTime slot = start.withHour(9).withMinute(0); // Commence à 9 heures du matin
+        LocalDateTime slot = startOfWeek;
 
-        while (slot.isBefore(end)) {
+        while (slot.isBefore(endOfWeek)) {
             if (isWeekday(slot) && isWithinAvailableHours(slot)) {
                 if (!rdvRepository.existsByDate(slot)) {
                     slots.add(slot);
@@ -103,7 +103,7 @@ public class RdvService {
             }
 
             // Incrémente le créneau de 15 minutes
-            slot = slot.plusMinutes(15);
+            slot = slot.plusMinutes(60);
 
             // Réinitialise l'heure à 9h si on dépasse 15h
             if (slot.getHour() == 15 && slot.getMinute() > 0) {
@@ -123,7 +123,7 @@ public class RdvService {
         return dateTime.getHour() >= 9 && dateTime.getHour() < 15;
     }
 
-    public Rdv createRdv(Integer clientId, LocalDateTime selectedDate) {
+    public Rdv createRdv(Long clientId, LocalDateTime selectedDate) {
         if (rdvRepository.existsByDate(selectedDate)) {
             throw new IllegalArgumentException("Selected slot is already booked.");
         }
