@@ -36,6 +36,7 @@ public class CompteBancaire {
     @Column(nullable = false)
     private StatutCompte statut;
 
+
     @OneToOne(mappedBy = "compteBancaire", cascade = CascadeType.ALL)
     private CarteProfessionnelle carte;
 

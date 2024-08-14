@@ -1,0 +1,70 @@
+
+
+<div class="essai">
+ 
+
+    <app-youssef></app-youssef>
+      <section class="mainn">
+        <div class="main-topp">
+          <b><p style="color: black; font-size: 30px;">SIGNATURE EN LIGNE</p></b>
+        </div>
+        <div class="main-bodyy"> 
+           
+              
+                <div class="contract-sheet">
+                  <h1 style="text-align: center; font-size: 30px; color: black;"><b><u>Contrat</u></b></h1>
+                  <p><strong>Entre :</strong> BFI BANK, située à  Immeuble BFI, Rue du Lac de Constance, Les Berges du Lac, 1053 Tunis, Tunisie.</p>
+                  
+                  <p><strong>Et :</strong> {{ clientName }}, résidant à {{ clientAddress }}, ci-après dénommé "le Client".</p>
+                
+                  <h3>Objet du Contrat</h3>
+                  <p>Le présent contrat a pour objet de définir les termes et conditions sous lesquels l'Entreprise fournira au Client les services suivants :</p>
+                  <ul>
+                    <li>Service 1: <b>Ouverture de Compte Bancaire</b> <br>- Assistance complète dans l'ouverture d'un nouveau compte bancaire, incluant la collecte et la vérification des documents nécessaires, la configuration des options de compte selon les besoins du client, et la fourniture d'un accès sécurisé aux services bancaires en ligne.</li>
+                    <li>Service 2: <b>Gestion de Compte et Transactions</b><br> - Gestion quotidienne du compte bancaire, comprenant le traitement des transactions, le suivi des soldes, la gestion des virements et paiements, ainsi que la fourniture de relevés de compte réguliers. Ce service inclut également la gestion des autorisations et des alertes de sécurité.</li>
+                    <li>Service 3: <b>Conseils Financiers et Assistance</b><br> - Fourniture de conseils financiers personnalisés pour aider le client à optimiser la gestion de son compte bancaire. Cela comprend des recommandations sur les produits financiers adaptés, des stratégies d'épargne et d'investissement, ainsi qu'une assistance en cas de problème ou de questionnement concernant le compte.</li>
+                    
+                  </ul>
+                
+                  <h3>Durée du Contrat</h3>
+                  <p>Le présent contrat entre en vigueur à compter de la date de signature et se terminera le 20/08/2030.</p>
+                
+                 
+                
+                  <h3>Obligations des Parties</h3>
+                  <p><strong>Obligations de l'Entreprise :</strong>  
+                    <li>Fournir des services bancaires conformes aux termes du contrat, incluant l'ouverture et la gestion du compte bancaire du Client.</li>
+                    <li>Assurer la confidentialité des informations financières et personnelles du Client.</li>
+                    <li>Informer le Client de tout changement concernant les frais, les conditions ou les services proposés.</li>
+                  </p>
+                  <p><strong>Obligations du Client :</strong>
+                    <li>Fournir des informations exactes et complètes lors de l'ouverture du compte bancaire.</li>
+                    <li>Respecter les termes et conditions du contrat ainsi que les règlements internes de l'Entreprise.</li></p>
+                
+                  <h3>Confidentialité</h3>
+                  <p>Les Parties s'engagent à maintenir la confidentialité des informations échangées dans le cadre du présent contrat.</p>
+                
+                  <h3>Résiliation</h3>
+                  <p>Le contrat peut être résilié par l'une ou l'autre des Parties sous réserve de respecter un préavis de 60 jours.</p>
+                
+                  <h3>Litiges</h3>
+                  <p>En cas de litige relatif au présent contrat, les Parties s'engagent à tenter de résoudre le différend à l'amiable avant de saisir les tribunaux compétents.</p>
+                
+                  <h3>Signatures</h3>
+                  <p>Fait le ../../.... </p>
+  
+                  <p><strong>Pour le Client :</strong></p>
+                 
+                  <div class="signature-container">
+                  <canvas id="signature-pad" width="300" height="200"></canvas>
+                </div>
+              </div>
+                
+              <button (click)="clearSignature()">Effacer</button>
+              <button (click)="saveSignature()">Sauvegarder</button>
+                
+            </div>
+            
+      </section>
+    </div>
+    

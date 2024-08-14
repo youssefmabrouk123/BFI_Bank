@@ -8,83 +8,88 @@
   </div>
   <mat-stepper orientation="vertical" [linear]="isLinear" >
     <mat-step [stepControl]="firstFormGroup">
-        <form [formGroup]="firstFormGroup">
-          <ng-template   matStepLabel><b style="font-size: 25px; color:  #004d40;">Identification</b></ng-template>
-         
-  <div class="row">
-    
-    <div class="col-md-6">
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label style="color: black; font-size: 18px;">Nom</mat-label>
-        <input matInput placeholder="Nom" formControlName="nom" required>
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>
+          <b style="font-size: 25px; color: black;">Identification</b>
+        </ng-template>
 
-
-      </mat-form-field>
+    <div class="row">
+      <div class="col-md-6">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label style="color: black; font-size: 18px;">Nom</mat-label>
+          <input matInput placeholder="Nom" formControlName="nom" required>
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label style="color: black; font-size: 18px;">Prénom</mat-label>
+          <input matInput placeholder="Prénom" formControlName="prenom" required>
+        </mat-form-field>
+      </div>
     </div>
-    <div class="col-md-6">
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label style="color: black; font-size: 18px;">Prénom</mat-label>
-        <input matInput placeholder="Prénom" formControlName="prenom" required>
-      </mat-form-field>
-    </div>
-  </div>
-
-  <div class="row">
-   
-    <div class="col-md-6">
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label style="color: black; font-size: 18px;">Numéro de téléphone</mat-label>
-        <input matInput type="tel" placeholder="Numéro de téléphone" formControlName="phoneNumber" required>
-      </mat-form-field>
-    </div>
-    <div class="col-md-6">
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label style="color: black; font-size: 18px;">Confirmer votre téléphone</mat-label>
-        <input matInput type="tel" placeholder="Confirmer le numéro de téléphone" formControlName="confirmPhoneNumber" required>
-      </mat-form-field>
-    </div>
-  </div>
-
-  <div class="row">
-   
-    <div class="col-md-6">
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label style="color: black; font-size: 18px;">E-mail</mat-label>
-        <input matInput type="email" placeholder="Email" formControlName="email" required>
-      </mat-form-field>
-    </div>
-    <div class="col-md-6">
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label style="color: black; font-size: 18px;">Confirmer votre E-mail</mat-label>
-        <input matInput type="email" placeholder="Confirmer l'email" formControlName="confirmEmail" required>
-      </mat-form-field>
-    </div>
-  </div>
-
-  <div class="row">
-    
-    <div class="col-md-6">
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label style="color: black; font-size: 20px;">Date de naissance</mat-label>
-        <input matInput type="dateNaissance" placeholder="dateNaissance" formControlName="dateNaissance" [matDatepicker]="picker" >
-          <mat-datepicker-toggle matIconSuffix [for]="picker">
-             <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
-         </mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
-    </div>
-  </div>
-          <div>
-            <button mat-button matStepperPrevious style="color: white;">Retourner</button>
-            <button mat-button matStepperNext  style="color: white;" >Continuer</button>
-
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label style="color: black; font-size: 18px;">Numéro de téléphone</mat-label>
+              <input matInput type="tel" placeholder="Numéro de téléphone" formControlName="phoneNumber" required>
+            </mat-form-field>
           </div>
-        </form>
-      </mat-step>
+          <div class="col-md-6">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label style="color: black; font-size: 18px;">Confirmer votre téléphone</mat-label>
+              <input matInput type="tel" placeholder="Confirmer le numéro de téléphone" formControlName="confirmPhoneNumber" required>
+              <mat-error *ngIf="firstFormGroup.hasError('phoneEmailMismatch')">
+                <span style="color: #f44336; font-size: 20px;">✘</span> Le numéro de téléphone ne correspondent pas.
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label style="color: black; font-size: 18px;">E-mail</mat-label>
+              <input matInput type="email" placeholder="Email" formControlName="email" required>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label style="color: black; font-size: 18px;">Confirmer votre E-mail</mat-label>
+              <input matInput type="email" placeholder="Confirmer l'email" formControlName="confirmEmail" required>
+              <mat-error *ngIf="firstFormGroup.hasError('phoneEmailMismatch')">
+                <span style="color: #f44336; font-size: 20px;">✘</span> L' e-mail ne correspondent pas.
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        
+        <div class="row">
+    
+          <div class="col-md-6">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label style="color: black; font-size: 20px;">Date de naissance</mat-label>
+              <input matInput type="dateNaissance" placeholder="dateNaissance" formControlName="dateNaissance" [matDatepicker]="picker" >
+                <mat-datepicker-toggle matIconSuffix [for]="picker">
+                   <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+               </mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+    
+        <div>
+          <button mat-button matStepperPrevious style="color: white;">Retourner</button>
+          <button mat-button matStepperNext style="color: white;" [disabled]="firstFormGroup.invalid ">Continuer</button>
+        </div>
+      </form>
+    </mat-step>
+    
+    
+    
 
       <mat-step [stepControl]="secondFormGroup">
         <form [formGroup]="secondFormGroup">
-          <ng-template matStepLabel><b style="font-size: 25px; color:  #004d40;">Mieux vous connaître</b></ng-template>
+          <ng-template matStepLabel><b style="font-size: 25px; color:  black;">Mieux vous connaître</b></ng-template>
           <div class="form-row">
             <mat-form-field appearance="outline" class="full-width">
               <mat-label style="color: black; font-size: 18px;">Adresse</mat-label>
@@ -174,7 +179,7 @@
 
       <mat-step [stepControl]="thirdFormGroup">
         <form [formGroup]="thirdFormGroup">
-          <ng-template matStepLabel><b style="font-size: 25px; color: #004d40;">Informations Personnelles</b></ng-template>
+          <ng-template matStepLabel><b style="font-size: 25px; color: black;">Informations Personnelles</b></ng-template>
           <div class="form-row">
             <mat-form-field appearance="outline" class="half-width">
               <mat-label style="color: black; font-size: 18px;">Nationalité</mat-label>
@@ -209,14 +214,14 @@
 
           <div>
             <button mat-button matStepperPrevious style="color: white;">Retourner</button>
-            <button mat-button matStepperNext  style="color: white;" >Continuer</button>
+            <button mat-button matStepperNext  style="color: white;"  >Continuer</button>
           </div>
         </form>
       </mat-step>
 
       <mat-step [stepControl]="fourthFormGroup">
         <form [formGroup]="fourthFormGroup">
-          <ng-template matStepLabel><b style="font-size: 25px; color: #004d40;">Informations financières</b></ng-template>
+          <ng-template matStepLabel><b style="font-size: 25px; color: black;">Informations financières</b></ng-template>
       
           <div class="form-row">
             <mat-form-field appearance="outline" class="half-width">
@@ -276,29 +281,29 @@
       
           <div>
             <button mat-button matStepperPrevious style="color: white;">Retourner</button>
-            <button mat-button matStepperNext  style="color: white;" >Continuer</button>
+            <button mat-button matStepperNext  style="color: white;"  >Continuer</button>
           </div>
         </form>
       </mat-step>
 
       <mat-step [stepControl]="fifthFormGroup">
         <form [formGroup]="fifthFormGroup">
-          <ng-template matStepLabel><b style="font-size: 25px; color: #004d40;">Mes documents</b>
+          <ng-template matStepLabel><b style="font-size: 25px; color: black;">Mes documents</b>
           </ng-template>
 
           <div class="form-row">
             <div class="form-group col-md-6">
-              <label for="cinNumber"><h2 style=" color: #004d40;">Numéro CIN</h2></label>
+              <label for="cinNumber"><h2 style=" color: #b8a01d;">Numéro CIN</h2></label>
               <input id="cinNumber" type="text" formControlName="numeroCin" class="form-control" placeholder="xxxxxxxx">
             </div>
             <div class="form-group col-md-6">
-              <label for="dateDelivrance"><h2 style=" color: #004d40;">Date de délivrance</h2></label>
+              <label for="dateDelivrance"><h2 style=" color: #b8a01d;">Date de délivrance</h2></label>
               <input id="dateDelivrance" type="date" formControlName="dateDelivrance" class="form-control" placeholder="--/--/----">
             </div>
           </div>
           <br>
           <br>
-          <h2 style="text-align: center; color: #004d40;">Photographier ou Scannez votre CIN !</h2>
+          <h2 style="text-align: center; color: #b8a01d;">Photographier ou Scannez votre CIN !</h2>
         
           <div class="row">
             <!-- Sélection de la photo recto de la carte CIN -->
@@ -327,31 +332,39 @@
 
       <mat-step [stepControl]="sixthFormGroup">
         <form [formGroup]="sixthFormGroup">
-          <ng-template matStepLabel><b style="font-size: 25px; color: #004d40;">Je crée mon mot de passe</b></ng-template>
-
+          <ng-template matStepLabel>
+            <b style="font-size: 25px; color: black;">Je crée mon mot de passe</b>
+          </ng-template>
+      
           <mat-form-field appearance="outline" class="full-width">
             <mat-label>Créer mot de passe</mat-label>
             <input matInput type="password" formControlName="password" placeholder="Créer mot de passe" required>
           </mat-form-field>
+      
           <mat-form-field appearance="outline" class="full-width">
             <mat-label>Confirmer mot de passe</mat-label>
             <input matInput type="password" formControlName="confirmPassword" placeholder="Confirmer mot de passe" required>
+            <mat-error *ngIf="sixthFormGroup.hasError('mismatch')">
+              <span style="color: #f44336; font-size: 20px;">✘</span> Les mots de passe ne correspondent pas.
+            </mat-error>
           </mat-form-field>
          
           <div>
             <button mat-button matStepperPrevious style="color: white;">Retourner</button>
-            <button mat-button matStepperNext  style="color: white;" >Continuer</button>
+            <button mat-button matStepperNext style="color: white;" [disabled]="sixthFormGroup.invalid" >Continuer</button>
           </div>
         </form>
       </mat-step>
-
+      
+      
+      
       <mat-step>
-        <ng-template matStepLabel><b style="font-size: 25px; color: #004d40;">Signature</b></ng-template>
+        <ng-template matStepLabel><b style="font-size: 25px; color: black;">Signature</b></ng-template>
         <div>
           <br>
           <!-- <button mat-button matStepperNext style="color: white;" >Continuer</button> -->
-          <button mat-button matStepperNext (click)="logForm()" style="color: white;">Continuer</button>
-          <!-- <a mat-button matStepperNext (click)="logForm()" href="signature" style="color: white;">Continuer</a> -->
+          <button mat-button matStepperNext (click)="logFormValues()" style="color: white;">Continuer</button>
+         
           
 
         </div>

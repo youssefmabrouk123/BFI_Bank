@@ -1,0 +1,73 @@
+<div class="essai">
+    <app-zaineb></app-zaineb>
+      <section class="mainn">
+        <div class="main-topp">
+          <b><p style="color: black; font-size: 32px;">ADMINISTRATION</p></b>
+        </div>
+        
+        <div class="main-bodyy">
+          <div class="row">
+            <!-- Card 2: Nombre de Transactions -->
+            <div class="col-md-4 mb-4">
+              <div class="card">
+                <div class="card-body">
+                  <div class="card-icon">
+                    <i class="fas fa-exchange-alt"></i>
+                  </div>
+                  <h5 class="card-title"><b>Nombre des demandes</b></h5>
+                  <p class="card-text">12</p>
+                </div>
+              </div>
+            </div>
+      
+            <!-- Card 3: Date de Dernière Connexion -->
+            <div class="col-md-4 mb-4">
+              <div class="card">
+                <div class="card-body">
+                  <div class="card-icon">
+                    <i class="fas fa-calendar-check"></i>
+                  </div>
+                  <h5 class="card-title"><b>Date de Dernière Connexion</b></h5>
+                  <p class="card-text">12 Août 2024</p>
+                </div>
+              
+              </div>
+           
+        </div>
+        </div>
+          
+        <div id="requests-section" class="section">
+          <br>
+          <h1 style="color: black; font-size: 40px; text-align: center;"><b>Liste des demandes</b></h1>
+          <br>
+          <br>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Email</th>
+                <th>Date de demande</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <!-- <tbody>
+              <tr *ngFor="let demande of demandes">
+                <td>{{ demande.id }}</td>
+                <td>{{ demande.name }}</td>
+                <td>{{ demande.email }}</td>
+                <td>{{ demande.request_date }}</td>
+                <td>{{ demande.status }}</td>
+                <td>
+                  <button class="btn btn-success" (click)="acceptDemande(demande.id)">Accepter</button>
+                  <button class="btn btn-danger" (click)="rejectDemande(demande.id)">Rejeter</button>
+                </td>
+              </tr>
+            </tbody> -->
+          </table>
+        </div>
+        
+      </div>
+    </section>
+  </div>

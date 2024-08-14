@@ -1,5 +1,6 @@
 package com.BFI_Bank.Account_Managment_Service.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.security.crypto.bcrypt.BCrypt;
@@ -31,6 +32,7 @@ public class CarteProfessionnelle {
     @Column(name = "type_carte", nullable = false)
     private TypeCarte typeCarte; // Enum pour les types de cartes
 
+    @JsonIgnore 
     @OneToOne
     @JoinColumn(name = "compte_bancaire_id")
     private CompteBancaire compteBancaire;

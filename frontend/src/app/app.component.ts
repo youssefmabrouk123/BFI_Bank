@@ -4,7 +4,6 @@ import { Router, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { RecaptchaModule } from 'ng-recaptcha';
-import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
@@ -13,6 +12,12 @@ import { CarteBancaireComponent } from "./carte-bancaire/carte-bancaire.componen
 import { authGuard } from './auth.guard';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormDataService } from './form-data.service';
+import { HttpClientModule } from '@angular/common/http';
+import { SignatureEnLigneComponent } from './signature-en-ligne/signature-en-ligne.component';
+import { CompteAdminComponent } from './compte-admin/compte-admin.component';
+import {  DemandesService } from './demandes.service';
+import { ClientService } from './client.service';
+
 
 
 
@@ -29,12 +34,18 @@ import { FormDataService } from './form-data.service';
     //BrowserAnimationsModule,
     ToastModule,
     CarteBancaireComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SignatureEnLigneComponent,
+    CompteAdminComponent,
+    HttpClientModule
+  
+     
+   
     
 ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [AuthService ,FormDataService]
+  providers: [AuthService ,FormDataService,ClientService]
 })
 export class AppComponent {
   title = 'frontend';
