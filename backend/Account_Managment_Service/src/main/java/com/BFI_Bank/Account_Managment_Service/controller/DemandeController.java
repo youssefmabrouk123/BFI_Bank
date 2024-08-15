@@ -1,18 +1,27 @@
 package com.BFI_Bank.Account_Managment_Service.controller;
 
+import com.BFI_Bank.Account_Managment_Service.dto.DemandeFileFront;
+import com.BFI_Bank.Account_Managment_Service.dto.DemandeFilesResponse;
 import com.BFI_Bank.Account_Managment_Service.dto.DemandeUserDto;
 import com.BFI_Bank.Account_Managment_Service.exception.CustomMultipartFile;
 import com.BFI_Bank.Account_Managment_Service.exception.ErrorResponse;
 import com.BFI_Bank.Account_Managment_Service.model.Demande;
 import com.BFI_Bank.Account_Managment_Service.service.DemandeService;
+import jakarta.annotation.Resource;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Base64;
 import java.util.List;
 
@@ -89,5 +98,38 @@ public class DemandeController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An unexpected error occurred: " + e.getMessage());
         }
     }
+
+
+    @GetMapping("/files/{idDemande}")
+    public ResponseEntity<?> getDemandeFiles(@PathVariable Long idDemande) {
+        try {
+            //String cinFront = demandeService.getCinFront(idDemande);
+            String cinBack = demandeService.getCinBack(idDemande);
+
+            return ResponseEntity.ok(new DemandeFilesResponse( cinBack));
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse(e.getMessage()));
+        } catch (IOException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ErrorResponse("Error reading file: " + e.getMessage()));
+        }
+    }
+
+
+    @GetMapping("/files/front/{idDemande}")
+    public ResponseEntity<?> getDemandeFilesFront(@PathVariable Long idDemande) {
+        try {
+            //String cinFront = demandeService.getCinFront(idDemande);
+            String cinFront = demandeService.getCinFront(idDemande);
+
+            return ResponseEntity.ok(new DemandeFileFront( cinFront));
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse(e.getMessage()));
+        } catch (IOException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ErrorResponse("Error reading file: " + e.getMessage()));
+        }
+    }
+
+
+
 
 }

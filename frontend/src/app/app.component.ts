@@ -1,4 +1,4 @@
-import { Component, LOCALE_ID } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
@@ -11,12 +11,10 @@ import { ToastModule } from 'primeng/toast';
 import { CarteBancaireComponent } from "./carte-bancaire/carte-bancaire.component";
 import { authGuard } from './auth.guard';
 import { ReactiveFormsModule } from '@angular/forms';
-import { FormDataService } from './form-data.service';
 import { HttpClientModule } from '@angular/common/http';
 import { SignatureEnLigneComponent } from './signature-en-ligne/signature-en-ligne.component';
 import { CompteAdminComponent } from './compte-admin/compte-admin.component';
 import {  DemandesService } from './demandes.service';
-import { ClientService } from './client.service';
 
 
 
@@ -36,7 +34,6 @@ import { ClientService } from './client.service';
     CarteBancaireComponent,
     ReactiveFormsModule,
     SignatureEnLigneComponent,
-    CompteAdminComponent,
     HttpClientModule
   
      
@@ -45,7 +42,7 @@ import { ClientService } from './client.service';
 ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [AuthService ,FormDataService,ClientService]
+  providers: [AuthService ,DemandesService]
 })
 export class AppComponent {
   title = 'frontend';

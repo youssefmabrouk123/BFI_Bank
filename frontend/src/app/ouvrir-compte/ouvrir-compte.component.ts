@@ -56,7 +56,7 @@ export class OuvrirCompteComponent implements OnInit{
   constructor(private _formBuilder: FormBuilder,    private formDataService: FormDataService,    private snackBar: MatSnackBar,    private router: Router, // Inject Router here
 
 
-  ) {}
+  ) {  }
     
   ngOnInit(): void {
     this.firstFormGroup = this._formBuilder.group({
@@ -240,6 +240,8 @@ export class OuvrirCompteComponent implements OnInit{
     // Store the form data in the service
     this.formDataService.storeFormData(formValues);
 
+    
+
     // Envoi des données au backend
     this.formDataService.submitFormData(formValues).subscribe({
       next: (response) => {
@@ -258,4 +260,7 @@ export class OuvrirCompteComponent implements OnInit{
       }
     });
   }
+
+
+
 }

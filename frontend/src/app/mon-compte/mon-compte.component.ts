@@ -11,7 +11,8 @@ import { ClientService } from '../client.service';
   standalone: true,
   imports: [CarteBancaireComponent,YoussefComponent], // Add necessary Angular modules if required
   templateUrl: './mon-compte.component.html',
-  styleUrls: ['./mon-compte.component.css'] ,// Corrected 'styleUrls' instead of 'styleUrl'
+  styleUrls: ['./mon-compte.component.css'] ,
+  // Corrected 'styleUrls' instead of 'styleUrl'
   encapsulation: ViewEncapsulation.Emulated
 })
 export class MonCompteComponent implements OnInit {
@@ -26,6 +27,7 @@ export class MonCompteComponent implements OnInit {
         (data) => {
           this.clientData = data;
           console.log('Client Data:', this.clientData);
+          localStorage.setItem("idCompte", this.clientData.id);
         },
         (error) => {
           console.error('Error fetching client data:', error);
@@ -35,4 +37,37 @@ export class MonCompteComponent implements OnInit {
       console.error('Client ID not found in localStorage');
     }
   }
+
+  formatDate(dateString: string): string {
+    const date = new Date(dateString);
+  
+    // Extract the month and year
+    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // getMonth() is zero-based
+    const year = date.getFullYear().toString().slice(-2); // Get the last two digits of the year
+  
+    // Return the formatted date as MM/YY
+    return `${month}/${year}`;
+  }
+
+  formatCardNumber(cardNumber: string): string {
+    return cardNumber.replace(/(\d{4})(?=\d)/g, '$1 ');
+  }
+
+  formatFrenchDate(dateString: string): string {
+    const date = new Date(dateString);
+  
+    // Define the month names in French
+    const monthNames = [
+      'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
+      'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'
+    ];
+  
+    const day = date.getDate();
+    const month = monthNames[date.getMonth()];
+    const year = date.getFullYear();
+  
+    // Return the formatted date as "DD Mois YYYY"
+    return `${day} ${month} ${year}`;
+  }
+  
 }

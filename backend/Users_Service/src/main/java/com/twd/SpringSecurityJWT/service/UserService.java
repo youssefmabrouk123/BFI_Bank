@@ -32,4 +32,11 @@ public class UserService {
     public void userUpdate(OurUsers user) {
         // Save the post to the database using repository methods
         userRepository.save(user);
-    }}
+    }
+
+
+    public OurUsers findByEmail(String email) {
+        Optional<OurUsers> userOptional = userRepository.findByEmail(email);
+        return userOptional.orElse(null);  // Return null if user not found
+    }
+}

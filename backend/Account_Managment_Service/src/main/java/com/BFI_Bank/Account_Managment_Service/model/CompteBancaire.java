@@ -36,9 +36,20 @@ public class CompteBancaire {
     @Column(nullable = false)
     private StatutCompte statut;
 
+    @Column(name = "lastConnexion")
+    private Date lastConnexion ;
+
+    @Column(name = "transactionNumber")
+    private Integer transactionNumber;
 
     @OneToOne(mappedBy = "compteBancaire", cascade = CascadeType.ALL)
     private CarteProfessionnelle carte;
+
+    @Column(name = "contractSignature")
+    private Boolean contractSignature ;
+
+    @Lob
+    private String signature;
 
     @PrePersist
     protected void onCreate() {

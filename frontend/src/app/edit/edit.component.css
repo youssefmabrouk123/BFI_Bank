@@ -127,9 +127,6 @@ li a i {
   padding: 20px;
   box-sizing: border-box;
   overflow-y: auto; /* Allow scrolling if content is too tall */
-  justify-content: center; /* Centre horizontalement */
-  align-items: center;
-  
 }
 
 .main-topp {
@@ -150,7 +147,6 @@ li a i {
   background: #fff;
   border-radius: 8px;
   box-sizing: border-box;
-  
 }
 
 .card {
@@ -159,10 +155,6 @@ li a i {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   background: #ffffff;
-  width: 100%; /* Prend toute la largeur disponible */
-  max-width: 800px; 
-  margin: 0 auto;
-  margin-left: 150px;
 }
 
 .card:hover {
@@ -196,7 +188,6 @@ li a i {
 
 .container {
   padding-top: 2rem;
-  
 }
 
 .img-account-profile {
@@ -206,7 +197,6 @@ li a i {
 .rounded-circle {
   border-radius: 50% !important;
 }
-
 
 .card .card-header {
   font-weight: 500;
@@ -221,7 +211,6 @@ li a i {
   margin-bottom: 0;
   background-color: rgba(33, 40, 50, 0.03);
   border-bottom: 1px solid rgba(33, 40, 50, 0.125);
- 
 }
 
 .form-control,
@@ -241,7 +230,6 @@ li a i {
   appearance: none;
   border-radius: 0.35rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  
 }
 
 .nav-borders .nav-link.active {

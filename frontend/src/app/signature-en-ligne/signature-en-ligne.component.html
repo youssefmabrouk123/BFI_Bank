@@ -1,6 +1,12 @@
 
 
-<div class="essai">
+
+  
+
+  <div  >
+
+
+  <div class="essai">
  
 
     <app-youssef></app-youssef>
@@ -54,17 +60,48 @@
                   <p>Fait le ../../.... </p>
   
                   <p><strong>Pour le Client :</strong></p>
+                  <!-- <div *ngIf="!signatureImageUrl"> -->
+                    
+                    <!-- <div class="signature-container">
+                    <canvas id="signature-pad" width="300" height="200">  <img [src]="signatureImageUrl" alt="Signature"></canvas>
+                  </div>
+                  <button (click)="clearSignature()">Effacer</button>
+                  <button (click)="saveSignature()">Sauvegarder</button>
+                   -->
                  
-                  <div class="signature-container">
-                  <canvas id="signature-pad" width="300" height="200"></canvas>
-                </div>
+                   <div *ngIf="signatureImageUrl ; else noSignature">
+                    <img [src]="signatureImageUrl" alt="Signature">
+                  </div>
+                  <ng-template #noSignature>
+                    <div class="signature-container">
+                    <canvas id="signature-pad" width="300" height="200"></canvas>
+                    </div>
+                    <button (click)="clearSignature()">Effacer</button>
+                    <button (click)="saveSignature()">Sauvegarder</button>
+                    <p>No signature image available.</p>
+                  </ng-template>
+                
               </div>
+              
                 
-              <button (click)="clearSignature()">Effacer</button>
-              <button (click)="saveSignature()">Sauvegarder</button>
+             
                 
+              <!-- <div *ngIf="signatureImageUrl ; else noSignature">
+                <img [src]="signatureImageUrl" alt="Signature">
+              </div>
+              <ng-template #noSignature>
+                <div class="signature-container">
+                <canvas id="signature-pad" width="300" height="200"></canvas>
+                </div>
+                <button (click)="clearSignature()">Effacer</button>
+                <button (click)="saveSignature()">Sauvegarder</button>
+                <p>No signature image available.</p>
+              </ng-template> -->
+              
             </div>
             
       </section>
     </div>
-    
+  </div>
+
+

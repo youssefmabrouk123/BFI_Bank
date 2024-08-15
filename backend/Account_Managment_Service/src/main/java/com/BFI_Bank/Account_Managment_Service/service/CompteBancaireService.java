@@ -72,7 +72,9 @@ public class CompteBancaireService {
         compteBancaire.setDateOuverture(new Date());
         compteBancaire.setClientId(clientId);
         compteBancaire.setStatut(statut);
-
+        compteBancaire.setLastConnexion(new Date());
+        compteBancaire.setTransactionNumber(0);
+        compteBancaire.setContractSignature(false);
         // Sauvegarder le CompteBancaire d'abord pour générer un ID
         compteBancaire = compteBancaireRepository.save(compteBancaire);
         // Créer et associer une CarteProfessionnelle
@@ -136,6 +138,32 @@ public class CompteBancaireService {
             return String.format("%03d", cvv);
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException("Erreur lors de la génération du CVV", e);
+        }
+    }
+
+
+    public CompteBancaire saveSignature(Long compteId, String signatureBase64) {
+        Optional<CompteBancaire> optionalCompte = compteBancaireRepository.findById(compteId);
+        if (optionalCompte.isPresent()) {
+            CompteBancaire compte = optionalCompte.get();
+            compte.setSignature(signatureBase64); // Set the signature
+            return compteBancaireRepository.save(compte); // Save the updated account
+        } else {
+            throw new RuntimeException("CompteBancaire not found");
+        }
+    }
+    public Optional<CompteBancaire> getCompteBancaireById(Long id) {
+        return compteBancaireRepository.findById(id);
+    }
+
+    public CompteBancaire updateLastConnexion(Long id) {
+        Optional<CompteBancaire> optionalCompte = compteBancaireRepository.findById(id);
+        if (optionalCompte.isPresent()) {
+            CompteBancaire compte = optionalCompte.get();
+            compte.setLastConnexion(new Date());
+            return compteBancaireRepository.save(compte);
+        } else {
+            throw new RuntimeException("CompteBancaire not found");
         }
     }
 }

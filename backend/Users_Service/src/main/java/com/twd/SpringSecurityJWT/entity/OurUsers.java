@@ -46,6 +46,10 @@ public class OurUsers implements UserDetails {
 
     private boolean isPhoneNumberVerified;
 
+//    @Lob
+//    private byte[] profilePhoto;
+//
+
 
     public boolean isPhoneNumberVerified() {
         return isPhoneNumberVerified;

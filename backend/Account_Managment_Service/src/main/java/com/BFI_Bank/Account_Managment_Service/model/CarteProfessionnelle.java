@@ -32,7 +32,7 @@ public class CarteProfessionnelle {
     @Column(name = "type_carte", nullable = false)
     private TypeCarte typeCarte; // Enum pour les types de cartes
 
-    @JsonIgnore 
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "compte_bancaire_id")
     private CompteBancaire compteBancaire;

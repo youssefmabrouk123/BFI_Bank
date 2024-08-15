@@ -5,24 +5,47 @@ import { catchError, map } from 'rxjs/operators';
 
 export interface Demandes {
   id: number;
-  name: string;
+  nom: string;
+  prenom: string;
+  dateNaissance: Date | null;
   email: string;
-  phone_number?: string;
-  request_date: string;
-  status: string;
-  category?: string;
-  nationality?: string;
-  governorate?: string;
-  address?: string;
-  activity_nature?: string;
-  sector?: string;
+  phoneNumber: string;
+  adresse: string;
+  pay: string;
+  gouvernorat: string;
+  codePostal: string;
+  nombreEnfants: number | null;
+  statutCivil: string | null;
+  nationalite: string | null;
+  categorieSocioPro: string;
+  revenuNetMensuel: string;
+  natureActivite: string;
+  secteurActivite: string;
+  statut: string;
+  numeroCin: number;
+  motDePasse: string;
+  dateDelivrance: Date | null;
+  cinFront: string | null;
+  cinBack: string | null;
+  dateCreation: string; // Or Date depending on your needs
 }
+
+export interface DemandeImageResponse {
+  cinBack: string;
+}
+
+export interface DemandeImageResponseFront {
+  cinFront: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class DemandesService {
 
-  private baseUrl = 'http://localhost:8080/api/demandes'; // URL de votre API
+  private baseUrl = 'http://localhost:8999/api/v1/Account/demandes'; // URL de votre API
+  private apiUrl = "http://localhost:8999/api/v1/Account/demandes/files";
+
 
   private httpOptions = {
     headers: new HttpHeaders({
@@ -61,5 +84,13 @@ export class DemandesService {
       console.error(`${operation} failed: ${error.message}`);
       return of(result as T);
     };
+  }
+
+  getCinBack(idDemande: number): Observable<DemandeImageResponse> {
+    return this.http.get<DemandeImageResponse>(`${this.apiUrl}/${idDemande}`);
+  }
+
+  getCinFront(idDemande: number): Observable<DemandeImageResponseFront> {
+    return this.http.get<DemandeImageResponseFront>(`${this.apiUrl}/front/${idDemande}`);
   }
 }

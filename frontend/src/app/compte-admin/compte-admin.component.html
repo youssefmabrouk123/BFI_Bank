@@ -1,73 +1,103 @@
 <div class="essai">
-    <app-zaineb></app-zaineb>
-      <section class="mainn">
-        <div class="main-topp">
-          <b><p style="color: black; font-size: 32px;">ADMINISTRATION</p></b>
-        </div>
-        
-        <div class="main-bodyy">
-          <div class="row">
-            <!-- Card 2: Nombre de Transactions -->
-            <div class="col-md-4 mb-4">
-              <div class="card">
-                <div class="card-body">
-                  <div class="card-icon">
-                    <i class="fas fa-exchange-alt"></i>
+  <app-zaineb></app-zaineb>
+  <section class="mainn">
+    <div class="main-topp">
+      <b><p style="color: black; font-size: 32px;">ADMINISTRATION</p></b>
+    </div>
+
+    <div class="main-bodyy">
+      
+
+      <div id="requests-section" class="section">
+        <br>
+        <h1 style="color: black; font-size: 40px; text-align: center;"><b>Liste des demandes</b></h1>
+        <br>
+        <br>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nom</th>
+              <th>Email</th>
+              <th>Date de demande</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let demande of demandes">
+              <td>{{ demande.id }}</td>
+              <td>{{ demande.nom }}</td>
+              <td>{{ demande.email }}</td>
+              <td>{{ demande.dateCreation | date: 'dd MMM yyyy' }}</td>
+              <td>{{ demande.statut }}</td>
+              <td>
+                <button class="btn btn-success" (click)="acceptDemande(demande.id)">Accepter</button>
+                <button class="btn btn-danger" (click)="rejectDemande(demande.id)">Rejeter</button>
+                <button class="btn btn-info" (click)="openDetailModal(demande)">Détails</button> <!-- Detail Button -->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Modal for displaying user details -->
+      <div *ngIf="selectedDemande" class="modal" [ngClass]="{'show': showModal}" style="display: block;">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+              <h5 class="modal-title">Détails de la demande</h5>
+              <button type="button" class="close " (click)="closeDetailModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-md-6">
+                    <p><strong>ID:</strong> {{ selectedDemande.id }}</p>
+                    <p><strong>Nom:</strong> {{ selectedDemande.nom }}</p>
+                    <p><strong>Prénom:</strong> {{ selectedDemande.prenom }}</p>
+                    <p><strong>Date de Naissance:</strong> {{ selectedDemande.dateNaissance | date: 'dd MMM yyyy' }}</p>
+                    <p><strong>Email:</strong> {{ selectedDemande.email }}</p>
+                    <p><strong>Téléphone:</strong> {{ selectedDemande.phoneNumber }}</p>
+                    <p><strong>Adresse:</strong> {{ selectedDemande.adresse }}</p>
+                    <p><strong>Pays:</strong> {{ selectedDemande.pay }}</p>
+                    <p><strong>Gouvernorat:</strong> {{ selectedDemande.gouvernorat }}</p>
+                    <p><strong>Code Postal:</strong> {{ selectedDemande.codePostal }}</p>
                   </div>
-                  <h5 class="card-title"><b>Nombre des demandes</b></h5>
-                  <p class="card-text">12</p>
+                  <div class="col-md-6">
+                    <p><strong>Nombre d'Enfants:</strong> {{ selectedDemande.nombreEnfants }}</p>
+                    <p><strong>Statut Civil:</strong> {{ selectedDemande.statutCivil }}</p>
+                    <p><strong>Nationalité:</strong> {{ selectedDemande.nationalite }}</p>
+                    <p><strong>Catégorie Socio-Professionnelle:</strong> {{ selectedDemande.categorieSocioPro }}</p>
+                    <p><strong>Revenu Net Mensuel:</strong> {{ selectedDemande.revenuNetMensuel }}</p>
+                    <p><strong>Nature de l'Activité:</strong> {{ selectedDemande.natureActivite }}</p>
+                    <p><strong>Secteur d'Activité:</strong> {{ selectedDemande.secteurActivite }}</p>
+                    <p><strong>Statut:</strong> {{ selectedDemande.statut }}</p>
+                    <p><strong>Numéro CIN:</strong> {{ selectedDemande.numeroCin }}</p>
+                    <p><strong>Date de Délivrance:</strong> {{ selectedDemande.dateDelivrance | date: 'dd MMM yyyy' }}</p>
+                    <p><strong>Date de Création:</strong> {{ selectedDemande.dateCreation | date: 'dd MMM yyyy' }}</p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <p><strong>Photo CIN (Avant):</strong></p>
+                    <img [src]="cinFrontUrl" alt="Cin Front" class="img-fluid img-thumbnail" *ngIf="cinFrontUrl">
+                  </div>
+                  <div class="col-md-6">
+                    <p><strong>Photo CIN (Arrière):</strong></p>
+                    <img [src]="cinBackUrl" alt="Cin Back" class="img-fluid img-thumbnail" *ngIf="cinBackUrl">
+                  </div>
                 </div>
               </div>
             </div>
-      
-            <!-- Card 3: Date de Dernière Connexion -->
-            <div class="col-md-4 mb-4">
-              <div class="card">
-                <div class="card-body">
-                  <div class="card-icon">
-                    <i class="fas fa-calendar-check"></i>
-                  </div>
-                  <h5 class="card-title"><b>Date de Dernière Connexion</b></h5>
-                  <p class="card-text">12 Août 2024</p>
-                </div>
-              
-              </div>
-           
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" (click)="closeDetailModal()">Fermer</button>
+            </div>
+          </div>
         </div>
-        </div>
-          
-        <div id="requests-section" class="section">
-          <br>
-          <h1 style="color: black; font-size: 40px; text-align: center;"><b>Liste des demandes</b></h1>
-          <br>
-          <br>
-          <table class="table">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Nom</th>
-                <th>Email</th>
-                <th>Date de demande</th>
-                <th>Status</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <!-- <tbody>
-              <tr *ngFor="let demande of demandes">
-                <td>{{ demande.id }}</td>
-                <td>{{ demande.name }}</td>
-                <td>{{ demande.email }}</td>
-                <td>{{ demande.request_date }}</td>
-                <td>{{ demande.status }}</td>
-                <td>
-                  <button class="btn btn-success" (click)="acceptDemande(demande.id)">Accepter</button>
-                  <button class="btn btn-danger" (click)="rejectDemande(demande.id)">Rejeter</button>
-                </td>
-              </tr>
-            </tbody> -->
-          </table>
-        </div>
-        
       </div>
-    </section>
-  </div>
+      
+
+    </div>
+  </section>
+</div>

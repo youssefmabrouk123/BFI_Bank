@@ -1,5 +1,9 @@
 package com.BFI_Bank.Account_Managment_Service.service;
 
+
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
+
 import com.BFI_Bank.Account_Managment_Service.dto.DemandeUserDto;
 import com.BFI_Bank.Account_Managment_Service.dto.DocumentDto;
 import com.BFI_Bank.Account_Managment_Service.feign.UsersServiceFeignClient;
@@ -9,12 +13,14 @@ import com.BFI_Bank.Account_Managment_Service.repository.DocumentRepository;
 import feign.FeignException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.UrlResource;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -244,6 +250,37 @@ public class DemandeService {
         message.setText("Votre rendez-vous est prévu pour le " + rdv.getDate() +
                 ". Veuillez utiliser ce lien pour accéder à la réunion: " + rdv.getLienMeet());
         mailSender.send(message);
+    }
+
+
+
+
+
+
+    public String getCinFront(Long idDemande) throws IOException {
+        Optional<Demande> optionalDemande = demandeRepository.findById(idDemande);
+        if (optionalDemande.isPresent()) {
+            Demande demande = optionalDemande.get();
+            return readFileAsBase64(demande.getCinFront());
+        } else {
+            throw new EntityNotFoundException("Demande with ID " + idDemande + " not found.");
+        }
+    }
+
+    public String getCinBack(Long idDemande) throws IOException {
+        Optional<Demande> optionalDemande = demandeRepository.findById(idDemande);
+        if (optionalDemande.isPresent()) {
+            Demande demande = optionalDemande.get();
+            return readFileAsBase64(demande.getCinBack());
+        } else {
+            throw new EntityNotFoundException("Demande with ID " + idDemande + " not found.");
+        }
+    }
+
+    private String readFileAsBase64(String filePath) throws IOException {
+        Path path = Paths.get(filePath);
+        byte[] fileBytes = Files.readAllBytes(path);
+        return Base64.getEncoder().encodeToString(fileBytes);
     }
 
 }
