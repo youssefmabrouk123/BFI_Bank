@@ -4,13 +4,13 @@
     left: 0;
     width: 300px;
     height: 100vh;
-    background: #d3bf4f;
+    background: #02193a;
     padding: 20px 15px;
     color: #fff;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    box-shadow: 2px 0 5px #d3bf4f;
+    box-shadow: 2px 0 5px #02193a;
 }
 
 .navbarr {
@@ -32,7 +32,7 @@
     height: 200px; /* Adjust as needed */
     border-radius: 100%;
     object-fit: cover;
-    border: 3px solid black;
+    border: 3px solid white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -74,7 +74,7 @@ li a {
 }
 
 li a:hover {
-    background: #776a20;
+    background: black;
     color: #ffffff;
 }
 
@@ -93,7 +93,7 @@ li a i {
 }
 
 .logout a {
-    background: black;
+    background: #e93c3c;
     color: #fff;
     padding: 12px 25px;
     text-align: center;
@@ -109,6 +109,6 @@ li a i {
 }
 
 .logout a:hover {
-    background: #776a20;
+    background: #e73333;
     color: #ffffff;
 }

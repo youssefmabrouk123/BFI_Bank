@@ -63,22 +63,25 @@
           </div>
         </div>
         
-        <div class="row">
-    
+         <div class="row">
           <div class="col-md-6">
             <mat-form-field appearance="outline" class="full-width">
               <mat-label style="color: black; font-size: 20px;">Date de naissance</mat-label>
-              <input matInput type="dateNaissance" placeholder="dateNaissance" formControlName="dateNaissance" [matDatepicker]="picker" >
-                <mat-datepicker-toggle matIconSuffix [for]="picker">
-                   <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
-               </mat-datepicker-toggle>
+              <input matInput type="date" placeholder="Date de naissance" formControlName="dateNaissance" [matDatepicker]="picker">
+              <mat-datepicker-toggle matIconSuffix [for]="picker">
+                <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+              </mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
+              <mat-error *ngIf="firstFormGroup.get('dateNaissance')?.hasError('ageError')">
+                Vous devez avoir au moins 18 ans.
+              </mat-error>
             </mat-form-field>
           </div>
         </div>
     
+    
         <div>
-          <button mat-button matStepperPrevious style="color: white;">Retourner</button>
+          <!-- <button mat-button matStepperPrevious style="color: white;">Retourner</button> -->
           <button mat-button matStepperNext style="color: white;" [disabled]="firstFormGroup.invalid ">Continuer</button>
         </div>
       </form>
@@ -308,20 +311,21 @@
           <div class="row">
             <!-- Sélection de la photo recto de la carte CIN -->
             <div class="col-md-6">
-             
-              
               <input type="file" (change)="onFileSelected($event, 'cinFront')" accept="image/*">
               <br>
               <h3 style="text-align: center; color: black;">CIN RECTO</h3>
+              <img *ngIf="cinFrontPreview" [src]="cinFrontPreview" alt="CIN Recto Preview" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
             </div>
             
+            <!-- Sélection de la photo verso de la carte CIN -->
             <div class="col-md-6">
-          
               <input type="file" (change)="onFileSelected($event, 'cinBack')" accept="image/*">
               <br>
-              <h3 style="text-align: center; color: black;">CIN  VERSO</h3>
+              <h3 style="text-align: center; color: black;">CIN VERSO</h3>
+              <img *ngIf="cinBackPreview" [src]="cinBackPreview" alt="CIN Verso Preview" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
             </div>
           </div>
+          
           
           <div>
             <button mat-button matStepperPrevious style="color: white;">Retourner</button>
@@ -351,7 +355,7 @@
          
           <div>
             <button mat-button matStepperPrevious style="color: white;">Retourner</button>
-            <button mat-button matStepperNext style="color: white;" [disabled]="sixthFormGroup.invalid" >Continuer</button>
+            <button mat-button matStepperNext style="color: white;"  >Continuer</button>
           </div>
         </form>
       </mat-step>
@@ -363,7 +367,7 @@
         <div>
           <br>
           <!-- <button mat-button matStepperNext style="color: white;" >Continuer</button> -->
-          <button mat-button matStepperNext (click)="logFormValues()" style="color: white;">Continuer</button>
+          <button mat-button matStepperNext (click)="logFormValues()" style="color: white;" routerLink="/felicitation">Confirmer</button>
          
           
 

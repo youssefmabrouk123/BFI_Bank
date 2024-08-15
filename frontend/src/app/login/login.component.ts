@@ -1,34 +1,55 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { FooterComponent } from '../footer/footer.component';
 import { HeaderComponent } from '../header/header.component';
+import { CommonModule } from '@angular/common'; 
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, ToastModule, HttpClientModule, FooterComponent, HeaderComponent],
+  imports: [ReactiveFormsModule, ToastModule, HttpClientModule, FooterComponent, HeaderComponent,CommonModule,RouterModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
   providers: [MessageService]
 })
-export class LoginComponent {
-  loginForm: FormGroup;
+export class LoginComponent implements OnInit {
+  loginForm!: FormGroup;
+  signupText: string = "Vous n’avez pas de compte ?";
+  signupLink: string = "/inscription";
+  forgotPasswordText: string = "Mot de passe oublié ?";
+  forgotPasswordLink: string = "/mot-de-passe-oublie";
+
 
   constructor(
-    private fb: FormBuilder,
     private router: Router,
     public authService: AuthService,
-    private messageService: MessageService
-  ) {
-    this.loginForm = this.fb.group({
+    private messageService: MessageService,
+    private _formBuilder: FormBuilder
+  ) {}
+
+  ngOnInit(): void {
+    this.loginForm = this._formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     });
+  }
+
+  // Method to return error message for email
+  getEmailErrorMessage(): string {
+    if (this.loginForm.controls['email'].hasError('required')) {
+      return 'L\'email est requis';
+    }
+    return this.loginForm.controls['email'].hasError('email') ? 'Veuillez fournir une adresse électronique valide' : '';
+  }
+
+  // Method to return error message for password
+  getPasswordErrorMessage(): string {
+    return this.loginForm.controls['password'].hasError('required') ? 'Ce champ est obligatoire' : '';
   }
 
 onSubmit(): void {

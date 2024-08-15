@@ -15,8 +15,8 @@ import { FormDataService } from './form-data.service';
 import { HttpClientModule } from '@angular/common/http';
 import { SignatureEnLigneComponent } from './signature-en-ligne/signature-en-ligne.component';
 import { CompteAdminComponent } from './compte-admin/compte-admin.component';
-import {  DemandesService } from './demandes.service';
 import { ClientService } from './client.service';
+import { SignatureComponent } from './signature/signature.component';
 
 
 
@@ -37,7 +37,10 @@ import { ClientService } from './client.service';
     ReactiveFormsModule,
     SignatureEnLigneComponent,
     CompteAdminComponent,
-    HttpClientModule
+    HttpClientModule,
+    SignatureComponent,
+    
+
   
      
    

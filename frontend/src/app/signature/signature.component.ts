@@ -248,6 +248,7 @@ export class SignatureComponent implements OnInit {
   selectSlot(slot: Date): void {
     this.selectedSlot = slot;
   }
+  
 
   confirmSelection(): void {
     if (this.selectedSlot) {
