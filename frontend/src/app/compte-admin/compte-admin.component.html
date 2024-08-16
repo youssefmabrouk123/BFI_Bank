@@ -32,7 +32,7 @@
               <td>{{ demande.dateCreation | date: 'dd MMM yyyy' }}</td>
               <td>{{ demande.statut }}</td>
               <td>
-                <button class="btn btn-success" (click)="acceptDemande(demande.id)">Accepter</button>
+                <button class="btn btn-success" (click)="acceptDemande(demande)">Accepter</button>
                 <button class="btn btn-danger" (click)="rejectDemande(demande.id)">Rejeter</button>
                 <button class="btn btn-info" (click)="openDetailModal(demande)">Détails</button> <!-- Detail Button -->
               </td>

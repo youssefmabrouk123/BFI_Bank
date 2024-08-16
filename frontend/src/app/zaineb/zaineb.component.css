@@ -4,13 +4,13 @@
     left: 0;
     width: 300px;
     height: 100vh;
-    background: #d3bf4f;
+    background: #02193a;
     padding: 20px 15px;
     color: #fff;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    box-shadow: 2px 0 5px #d3bf4f;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
 }
 
 .navbarr {
@@ -20,19 +20,31 @@
     width: 100%;
 }
 
+.welcome-title {
+    font-size: 30px;
+    color: white;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.logo {
+    margin: 20px 0;
+}
+
 .custom-file-upload {
     display: flex;
+    flex-direction: column;
     align-items: center;
     cursor: pointer;
     position: relative;
 }
 
 .profile-photo {
-    width: 200px; /* Adjust as needed */
-    height: 200px; /* Adjust as needed */
-    border-radius: 100%;
+    width: 150px; 
+    height: 150px; 
+    border-radius: 50%;
     object-fit: cover;
-    border: 3px solid black;
+    border: 3px solid white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -42,27 +54,31 @@
     right: 10px;
     font-size: 24px;
     color: white;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 5px;
+    border-radius: 50%;
 }
 
 input[type="file"] {
     display: none;
 }
 
-
-ul {
+.nav-menu {
     flex-grow: 1;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    padding-left: 0;
 }
 
-li {
+.nav-menu li {
     width: 100%;
     margin-bottom: 1.5rem;
+    list-style-type: none;
 }
 
-li a {
+.nav-menu li a {
     display: flex;
     align-items: center;
     font-size: 18px;
@@ -71,14 +87,15 @@ li a {
     border-radius: 8px;
     width: 100%;
     transition: background 0.3s, color 0.3s;
+    text-decoration: none;
 }
 
-li a:hover {
-    background: #776a20;
+.nav-menu li a:hover {
+    background: #2c3e50;
     color: #ffffff;
 }
 
-li a i {
+.nav-menu li a i {
     font-size: 22px;
     margin-right: 15px;
 }
@@ -90,10 +107,11 @@ li a i {
 .logout {
     width: 100%;
     text-align: center;
+    margin-top: 30px;
 }
 
 .logout a {
-    background: black;
+    background: #e93c3c;
     color: #fff;
     padding: 12px 25px;
     text-align: center;
@@ -102,6 +120,7 @@ li a i {
     display: flex;
     align-items: center;
     justify-content: center;
+    text-decoration: none;
 }
 
 .logout a i {
@@ -109,6 +128,6 @@ li a i {
 }
 
 .logout a:hover {
-    background: #776a20;
+    background: #e73333;
     color: #ffffff;
 }

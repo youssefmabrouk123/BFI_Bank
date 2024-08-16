@@ -9,32 +9,48 @@
     </div>
   </div>
   <div class="container d-flex flex-column justify-content-center align-items-center min-vh-100">
-    <h1 style="color: rgb(56, 35, 35); font-size: 38px;"><strong>We Initiate</strong></h1>
+    <h1 style="color: rgb(56, 35, 35); font-size: 38px;"><strong>BFI BANK</strong></h1>
     <br>
     <div class="col-lg-8 mt-5 mt-lg-0">
       <div>
         <form (ngSubmit)="onSubmit()" [formGroup]="loginForm" role="form" class="php-email-form">
           <div class="row">
             <div class="form-group mt-3">
-              <label for="email"><p style="color: black; font-size: 17px;"><strong>Email</strong></p></label>
+              <label for="email">
+                <p style="color: black; font-size: 17px;"><strong>Email</strong></p>
+              </label>
               <input type="email" class="form-control" formControlName="email" id="email" placeholder="" required>
-              <label for="email"><p style="font-size: 13px;">Veuillez fournir une adresse électronique valide</p></label>
+              <!-- Error message for email -->
+              <p *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" style="color: red; font-size: 13px;">
+                {{ getEmailErrorMessage() }}
+              </p>
             </div>
           </div>
           <br>
           <div class="form-group mt-3">
-            <label for="password"><p style="color: black;"><strong style="font-size: 17px;">Mot de passe</strong></p></label>
+            <label for="password">
+              <p style="color: black;"><strong style="font-size: 17px;">Mot de passe</strong></p>
+            </label>
             <input type="password" class="form-control" formControlName="password" id="password" placeholder="" required>
-            <label for="password"><p style="font-size: 13px;">Ce champ est obligatoire</p></label>
+            <!-- Error message for password -->
+            <p *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" style="color: red; font-size: 13px;">
+              {{ getPasswordErrorMessage() }}
+            </p>
           </div>
           <br>
           <div class="text-center mt-4">
-            <button type="submit" class="btn btn-primary">CONNEXION</button>
+            <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">CONNEXION</button>
           </div>
         </form>
+        
+        
         <div class="text-center mt-3">
-          <p style="font-size: 15px;">Vous n’avez pas de compte ? <a routerLink="/inscription">Inscrivez-vous maintenant</a></p>
-          <p style="font-size: 15px;"><a routerLink="/mot-de-passe-oublie">Mot de passe oublié ?</a></p>
+          <p style="font-size: 15px; color: black;">
+            {{ signupText }} <a [routerLink]="signupLink">Inscrivez-vous maintenant</a>
+          </p>
+          <p style="font-size: 15px;">
+            <a [routerLink]="forgotPasswordLink">{{ forgotPasswordText }}</a>
+          </p>
         </div>
       </div>
     </div>

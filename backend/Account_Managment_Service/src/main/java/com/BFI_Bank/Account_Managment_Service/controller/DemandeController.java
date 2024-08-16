@@ -5,7 +5,9 @@ import com.BFI_Bank.Account_Managment_Service.dto.DemandeFilesResponse;
 import com.BFI_Bank.Account_Managment_Service.dto.DemandeUserDto;
 import com.BFI_Bank.Account_Managment_Service.exception.CustomMultipartFile;
 import com.BFI_Bank.Account_Managment_Service.exception.ErrorResponse;
+import com.BFI_Bank.Account_Managment_Service.feign.UsersServiceFeignClient;
 import com.BFI_Bank.Account_Managment_Service.model.Demande;
+import com.BFI_Bank.Account_Managment_Service.model.OurUsers;
 import com.BFI_Bank.Account_Managment_Service.service.DemandeService;
 import jakarta.annotation.Resource;
 import jakarta.persistence.EntityNotFoundException;
@@ -29,6 +31,9 @@ import java.util.List;
 @RequestMapping("/api/v1/Account/demandes")
 
 public class DemandeController {
+
+    @Autowired
+    private UsersServiceFeignClient usersServiceFeignClient;
 
     @Autowired
     private DemandeService demandeService;
@@ -127,6 +132,21 @@ public class DemandeController {
         } catch (IOException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ErrorResponse("Error reading file: " + e.getMessage()));
         }
+    }
+
+
+
+
+
+    @PutMapping("/unblock")
+    public ResponseEntity<OurUsers> unblockUser(@RequestParam String email) {
+        // Call the method from AdminService
+
+        // Optionally call the Feign client to update the user in the Users Service
+            // Call the Feign client to unblock the user in Users Service
+
+
+        return ResponseEntity.ok(usersServiceFeignClient.unblockUserByEmail(email));
     }
 
 

@@ -12,6 +12,7 @@ import { ClientService } from '../client.service';
   imports: [CarteBancaireComponent,YoussefComponent], // Add necessary Angular modules if required
   templateUrl: './mon-compte.component.html',
   styleUrls: ['./mon-compte.component.css'] ,
+  providers: [ClientService],
   // Corrected 'styleUrls' instead of 'styleUrl'
   encapsulation: ViewEncapsulation.Emulated
 })

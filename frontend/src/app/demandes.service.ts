@@ -63,19 +63,14 @@ export class DemandesService {
   }
 
   // Méthode pour accepter une demande
-  acceptDemande(id: number): Observable<Demandes> {
-    const url = `${this.baseUrl}/${id}/accept`;
-    return this.http.put<Demandes>(url, {}, this.httpOptions).pipe(
-      catchError(this.handleError<Demandes>('acceptDemande'))
-    );
+  acceptDemande(email: string,id: number): Observable<void> {
+    return     this.http.put<void>(`http://localhost:8999/api/v1/Account/demandes/unblock?email=${email}`, {});
+
+
   }
 
-  // Méthode pour rejeter une demande
-  rejectDemande(id: number): Observable<Demandes> {
-    const url = `${this.baseUrl}/${id}/reject`;
-    return this.http.put<Demandes>(url, {}, this.httpOptions).pipe(
-      catchError(this.handleError<Demandes>('rejectDemande'))
-    );
+  rejectDemande(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/refuse/${id}`, {});
   }
 
   // Méthode pour gérer les erreurs

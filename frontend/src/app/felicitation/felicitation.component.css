@@ -1,0 +1,75 @@
+.felicitation-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    background-color: white;
+    border-radius: 12px; /* Increased border-radius for a softer look */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 4px 6px rgba(0, 0, 0, 0.1); /* Enhanced shadow for a deeper 3D effect */
+    transform: perspective(500px)  ; 
+    margin-left: 22px; 
+    margin-right: 22px;
+    margin-top: 20px;
+  }
+  
+  .felicitation-image {
+    width: 220px;
+    height: auto;
+    margin-bottom: 20px;
+  }
+  
+  .felicitation-message {
+    max-width: 600px;
+  }
+  
+  .felicitation-message h1 {
+    color: #d3bf4f; 
+    /* font-size: 2rem; */
+    margin-bottom: 10px;
+  }
+  
+  
+  .felicitation-message p {
+    color: #212529; 
+    font-size: 1.125rem;
+    /* margin-bottom: 15px; */
+  }
+  
+  .felicitation-message ul {
+    list-style-type: none;
+    padding: 0;
+    font-size: 1rem;
+    color: #495057;
+  }
+  
+  .felicitation-message li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    margin-left: 50px;
+  }
+  
+  .felicitation-message li::before {
+    content: '✔';
+    color: #28a745; 
+    margin-right: 8px;
+  }
+  
+  .finalize-button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #d3bf4f; /* Blue color for the button */
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .finalize-button:hover {
+    background-color: #beab3b; /* Darker blue for hover effect */
+  }
+  

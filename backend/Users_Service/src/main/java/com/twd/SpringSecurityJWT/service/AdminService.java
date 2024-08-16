@@ -39,6 +39,8 @@ import com.twd.SpringSecurityJWT.repository.OurUserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class AdminService {
 
@@ -79,5 +81,16 @@ public class AdminService {
     public OurUsers getUser(Integer userId) {
         return ourUserRepo.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
+    }
+
+    public OurUsers unblockUserByEmail(String email) {
+        Optional<OurUsers> optionalUser = ourUserRepo.findByEmail(email);
+        if (optionalUser.isPresent()) {
+            OurUsers user = optionalUser.get();
+            user.setBlocked(false); // Assuming `setBlocked` is a method to unblock the user
+            ourUserRepo.save(user);
+            return user;
+        }
+        return null; // Or handle this case as needed (e.g., throw an exception or return an empty result)
     }
 }

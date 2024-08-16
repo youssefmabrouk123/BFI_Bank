@@ -15,6 +15,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { SignatureEnLigneComponent } from './signature-en-ligne/signature-en-ligne.component';
 import { CompteAdminComponent } from './compte-admin/compte-admin.component';
 import {  DemandesService } from './demandes.service';
+import { CompteclientComponent } from './compteclient/compteclient.component';
+import { EmailVerificationService } from './email-verification.service';
 
 
 
@@ -34,7 +36,8 @@ import {  DemandesService } from './demandes.service';
     CarteBancaireComponent,
     ReactiveFormsModule,
     SignatureEnLigneComponent,
-    HttpClientModule
+    HttpClientModule,
+    CompteclientComponent
   
      
    
@@ -42,7 +45,7 @@ import {  DemandesService } from './demandes.service';
 ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [AuthService ,DemandesService]
+  providers: [AuthService ,DemandesService,]
 })
 export class AppComponent {
   title = 'frontend';

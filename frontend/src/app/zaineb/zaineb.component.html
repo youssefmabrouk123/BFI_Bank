@@ -1,39 +1,32 @@
 <nav class="navv">
-    <div class="navbarr">
-      <br>
-      <br>
-      <div><h1 style="font-size: 30px; color: black;"><b>BIENVENU</b></h1></div>
-      <br>
-      <br>
+  <div class="navbarr">
+      <h1 class="welcome-title">BIENVENU</h1>
       <div class="logo">
-        <label class="custom-file-upload">
-            <img [src]="profilePhotoUrl" alt="" class="profile-photo">
-            <input type="file" (change)="onFileChange($event)" accept="image/*" />
-            <br>
-            <span class="upload-icon">📷</span>
-        </label>
-    </div>
-      <br>
-      <br>
-      <ul>
-        <li><a routerLink="/compte-admin">
-          <i class="fas fa-chart-bar"></i>
-          <span class="nav-item">Liste des demandes</span>
-        </a></li>
-        <li><a routerLink="/liste-demandes">
-          <i class="fas fa-user"></i>
-          <span class="nav-item">profil</span>
-        </a></li>
-        <br>
-        <br>
-        <div class="logout">
-          <a routerLink="/">
-            <i class="fas fa-sign-out-alt"></i>
-            <span class="nav-item">Déconnexion</span>
-          </a>
-        </div>
+          <label class="custom-file-upload">
+              <img [src]="profilePhotoUrl" alt="Profile Photo" class="profile-photo">
+              <input type="file" (change)="onFileChange($event)" accept="image/*" />
+              <span class="upload-icon">📷</span>
+          </label>
+      </div>
+      <ul class="nav-menu">
+          <li><a routerLink="/compte-admin">
+              <i class="fas fa-chart-bar"></i>
+              <span class="nav-item">Liste des demandes</span>
+          </a></li>
+          <li><a routerLink="/rdv">
+              <i class="fas fa-calendar"></i>
+              <span class="nav-item">Liste des Rendez-vous</span>
+          </a></li>
+          <li><a routerLink="/liste-demandes">
+              <i class="fas fa-user"></i>
+              <span class="nav-item">Profil</span>
+          </a></li>
       </ul>
-    </div>
-    
+      <div class="logout">
+          <a routerLink="/">
+              <i class="fas fa-sign-out-alt"></i>
+              <span class="nav-item">Déconnexion</span>
+          </a>
+      </div>
+  </div>
 </nav>
-

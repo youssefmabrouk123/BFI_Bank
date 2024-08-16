@@ -4,6 +4,8 @@ import com.twd.SpringSecurityJWT.dto.ReqRes;
 import com.twd.SpringSecurityJWT.dto.UpdateUserRequest;
 import com.twd.SpringSecurityJWT.entity.OurUsers;
 import com.twd.SpringSecurityJWT.repository.OurUserRepo;
+import com.twd.SpringSecurityJWT.service.AdminService;
+import com.twd.SpringSecurityJWT.service.EmailService;
 import com.twd.SpringSecurityJWT.service.OurUserService;
 import com.twd.SpringSecurityJWT.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +25,16 @@ import java.util.logging.Logger;
     @RequestMapping("/api/v1/users/public")
 
 public class OurUserController {
+
+    @Autowired
+    private EmailService emailService;
     @Autowired
     private UserService userService;
     @Autowired
     private OurUserRepo userRepository;
+    @Autowired
+    private AdminService adminService;
+
 
     private static final Logger LOGGER = Logger.getLogger(OurUserController.class.getName());
 
@@ -69,6 +77,20 @@ public class OurUserController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
+    }
+
+    @PutMapping("/unblocked")
+    public ResponseEntity<OurUsers> unblockUser(@RequestParam String email) {
+        OurUsers user = adminService.unblockUserByEmail(email);
+
+
+        // Optionally send an email notification
+        // Envoyer un e-mail
+        String subject = "Votre compte a été bloqué";
+        String text = "Bonjour " + user.getEmail() + ",\n\nVotre compte a été bloqué. Veuillez contacter l'administrateur pour plus de détails.";
+        emailService.sendEmail(user.getEmail(), subject, text);
+
+        return ResponseEntity.ok(user);
     }
 
 

@@ -1,6 +1,6 @@
 
 
-
+<div >
   
 
   <div  >
@@ -60,14 +60,13 @@
                   <p>Fait le ../../.... </p>
   
                   <p><strong>Pour le Client :</strong></p>
-                  <!-- <div *ngIf="!signatureImageUrl"> -->
                     
-                    <!-- <div class="signature-container">
-                    <canvas id="signature-pad" width="300" height="200">  <img [src]="signatureImageUrl" alt="Signature"></canvas>
+                    <div class="signature-container">
+                    <canvas id="signature-pad" width="300" height="200"> </canvas>
                   </div>
                   <button (click)="clearSignature()">Effacer</button>
                   <button (click)="saveSignature()">Sauvegarder</button>
-                   -->
+                  
                  
                    <div *ngIf="signatureImageUrl ; else noSignature">
                     <img [src]="signatureImageUrl" alt="Signature">
@@ -103,5 +102,8 @@
       </section>
     </div>
   </div>
+
+</div>
+
 
 

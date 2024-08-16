@@ -80,6 +80,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -151,5 +152,19 @@ public class RdvService {
         // Format the LocalDateTime object into the desired output format
         return dateTime.format(humanReadableFormatter);
     }
+
+    public List<Rdv> getAllRdv() {
+        return rdvRepository.findAll();
+    }
+
+    public Optional<Rdv> setRdvDone(Long id) {
+        Optional<Rdv> rdvOptional = rdvRepository.findById(id);
+        rdvOptional.ifPresent(rdv -> {
+            rdv.setDone(true);
+            rdvRepository.save(rdv);
+        });
+        return rdvOptional;
+    }
+
 
 }

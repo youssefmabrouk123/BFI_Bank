@@ -30,8 +30,12 @@ export class CompteAdminComponent implements OnInit {
     this.demandesService.getDemandes().subscribe(demandes => this.demandes = demandes);
   }
 
-  acceptDemande(id: number): void {
-    this.demandesService.acceptDemande(id).subscribe(() => this.loadDemandes());
+  acceptDemande(demande: Demandes): void {
+    if (demande.email) {
+      this.demandesService.acceptDemande(demande.email,demande.id).subscribe(() => this.loadDemandes());
+      alert("demande Accepter avec succés");
+      this.rejectDemande(demande.id);
+    }
   }
 
   rejectDemande(id: number): void {

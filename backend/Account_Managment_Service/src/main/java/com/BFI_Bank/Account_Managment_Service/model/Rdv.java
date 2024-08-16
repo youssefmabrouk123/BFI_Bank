@@ -18,4 +18,5 @@ public class Rdv {
     private LocalDateTime date;
     private Long idClient;  // IdUser from OurUsers in Users Service
     private String lienMeet;
+    private Boolean Done;
 }

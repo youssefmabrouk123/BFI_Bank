@@ -5,6 +5,7 @@ import com.BFI_Bank.Account_Managment_Service.dto.RdvRequest;
 import com.BFI_Bank.Account_Managment_Service.repository.DemandeRepository;
 import com.BFI_Bank.Account_Managment_Service.service.RdvService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.*;
@@ -51,5 +52,18 @@ public class RdvController {
         message.setText("Your appointment is scheduled on " + rdvService.formatIsoDateTime( rdv.getDate().toString()) +
                 ".\nGoogle Meet link: " + rdv.getLienMeet());
         mailSender.send(message);
+    }
+
+
+    @GetMapping("/all")
+    public ResponseEntity<List<Rdv>> getAllRdv() {
+        List<Rdv> rdvList = rdvService.getAllRdv();
+        return ResponseEntity.ok(rdvList);
+    }
+
+    @PostMapping("/setDone/{id}")
+    public ResponseEntity<Rdv> setRdvDone(@PathVariable Long id) {
+        Optional<Rdv> rdvOptional = rdvService.setRdvDone(id);
+        return rdvOptional.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 }

@@ -13,6 +13,7 @@ import { RdvService } from '../rdv.service';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -50,7 +51,8 @@ export class SignatureComponent implements OnInit {
     private emailVerificationService: EmailVerificationService,
     private formDataService: FormDataService,
     private snackBar: MatSnackBar ,
-    private rdvService: RdvService
+    private rdvService: RdvService,
+    private router: Router
 
   ) {
     this.firstFormGroup = this.fb.group({
@@ -252,6 +254,7 @@ export class SignatureComponent implements OnInit {
   selectSlot(slot: Date): void {
     this.selectedSlot = slot;
   }
+  
 
   confirmSelection(): void {
     if (this.selectedSlot) {
@@ -260,19 +263,21 @@ export class SignatureComponent implements OnInit {
         this.rdvService.bookSlot(this.selectedSlot, email).subscribe(
           response => {
             console.log('Booking confirmed:', response);
-            alert('Slot booked successfully!');
+            alert('Place réservée avec succès !');
+            this.router.navigate(['/']);
+
             // Optionally, navigate to another page or reset the form
           },
           error => {
             console.error('Error booking slot', error);
-            alert('There was an error booking the slot.');
+            alert('Une erreur s est produite lors de la réservation du rendez-vous.');
           }
         );
       } else {
-        alert('Email not found in local storage.');
+        alert('E-mail non trouvé dans le stockage local.');
       }
     } else {
-      alert('Please select a slot.');
+      alert('Veuillez sélectionner un créneau horaire.');
     }
   }
 

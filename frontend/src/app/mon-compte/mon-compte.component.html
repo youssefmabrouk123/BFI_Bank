@@ -1,85 +1,86 @@
 <div class="essai">
  
 
-<app-youssef></app-youssef>
-  <section class="mainn">
-    <div class="main-topp">
-      <b><p style="color: black; font-size: 30px;">BIENVENU CHEZ BFI Bank</p></b>
-    </div>
-    
-    <div class="main-bodyy">
-      <div class="row">
-        <!-- Card 1: Solde du Compte -->
-        <div class="col-md-4 mb-4">
-          <div class="card">
-            <div class="card-body">
-              <div class="card-icon">
-                <i class="fas fa-wallet"></i>
-              </div>
-              <h3 class="card-title"><b>Solde du Compte</b></h3>
-              <p class="card-text">{{clientData.solde}} dt</p>
-            </div>
-          </div>
-        </div>
-  
-        <!-- Card 2: Nombre de Transactions -->
-        <div class="col-md-4 mb-4">
-          <div class="card">
-            <div class="card-body">
-              <div class="card-icon">
-                <i class="fas fa-exchange-alt"></i>
-              </div>
-              <h5 class="card-title"><b>Nombre de Transactions</b></h5>
-              <p class="card-text">{{clientData.transactionNumber}}</p>
-            </div>
-          </div>
-        </div>
-  
-        <!-- Card 3: Date de Dernière Connexion -->
-        <div class="col-md-4 mb-4">
-          <div class="card">
-            <div class="card-body">
-              <div class="card-icon">
-                <i class="fas fa-calendar-check"></i>
-              </div>
-              <h5 class="card-title"><b>Date de Dernière Connexion</b></h5>
-              <p class="card-text">{{ formatFrenchDate(clientData.lastConnexion) }}</p>
-            </div>
-          
-          </div>
-        </div>
+  <app-youssef></app-youssef>
+    <section class="mainn">
+      <div class="main-topp">
+        <b><p style="color: black; font-size: 30px;">BIENVENU CHEZ BFI Bank</p></b>
       </div>
-      <div class="row">
-        <div class="aaa">
-      <div class="credit-card-wrap">
-        <div class="mk-icon-world-map"></div>
-        <div class="credit-card-inner">
-          <header class="header">
-            <div class="credit-logo">
-              <span class="text">BFI Bank</span>
-            </div>
-          </header>
-          <div class="mk-icon-sim"></div>
-          <div class="credit-font credit-card-number" data-text="3750">{{formatCardNumber(clientData.carte.numeroCarte)}}</div>
-          <footer class="footer">
-            <div class="clearfix">
-              <div class="pull-left">
-                <div class="credit-card-date">
-                  <span class="title">Expires End</span>
-                  <span class="credit-font">{{formatDate(clientData.carte.dateExpiration)}}</span>
-                </div>
-                <div class="credit-font credit-author">{{clientData.carte.nomTitulaire}}</div>
-              </div>
-              <div class="pull-right">
-                <div class="mk-icon-visa"></div>
-              </div>
-            </div>
-          </footer>
-        </div>
-      </div>
-    </div>
-    </div>
       
-    </div>
-  </section>
-</div>
+      <div class="main-bodyy">
+        <div class="row">
+          <!-- Card 1: Solde du Compte -->
+          <div class="col-md-4 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="card-icon">
+                  <i class="fas fa-wallet"></i>
+                </div>
+                <h3 class="card-title"><b>Solde du Compte</b></h3>
+                <p class="card-text">{{clientData.solde}} dt</p>
+              </div>
+            </div>
+          </div>
+    
+          <!-- Card 2: Nombre de Transactions -->
+          <div class="col-md-4 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="card-icon">
+                  <i class="fas fa-exchange-alt"></i>
+                </div>
+                <h5 class="card-title"><b>Nombre de Transactions</b></h5>
+                <p class="card-text">{{clientData.transactionNumber}}</p>
+              </div>
+            </div>
+          </div>
+    
+          <!-- Card 3: Date de Dernière Connexion -->
+          <div class="col-md-4 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="card-icon">
+                  <i class="fas fa-calendar-check"></i>
+                </div>
+                <h5 class="card-title"><b>Date de Dernière Connexion</b></h5>
+                <p class="card-text">{{ formatFrenchDate(clientData.lastConnexion) }}</p>
+              </div>
+            
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="aaa">
+        <div class="credit-card-wrap">
+          <div class="mk-icon-world-map"></div>
+          <div class="credit-card-inner">
+            <header class="header">
+              <div class="credit-logo">
+                <span class="text">BFI Bank</span>
+              </div>
+            </header>
+            <div class="mk-icon-sim"></div>
+            <div class="credit-font credit-card-number" data-text="3750">{{formatCardNumber(clientData.carte.numeroCarte)}}</div>
+            <footer class="footer">
+              <div class="clearfix">
+                <div class="pull-left">
+                  <div class="credit-card-date">
+                    <span class="title">Expires End</span>
+                    <span class="credit-font">{{formatDate(clientData.carte.dateExpiration)}}</span>
+                  </div>
+                  <div class="credit-font credit-author">{{clientData.carte.nomTitulaire}}</div>
+                </div>
+                <div class="pull-right">
+                  <div class="mk-icon-visa"></div>
+                </div>
+              </div>
+            </footer>
+          </div>
+        </div>
+      </div>
+      </div>
+        
+      </div>
+    </section>
+  </div>
+  

@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/../../../BFI_Bank/backend/Account_Managment_Service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../../BFI_Bank/backend/Users_Service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../../BFI_Bank/backend/config-server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../../BFI_Bank/backend/discovery/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../../BFI_Bank/backend/gateway/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Account_Managment_Service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Users_Service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/config-server/src/main/java" charset="UTF-8" />
