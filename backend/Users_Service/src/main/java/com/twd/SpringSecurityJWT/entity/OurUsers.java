@@ -39,6 +39,7 @@ public class OurUsers implements UserDetails {
     private String email;
     private String password;
     private String role;
+    private Integer numeroCin;
 
     private boolean isBlocked;
     private boolean isEmailVerified;

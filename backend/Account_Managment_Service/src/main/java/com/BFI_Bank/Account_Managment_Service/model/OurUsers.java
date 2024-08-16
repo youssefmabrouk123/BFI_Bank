@@ -28,6 +28,9 @@ public class OurUsers {
     private String password;
     private String role;
 
+    private Integer numeroCin;
+
+
     private boolean isBlocked;
     private boolean isEmailVerified;
     private UUID verificationToken;

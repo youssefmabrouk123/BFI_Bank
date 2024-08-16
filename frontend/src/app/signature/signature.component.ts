@@ -32,7 +32,7 @@ import { Router } from '@angular/router';
     FooterComponent
     
   ],
-  providers: [EmailVerificationService, FormDataService,HttpResponse,RdvService],
+  providers: [EmailVerificationService, FormDataService,HttpResponse,RdvService,FooterComponent,HeaderComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './signature.component.html',
   styleUrls: ['./signature.component.css']

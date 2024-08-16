@@ -129,6 +129,8 @@ public class DemandeService {
                 ourUsers.setSecteurActivite(registrationRequest.getSecteurActivite());
                 ourUsers.setNom(registrationRequest.getNom());
                 ourUsers.setPrenom(registrationRequest.getPrenom());
+                ourUsers.setNumeroCin(registrationRequest.getNumeroCin());
+
 
                 // Appel du service Users_Service pour créer l'utilisateur et obtenir l'utilisateur créé
                 OurUsers createdUser = usersServiceFeignClient.createUser(ourUsers);

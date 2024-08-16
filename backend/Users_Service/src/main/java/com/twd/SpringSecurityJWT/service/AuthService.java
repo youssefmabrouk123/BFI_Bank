@@ -46,6 +46,7 @@ public class AuthService {
             ourUsers.setNom(registrationRequest.getNom());
             ourUsers.setPrenom(registrationRequest.getPrenom());
             ourUsers.setBlocked(true);
+            ourUsers.setNumeroCin(registrationRequest.getNumeroCin());
 
             OurUsers ourUserResult = ourUserRepo.save(ourUsers);
             if (ourUserResult != null && ourUserResult.getId() > 0) {

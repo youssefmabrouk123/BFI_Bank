@@ -20,6 +20,7 @@ export class EditComponent implements OnInit {
     this.authService.getUserDetails().subscribe(userDetails => {
       if (userDetails) {
         this.user = userDetails;
+        console.log(  this.user = userDetails);
        // this.loadProfilePhoto();
       } else {
         console.log('User details not yet available.');

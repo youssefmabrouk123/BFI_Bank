@@ -1,5 +1,6 @@
 package com.BFI_Bank.Account_Managment_Service.controller;
 
+import com.BFI_Bank.Account_Managment_Service.dto.CompteBancaireDTO;
 import com.BFI_Bank.Account_Managment_Service.model.CompteBancaire;
 import com.BFI_Bank.Account_Managment_Service.service.CompteBancaireService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -55,4 +57,18 @@ public class CompteBancaireController {
             throw new RuntimeException("CompteBancaire not found");
         }
     }
+
+
+    @GetMapping
+    public List<CompteBancaireDTO> getAllComptes() {
+        return compteBancaireService.getAllComptes();
+    }
+
+
+    @GetMapping("/{id}")
+    public CompteBancaireDTO getCompteById(@PathVariable Long id) {
+        return compteBancaireService.getCompteById(id);
+    }
+
+
 }

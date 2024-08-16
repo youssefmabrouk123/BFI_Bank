@@ -1,5 +1,7 @@
 package com.BFI_Bank.Account_Managment_Service.service;
 
+import com.BFI_Bank.Account_Managment_Service.dto.CompteBancaireDTO;
+import com.BFI_Bank.Account_Managment_Service.exception.ResourceNotFoundException;
 import com.BFI_Bank.Account_Managment_Service.model.CarteProfessionnelle;
 import com.BFI_Bank.Account_Managment_Service.model.CompteBancaire;
 import com.BFI_Bank.Account_Managment_Service.repository.CarteProfessionnelleRepository;
@@ -15,8 +17,10 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 @Service
 public class CompteBancaireService {
@@ -164,6 +168,39 @@ public class CompteBancaireService {
             return compteBancaireRepository.save(compte);
         } else {
             throw new RuntimeException("CompteBancaire not found");
+        }
+    }
+
+
+    public List<CompteBancaireDTO> getAllComptes() {
+        return compteBancaireRepository.findAll().stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
+    }
+
+    private CompteBancaireDTO convertToDTO(CompteBancaire compteBancaire) {
+        CompteBancaireDTO dto = new CompteBancaireDTO();
+        dto.setId(compteBancaire.getId());
+        dto.setNumero(compteBancaire.getNumero());
+        dto.setType(compteBancaire.getType());
+        dto.setSolde(compteBancaire.getSolde());
+        dto.setDateOuverture(compteBancaire.getDateOuverture());
+        dto.setClientId(compteBancaire.getClientId());
+        dto.setStatut(compteBancaire.getStatut());
+        dto.setLastConnexion(compteBancaire.getLastConnexion());
+        dto.setTransactionNumber(compteBancaire.getTransactionNumber());
+        dto.setContractSignature(compteBancaire.getContractSignature());
+        dto.setCarte(compteBancaire.getCarte());
+        return dto;
+    }
+
+
+    public CompteBancaireDTO getCompteById(Long id) {
+        Optional<CompteBancaire> compteBancaireOptional = compteBancaireRepository.findById(id);
+        if (compteBancaireOptional.isPresent()) {
+            return convertToDTO(compteBancaireOptional.get());
+        } else {
+            throw new ResourceNotFoundException("CompteBancaire not found with id " + id);
         }
     }
 }
