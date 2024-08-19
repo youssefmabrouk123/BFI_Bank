@@ -63,7 +63,7 @@ onSubmit(): void {
           this.messageService.add({
             severity: 'success',
             summary: 'Success',
-            detail: 'Welcome!'
+            detail: 'Bienvenue!'
           });
 
           if (response.token) {
@@ -84,7 +84,7 @@ onSubmit(): void {
                 this.messageService.add({
                   severity: 'error',
                   summary: 'Error',
-                  detail: 'Failed to fetch user details.'
+                  detail: 'Échec de la récupération des détails de l utilisateur.'
                 });
               }
             );
@@ -93,7 +93,7 @@ onSubmit(): void {
           this.messageService.add({
             severity: 'warn',
             summary: 'Warning',
-            detail: response.message || 'Access denied.'
+            detail: response.message || 'Accès refusé.'
           });
         }
       },
@@ -102,7 +102,7 @@ onSubmit(): void {
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
-          detail: error.error?.message || 'An unexpected error occurred.'
+          detail: error.error?.message || 'Une erreur inattendue s est produite.'
         });
       }
     );
@@ -110,7 +110,7 @@ onSubmit(): void {
     this.messageService.add({
       severity: 'warn',
       summary: 'Warning',
-      detail: 'Form is invalid'
+      detail: 'Le formulaire n est pas valide'
     });
   }
 }

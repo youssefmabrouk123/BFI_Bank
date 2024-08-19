@@ -46,10 +46,10 @@ public class CompteBancaire {
     private CarteProfessionnelle carte;
 
     @Column(name = "contractSignature")
-    private Boolean contractSignature ;
+        private Boolean contractSignature ;
 
     @Lob
-    private String signature;
+        private String signature;
 
     @PrePersist
     protected void onCreate() {

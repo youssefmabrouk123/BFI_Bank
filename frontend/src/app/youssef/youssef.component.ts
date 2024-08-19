@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-youssef',
@@ -10,7 +10,12 @@ import { RouterLink } from '@angular/router';
 })
 export class YoussefComponent {
 
+
+
   profilePhotoUrl: string | ArrayBuffer | null = '/path/to/default/profile-photo.jpg';
+
+  constructor(private router: Router) {}
+
 
 onFileChange(event: Event): void {
     const fileInput = event.target as HTMLInputElement;
@@ -22,5 +27,13 @@ onFileChange(event: Event): void {
         };
         reader.readAsDataURL(file);
     }
+}
+
+logout() {
+  // Clear all local storage
+  localStorage.clear();
+
+  // Redirect to the home page
+  this.router.navigate(['/']);
 }
 }

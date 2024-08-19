@@ -203,4 +203,20 @@ public class CompteBancaireService {
             throw new ResourceNotFoundException("CompteBancaire not found with id " + id);
         }
     }
+
+
+    public CompteBancaire setContractSignature(Long id) {
+        Optional<CompteBancaire> optionalCompteBancaire = compteBancaireRepository.findById(id);
+        if (optionalCompteBancaire.isPresent()) {
+            CompteBancaire compteBancaire = optionalCompteBancaire.get();
+            compteBancaire.setContractSignature(true);
+            return compteBancaireRepository.save(compteBancaire);
+        } else {
+            throw new RuntimeException("CompteBancaire not found with id: " + id);
+        }
+
+
+
+
+    }
 }

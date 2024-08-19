@@ -71,4 +71,12 @@ public class CompteBancaireController {
     }
 
 
+
+
+    @PutMapping("/{id}/sign-contract")
+    public ResponseEntity<CompteBancaire> signContract(@PathVariable Long id) {
+        CompteBancaire updatedCompteBancaire = compteBancaireService.setContractSignature(id);
+        return ResponseEntity.ok(updatedCompteBancaire);
+    }
+
 }

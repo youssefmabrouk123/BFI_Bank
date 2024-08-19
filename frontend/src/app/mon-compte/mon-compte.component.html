@@ -60,7 +60,16 @@
               </div>
             </header>
             <div class="mk-icon-sim"></div>
-            <div class="credit-font credit-card-number" data-text="3750">{{formatCardNumber(clientData.carte.numeroCarte)}}</div>
+            <!-- <div class="credit-font credit-card-number" data-text="3750">{{formatCardNumber(clientData.carte.numeroCarte)}}</div> -->
+            <div *ngIf="clientData.contractSignature === false; else signedContract">
+              <div class="credit-font credit-card-number" data-text="3750">xxxx xxxx xxxx xxxx</div>
+            </div>
+            
+            <ng-template #signedContract>
+              <div class="credit-font credit-card-number" data-text="3750">
+                {{ formatCardNumber(clientData.carte.numeroCarte) }}
+              </div>
+            </ng-template>
             <footer class="footer">
               <div class="clearfix">
                 <div class="pull-left">

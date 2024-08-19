@@ -5,11 +5,12 @@ import { Subscription } from 'rxjs';
 import { CarteBancaireComponent } from "../carte-bancaire/carte-bancaire.component";
 import { YoussefComponent } from '../youssef/youssef.component';
 import { ClientService } from '../client.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-mon-compte',
   standalone: true,
-  imports: [CarteBancaireComponent,YoussefComponent], // Add necessary Angular modules if required
+  imports: [CarteBancaireComponent,YoussefComponent,CommonModule,], // Add necessary Angular modules if required
   templateUrl: './mon-compte.component.html',
   styleUrls: ['./mon-compte.component.css'] ,
   providers: [ClientService],
@@ -29,6 +30,10 @@ export class MonCompteComponent implements OnInit {
           this.clientData = data;
           console.log('Client Data:', this.clientData);
           localStorage.setItem("idCompte", this.clientData.id);
+          localStorage.setItem("nom", this.clientData.carte.nomTitulaire);
+          localStorage.setItem("contractSignature", this.clientData.carte.contractSignature);
+
+
         },
         (error) => {
           console.error('Error fetching client data:', error);

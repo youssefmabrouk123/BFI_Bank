@@ -201,7 +201,7 @@
     private canvas!: HTMLCanvasElement;
     private ctx: CanvasRenderingContext2D | null = null;
   
-    clientName: string = 'NON CLIENT'; 
+    clientName: string|null = localStorage.getItem("nom"); 
     clientAddress: string = 'ADRESSE CLIENT';
     signatureImageUrl?: string;
   
@@ -255,22 +255,58 @@
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }
   
+    // saveSignature(): void {
+    //   if (!this.canvas) return;
+  
+    //   const signatureDataUrl = this.canvas.toDataURL('image/png');
+    //   const compteId = localStorage.getItem("idCompte"); // Ensure this is the correct ID
+  
+    //   this.http.post(`http://localhost:8999/api/v1/Account/comptes/${compteId}/save-signature`, { signature: signatureDataUrl })
+    //     .subscribe(response => {
+    //       console.log('Signature saved successfully!', response);
+    //       this.generatePDF(signatureDataUrl);
+    //       this.getSignature(); // Refresh the signature after saving
+    //     }, error => {
+    //       console.error('Error saving signature:', error);
+    //     });
+    // }
+  
     saveSignature(): void {
       if (!this.canvas) return;
-  
+    
       const signatureDataUrl = this.canvas.toDataURL('image/png');
       const compteId = localStorage.getItem("idCompte"); // Ensure this is the correct ID
-  
-      this.http.post(`http://localhost:8999/api/v1/Account/comptes/${compteId}/save-signature`, { signature: signatureDataUrl })
-        .subscribe(response => {
-          console.log('Signature saved successfully!', response);
-          this.generatePDF(signatureDataUrl);
-          this.getSignature(); // Refresh the signature after saving
-        }, error => {
-          console.error('Error saving signature:', error);
-        });
+    
+      if (!compteId) {
+        console.error('No compteId found in localStorage');
+        return;
+      }
+    
+      // Step 1: Set contract signature to true
+      this.http.put(`http://localhost:8999/api/v1/Account/comptes/${compteId}/sign-contract`, {})
+        .subscribe(
+          res => {
+            console.log('Contract signature set to true successfully!', res);
+    
+            // Step 2: Save the signature
+            this.http.post(`http://localhost:8999/api/v1/Account/comptes/${compteId}/save-signature`, { signature: signatureDataUrl })
+              .subscribe(
+                response => {
+                  console.log('Signature saved successfully!', response);
+                  this.generatePDF(signatureDataUrl);
+                  this.getSignature(); // Refresh the signature after saving
+                },
+                error => {
+                  console.error('Error saving signature:', error);
+                }
+              );
+          },
+          error => {
+            console.error('Error setting contract signature:', error);
+          }
+        );
     }
-  
+
     getSignature(): void {
       const compteId = localStorage.getItem("idCompte"); // Ensure this is the correct ID
   
@@ -313,7 +349,7 @@
     
       doc.setFontSize(12);
       addText(`Entre : BFI BANK, située à Immeuble BFI, Rue du Lac de Constance, Les Berges du Lac, 1053 Tunis, Tunisie.`);
-      addText(`Et : ${this.clientName}, résidant à ${this.clientAddress}.`);
+      addText(`Et : ${this.clientName}.`);
       addText('Objet du Contrat', true);
       addText('Le présent contrat a pour objet de définir les termes et conditions sous lesquels l\'Entreprise fournira au Client les services suivants :');
       addText('Service 1: Ouverture de Compte Bancaire - Assistance complète dans l\'ouverture d\'un nouveau compte bancaire, incluant la collecte et la vérification des documents nécessaires, la configuration des options de compte selon les besoins du client, et la fourniture d\'un accès sécurisé aux services bancaires en ligne.');
