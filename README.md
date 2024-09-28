@@ -50,3 +50,57 @@ BFI Bank is a comprehensive banking system designed to provide users with the ab
 - **Version Control**:
   - Git/GitHub
 
+Here’s a properly formatted version for the **Installation and Setup** section of your README:
+
+---
+
+## **Installation and Setup**
+
+### **Clone the Repository:**
+
+```bash
+git clone https://github.com/yourusername/bfi-bank.git
+cd bfi-bank
+```
+
+### **Backend Setup:**
+
+1. Navigate to the Spring Boot application directory.
+2. Update the `application.properties` or `application.yml` file with your local database, email service, and Twilio credentials.
+3. Run the application:
+
+```bash
+./mvnw spring-boot:run
+```
+
+### **Frontend Setup:**
+
+1. Navigate to the Angular project directory.
+2. Install the necessary dependencies:
+
+```bash
+npm install
+```
+
+3. Run the Angular application:
+
+```bash
+ng serve
+```
+
+### **Database Setup:**
+
+1. Ensure you have **PostgreSQL** running locally.
+2. Create the necessary databases as defined in your `application.properties` file.
+3. The database schema will be automatically generated using **Spring Data JPA**.
+
+### **Twilio Configuration:**
+
+1. Sign up on **Twilio** and get your account credentials (SID, Auth Token, and phone number).
+2. Add these credentials to your `application.properties` file.
+
+### **Email Configuration:**
+
+1. Set up your email service (e.g., Gmail) in the `application.properties` file for sending verification tokens.
+
+
